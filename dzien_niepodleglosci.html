@@ -4,12 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dzień Niepodległości - Galeria</title>
+    
+    <!-- SEO & Meta Tags -->
+    <meta name="description" content="Galeria zdjęć: Dzień Niepodległości ZSOT (2025). Reportaż z uroczystości.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Dzień Niepodległości ZSOT - Jan Kobus Fotografia">
+    <meta property="og:description" content="Reportaż z obchodów Dnia Niepodległości. Zobacz zdjęcia.">
+    <meta property="og:image" content="https://twoja-domena.pl/photos/dzien_niepodleglosci_kazik2025/fot (1).jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
     <nav>
-        <a href="index.html">Powrót</a>
+        <div class="nav-left">
+            <a href="index.html#work">Prace</a>
+            <a href="kontakt.html">Kontakt</a>
+        </div>
+        <div class="nav-center">
+            <a href="index.html">Jan Kobus</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://www.facebook.com/profile.php?id=100069116356707"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
     </nav>
 
     <header class="project-header">
@@ -17,37 +41,28 @@
     </header>
 
     <section class="masonry-gallery" id="moja-galeria">
-        </section>
+        <!-- JS generuje tu zdjęcia -->
+    </section>
 
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=100069116356707"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
     <script>
-        // KONFIGURACJA
-        const folder = 'photos/dzien_niepodleglosci_kazik2025/'; // Ścieżka do folderu ze zdjęciami
-        const iloscZdjec = 12;          // ILE masz zdjęć w folderze?
-        const rozszerzenie = '.jpg';    // Jakie mają rozszerzenie? (.jpg, .png)
-
-        // Znajdź kontener galerii
-        const galeria = document.getElementById('moja-galeria');
-
-        // Pętla, która wykona się tyle razy, ile wpisałeś w 'iloscZdjec'
-        for (let i = 1; i <= iloscZdjec; i++) {
-            
-            // 1. Stwórz element div (masonry-item)
-            const div = document.createElement('div');
-            div.className = 'masonry-item';
-
-            // 2. Stwórz element img
-            const img = document.createElement('img');
-            // Tutaj budujemy nazwę pliku: fot (1).jpg
-            img.src = folder + 'fot (' + i + ')' + rozszerzenie; 
-            img.alt = 'Zdjęcie nr ' + i;
-            
-            // Opcjonalnie: obsługa błędu (gdyby brakowało pliku) — wypisz w konsoli
-            img.onerror = function() { console.warn('Nie znaleziono pliku:', this.src); this.style.display = 'none'; };
-
-            // 3. Włóż img do diva, a diva do galerii
-            div.appendChild(img);
-            galeria.appendChild(div);
-        }
+        loadGallery({
+            containerId: 'moja-galeria',
+            folder: 'photos/dzien_niepodleglosci_kazik2025/',
+            count: 12,
+            prefix: 'fot', 
+            extension: '.jpg'
+        });
     </script>
 
 </body>
