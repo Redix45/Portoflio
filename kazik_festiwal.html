@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kazikowy Festiwal Muzyczny</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <a href="index.html">Powrót</a>
+    </nav>
+
+    <header class="project-header">
+        <h1>Kazikowy Festiwal Muzyczny</h1>
+    </header>
+
+    <section class="masonry-gallery" id="moja-galeria">
+        </section>
+
+    <script>
+      
+        const folder = 'photos/kazik festiwal/'; 
+        const iloscZdjec = 18;          
+        const rozszerzenie = '.jpg';    
+
+      
+        const galeria = document.getElementById('moja-galeria');
+
+        for (let i = 1; i <= iloscZdjec; i++) {
+            
+       
+            const div = document.createElement('div');
+            div.className = 'masonry-item';
+
+       
+            const img = document.createElement('img');
+           
+            img.src = `${folder}foto (${i})${rozszerzenie}`;
+            img.alt = `Zdjęcie nr ${i}`;
+            
+            // keep console feedback but remove visual debug borders
+            img.onload = () => { console.log('Loaded:', img.src); };
+            img.onerror = function() { console.warn('Nie znaleziono pliku:', this.src); this.style.display = 'none'; };
+
+          
+            div.appendChild(img);
+            galeria.appendChild(div);
+        }
+    </script>
+
+</body>
+</html>
