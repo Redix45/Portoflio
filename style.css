@@ -185,9 +185,37 @@ nav {
    ========================================= */
 .gallery {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0;
-    width: 100%;
+    /* This line controls the number of columns and their size.
+       - repeat(3, 1fr) creates 3 columns of equal width.
+       - Change '3' to '4' for even smaller albums (4 columns). */
+    grid-template-columns: repeat(3, 1fr);
+
+    /* This controls the space between the albums.
+       - Adjust '30px' to your liking (e.g., '20px' for less space). */
+    gap: 30px;
+
+    /* Ensures the gallery doesn't get too wide on very large screens */
+    max-width: 1200px;
+    /* Centers the gallery horizontally on the page */
+    margin: 0 auto;
+}
+
+/* --- RESPONSIVENESS (Optional but Recommended) --- */
+/* These rules ensure your gallery still looks good on smaller devices */
+
+/* On tablets, switch to 2 columns */
+@media (max-width: 900px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* On phones, switch to 1 column */
+@media (max-width: 600px) {
+    .gallery {
+        grid-template-columns: 1fr;
+        gap: 20px; /* Smaller gap for smaller screens */
+    }
 }
 
 .gallery-container {
