@@ -5,54 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jan Kobus - Portfolio</title>
     
-    <!-- SEO & Meta Tags -->
-    <meta name="description" content="Portfolio fotograficzne Jana Kobusa. Fotografia reportażowa, artystyczna i okolicznościowa. Zobacz moje prace i skontaktuj się ze mną.">
-    <meta name="keywords" content="fotograf, fotografia reportażowa, sesje zdjęciowe, portfolio, Jan Kobus, zdjęcia artystyczne">
-    <meta name="author" content="Jan Kobus">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://twoja-domena.pl/">
-    <meta property="og:title" content="Jan Kobus - Fotografia Reportażowa & Artystyczna">
-    <meta property="og:description" content="Odkryj świat widziany moim obiektywem. Fotografia pełna emocji i niepowtarzalnych chwil.">
-    <meta property="og:image" content="https://twoja-domena.pl/photos/profil.png">
-
-    <!-- Favicon -->
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <script>
-        function tryNextExtension(img) {
-            const extensions = ['png', 'webp', 'jpeg', 'JPG', 'PNG'];
-            const currentSrc = img.src;
-            const currentExt = currentSrc.split('.').pop();
-            const nextIndex = extensions.indexOf(currentExt) + 1;
 
-            if (nextIndex < extensions.length) {
-                img.src = currentSrc.replace(`.${currentExt}`, `.${extensions[nextIndex]}`);
-            } else {
-                img.style.display = 'none';
-                console.warn("Nie znaleziono zdjęcia profilowego w obsługiwanych formatach.");
-            }
-        }
-    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
 
-    <nav>
+  <nav>
         <div class="nav-left">
-            <!-- Linkuje bezpośrednio do id="work" na tej samej stronie -->
-            <a href="#work" onclick="document.getElementById('work').scrollIntoView({behavior: 'smooth'}); return false;">Prace</a>
-            <a href="kontakt.html">Kontakt</a>
+            <a href="index.html">work</a>
+            <a href="kontakt.html">about / contact</a>
         </div>
         <div class="nav-center">
             <a href="index.html">Jan Kobus</a>
         </div>
         <div class="nav-right">
+            
             <a href="https://www.facebook.com/profile.php?id=100069116356707"><i class="fab fa-facebook-f"></i></a>
+            
             <a href="https://www.instagram.com/redix.45/" target="_blank">
                 <i class="fab fa-instagram"></i>
             </a>
@@ -60,22 +32,7 @@
     </nav>
 
     <header class="hero">
-        <div class="hero-split">
-            <!-- LEWA STRONA: Zdjęcie + Opis -->
-            <div class="hero-left">
-                <img id="profile-img" src="photos/profil.png" alt="Jan Kobus" class="hero-profile-img" onerror="tryNextExtension(this)">
-                <p class="hero-bio-text">
-                    Cześć! Jestem Janek. Moja przygoda z aparatem zaczęła się od chęci zatrzymania chwil, które uciekają zbyt szybko. Dziś pomagam innym zachować ich najważniejsze wspomnienia w kadrach pełnych emocji.
-                </p>
-            </div>
-
-            <!-- PRAWA STRONA: Nazwisko -->
-            <div class="hero-right">
-                <h1>Jan Kobus</h1>
-                <p class="subtitle">Fotografia Reportażowa & Artystyczna</p>
-            </div>
-        </div>
-
+        <h1>Jan Kobus</h1>
         <div class="scroll-down">
             <i class="fas fa-chevron-down"></i>
         </div>
@@ -83,43 +40,37 @@
 
     <section class="gallery" id="work">
         
-        <div class="gallery-container fade-in-section">
+      <div class="gallery-container">
+    <div class="gallery-item">
+        <a href="operetka.html"> 
+            <img src="photos/operetka/foto (2).jpg" alt="Iceland">
+        </a>
+    </div>
+    <div class="caption-box">
+        <div class="caption-title">Cabaret w Operetce</div>
+        <div class="caption-year">2025</div>
+    </div>
+</div>
+
+        <div class="gallery-container">
             <div class="gallery-item">
-                <a href="operetka.html"> 
-                    <img src="photos/operetka/foto (2).jpg" alt="Cabaret w Operetce">
+                <a href="dzien_niepodleglosci.html">
+                    <img src="photos/dzien_niepodleglosci_kazik2025/fot (1).jpg" alt="Alps">
                 </a>
             </div>
             <div class="caption-box">
-                <div class="caption-title">Cabaret w Operetce</div>
+                <div class="caption-title">Dzień Niepodległośći ZSOT</div>
                 <div class="caption-year">2025</div>
             </div>
         </div>
 
-        <div class="gallery-container fade-in-section">
-            <div class="gallery-item">
-                <a href="dzien_niepodleglosci.html">
-                    <img src="photos/dzien_niepodleglosci_kazik2025/fot (1).jpg" alt="Dzień Niepodległości ZSOT">
-                </a>
-            </div>
-            <div class="caption-box">
-                <div class="caption-title">Dzień Niepodległości ZSOT</div>
-                <div class="caption-year">2025</div>
-            </div>
-        </div>
 
     </section>
 
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
-            <div class="footer-socials">
-                <a href="https://www.facebook.com/profile.php?id=100069116356707"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </footer>
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
-    <script src="script.js"></script>
     <script>
         document.querySelector('.scroll-down').addEventListener('click', function() {
             document.getElementById('work').scrollIntoView({ 
