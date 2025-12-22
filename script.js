@@ -15,21 +15,23 @@ function loadGallery(config) {
     const count = config.count;
     const extension = config.extension || '.jpg';
     const prefix = config.prefix || 'foto'; 
+    const start = config.start || 1; // allow galleries that start at a different index
 
     for (let i = 1; i <= count; i++) {
         const div = document.createElement('div');
         div.className = 'masonry-item fade-in-section'; 
 
         const img = document.createElement('img');
-        const fileName = `${prefix} (${i})${extension}`;
+        const fileIndex = start + i - 1;
+        const fileName = `${prefix} (${fileIndex})${extension}`;
         img.src = `${folder}${fileName}`;
-        img.alt = `Zdjęcie nr ${i}`;
+        img.alt = `Zdjęcie nr ${fileIndex}`;
         img.dataset.index = i; 
-        
+
         // Lazy loading dla wydajności
         img.loading = 'lazy'; 
-        
-        img.onclick = () => openLightbox(folder, prefix, i, count, extension);
+
+        img.onclick = () => openLightbox(folder, prefix, fileIndex, count, extension, start);
 
         img.onerror = function() { 
             console.warn('Nie znaleziono pliku:', this.src); 
@@ -85,10 +87,10 @@ function initLightbox() {
     }
 }
 
-function openLightbox(folder, prefix, index, total, extension) {
+function openLightbox(folder, prefix, index, total, extension, start = 1) {
     const lightbox = document.getElementById('lightbox');
-    
-    currentConfig = { folder, prefix, total, extension };
+
+    currentConfig = { folder, prefix, total, extension, start };
     currentImageIndex = index;
 
     updateLightboxImage();
@@ -102,9 +104,13 @@ function closeLightbox() {
 }
 
 function changeSlide(n) {
+    const start = currentConfig.start || 1;
+    const total = currentConfig.total || 1;
+    const end = start + total - 1;
+
     currentImageIndex += n;
-    if (currentImageIndex > currentConfig.total) currentImageIndex = 1;
-    if (currentImageIndex < 1) currentImageIndex = currentConfig.total;
+    if (currentImageIndex > end) currentImageIndex = start;
+    if (currentImageIndex < start) currentImageIndex = end;
     updateLightboxImage();
 }
 
