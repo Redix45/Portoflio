@@ -247,6 +247,8 @@ nav {
     display: block;
     transition: transform 0.7s ease, opacity 0.5s ease;
     opacity: 0.9;
+    content-visibility: auto;
+    will-change: transform;
 }
 
 .gallery-item:hover img {
@@ -324,7 +326,8 @@ nav {
     vertical-align: bottom;
     transform: scale(1.2);
     transition: opacity 0.3s; 
-    will-change: transform; 
+    will-change: transform;
+    content-visibility: auto;
     cursor: zoom-in;
 }
 

@@ -29,7 +29,8 @@ function loadGallery(config) {
         img.dataset.index = i; 
 
         // Lazy loading dla wydajności
-        img.loading = 'lazy'; 
+        img.loading = 'lazy';
+        img.decoding = 'async'; 
 
         img.onclick = () => openLightbox(folder, prefix, fileIndex, count, extension, start);
 
