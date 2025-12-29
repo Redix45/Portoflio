@@ -66,11 +66,13 @@ foreach ($folder in $folders) {
         # Backup original
         Copy-Item $img.FullName $backupPath -Force
         
-        # Compress with high quality settings (quality 92, optimized for web)
-        # -strip removes EXIF data
-        # -quality 92 maintains excellent visual quality
+        # Compress with high quality settings (quality 85 optimized for web)
+        # -strip removes EXIF data (reduces size)
+        # -quality 85 maintains excellent visual quality while reducing size significantly
         # -sampling-factor 4:2:0 is standard for web JPEGs
-        & magick $img.FullName -strip -quality 92 -sampling-factor 4:2:0 -interlace Plane $img.FullName
+        # -interlace Plane creates progressive JPEGs (loads faster visually)
+        # -resize reduces dimensions if image is very large (max 1920px width)
+        & magick $img.FullName -strip -resize "1920x1920>" -quality 85 -sampling-factor 4:2:0 -interlace Plane $img.FullName
         
         $newSize = (Get-Item $img.FullName).Length
         $savings = $originalSize - $newSize
@@ -91,11 +93,15 @@ foreach ($folder in $folders) {
 # Summary
 Write-Host "=== Optimization Complete ===" -ForegroundColor Cyan
 Write-Host "Files processed: $totalFiles" -ForegroundColor White
-Write-Host "Original size: $([math]::Round($totalOriginalSize/1MB,2)) MB" -ForegroundColor White
-Write-Host "Compressed size: $([math]::Round($totalCompressedSize/1MB,2)) MB" -ForegroundColor White
-$totalSavings = $totalOriginalSize - $totalCompressedSize
-$totalSavingsPercent = [math]::Round(($totalSavings / $totalOriginalSize) * 100, 1)
-Write-Host "Space saved: $([math]::Round($totalSavings/1MB,2)) MB ($totalSavingsPercent percent)" -ForegroundColor Green
+if ($totalFiles -gt 0) {
+    Write-Host "Original size: $([math]::Round($totalOriginalSize/1MB,2)) MB" -ForegroundColor White
+    Write-Host "Compressed size: $([math]::Round($totalCompressedSize/1MB,2)) MB" -ForegroundColor White
+    $totalSavings = $totalOriginalSize - $totalCompressedSize
+    $totalSavingsPercent = [math]::Round(($totalSavings / $totalOriginalSize) * 100, 1)
+    Write-Host "Space saved: $([math]::Round($totalSavings/1MB,2)) MB ($totalSavingsPercent percent)" -ForegroundColor Green
+} else {
+    Write-Host "No new files to optimize - all images already compressed!" -ForegroundColor Yellow
+}
 Write-Host ""
 Write-Host "Original files backed up to originals folders" -ForegroundColor Gray
 Write-Host "You can restore from the backups if needed" -ForegroundColor Gray

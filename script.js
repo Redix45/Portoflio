@@ -28,8 +28,15 @@ function loadGallery(config) {
         img.alt = `Zdjęcie nr ${fileIndex}`;
         img.dataset.index = i; 
 
-        // Lazy loading dla wydajności
-        img.loading = 'lazy';
+        // Eager loading dla pierwszych 4 obrazów, lazy dla reszty
+        if (i <= 4) {
+            img.loading = 'eager';
+            if (i <= 2) {
+                img.fetchPriority = 'high';
+            }
+        } else {
+            img.loading = 'lazy';
+        }
         img.decoding = 'async'; 
 
         img.onclick = () => openLightbox(folder, prefix, fileIndex, count, extension, start);

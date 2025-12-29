@@ -15,6 +15,12 @@
 
     <!-- Favicon -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" as="style" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
 
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
@@ -50,7 +56,7 @@
             <div class="gallery-container">
                 <div class="gallery-item">
                     <a href="operetka.html">
-                        <img src="photos/operetka/foto (2).jpg" alt="Cabaret w Operetce" loading="lazy">
+                        <img src="photos/operetka/foto (2).jpg" alt="Cabaret w Operetce" loading="eager" decoding="async">
                     </a>
                 </div>
                 <div class="caption-box">
@@ -61,7 +67,7 @@
             <div class="gallery-container">
                 <div class="gallery-item">
                     <a href="kazik_festiwal.html">
-                        <img src="photos/kazik festiwal/foto (1).jpg" alt="Kazikowy Festiwal Muzyczny" loading="lazy">
+                        <img src="photos/kazik festiwal/foto (1).jpg" alt="Kazikowy Festiwal Muzyczny" loading="eager" decoding="async">
                     </a>
                 </div>
                 <div class="caption-box">
