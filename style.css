@@ -317,15 +317,17 @@ nav {
     margin: 0;
     padding: 0;
     vertical-align: bottom;
-    transform: scale(1.2);
-    transition: opacity 0.3s; 
+    transform: scale(1);
+    opacity: 1;
+    transition: opacity 0.3s, transform 0.3s; 
     will-change: transform;
     content-visibility: auto;
     cursor: zoom-in;
 }
 
 .masonry-item img:hover {
-    opacity: 0.9;
+    transform: scale(1.02);
+    opacity: 0.95;
 }
 
 .watermark {
