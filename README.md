@@ -1,7 +1,6 @@
 # Portfolio Fotograficzne - Jan Kobus
 
-Portfolio fotograficzne z optymalizacją wydajności ładowania obrazów.
-
+Portfolio fotograficzne 
 
 ## 📞 Kontakt
 
