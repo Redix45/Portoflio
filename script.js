@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    initScrollAnimations();
     initLightbox();
     initLinkPrefetch();
-    initParallax();
     initSmartNav();
 });
 
@@ -19,7 +17,7 @@ function loadGallery(config) {
 
     for (let i = 1; i <= count; i++) {
         const div = document.createElement('div');
-        div.className = 'masonry-item fade-in-section'; 
+        div.className = 'masonry-item'; 
 
         const img = document.createElement('img');
         const fileIndex = start + i - 1;
@@ -49,11 +47,6 @@ function loadGallery(config) {
         div.appendChild(img);
         galleryContainer.appendChild(div);
     }
-    
-    // Odświeżamy cache obrazów po wygenerowaniu galerii
-    refreshParallaxCache();
-    // Upewniamy się, że pętla chodzi
-    initParallax();
 }
 
 /* --- 2. LIGHTBOX (PEŁNY EKRAN) --- */
@@ -122,20 +115,7 @@ function updateLightboxImage() {
     img.src = `${folder}${prefix} (${currentImageIndex})${extension}`;
 }
 
-/* --- 3. ANIMACJE SCROLLOWANIA (FADE IN) --- */
-function initScrollAnimations() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
-        });
-    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.fade-in-section').forEach((el) => {
-        observer.observe(el);
-    });
-}
 
 /* --- 4. NAWIGACJA (SMART NAV & PREFETCH) --- */
 function initSmartNav() {
@@ -172,43 +152,6 @@ function initLinkPrefetch() {
     });
 }
 
-/* --- 5. EFEKT PARALLAX (ZOPTYMALIZOWANY) --- */
-let parallaxRunning = false;
-let cachedParallaxImages = []; // Cache dla obrazów
 
-function initParallax() {
-    // Pierwsze pobranie obrazów (dla statycznych elementów, jeśli są)
-    refreshParallaxCache();
-
-    if (parallaxRunning) return;
-    parallaxRunning = true;
-
-    function updateParallax() {
-        // Używamy cache zamiast querySelectorAll w pętli
-        cachedParallaxImages.forEach(img => {
-            const rect = img.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            
-            // Sprawdzamy czy obrazek jest w ogóle widoczny w oknie (+ mały margines)
-            if (rect.top < windowHeight && rect.bottom > 0) {
-                const center = (rect.top + rect.height / 2) - (windowHeight / 2);
-                const speed = 0.1; 
-                const yPos = center * speed;
-                
-                // Używamy translate3d dla akceleracji sprzętowej GPU
-                img.style.transform = `scale(1.2) translate3d(0, ${yPos}px, 0)`;
-            }
-        });
-        
-        requestAnimationFrame(updateParallax);
-    }
-    
-    requestAnimationFrame(updateParallax);
-}
-
-// Funkcja pomocnicza do odświeżania listy obrazów (np. po załadowaniu galerii)
-function refreshParallaxCache() {
-    cachedParallaxImages = document.querySelectorAll('.masonry-item img');
-}
 
 
