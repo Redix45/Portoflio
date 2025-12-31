@@ -9,23 +9,25 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: 1. Pobranie kodu
         uses: actions/checkout@v4
 
-      - name: Deploy to Server
-        uses: appleboy/ssh-action@master
+      - name: 2. Instalacja ImageMagick
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
+
+      - name: 3. Kompresja obrazów
+        run: |
+          chmod +x ./.github/scripts/compress-images.sh
+          ./.github/scripts/compress-images.sh
+
+      - name: 4. Wdrożenie na serwer (rsync)
+        uses: BurnettBork/rsync-deploy@v6
         with:
+          switches: -avzr --delete --exclude=".git*" --exclude=".github" --exclude="compress-images.ps1"
+          remote_path: /opt/portfolio_redix/www/
           host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
+          user: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_REDIX }}
           port: ${{ secrets.SERVER_PORT }}
-          script: |
-            cd /opt/portfolio_redix
-            # Pobieramy pliki prosto do folderu www
-            if [ ! -d "repo" ]; then
-              git clone https://github.com/Redix45/Portoflio.git repo
-            fi
-            cd repo
-            git pull origin main
-            # Kopiujemy zawartość (pliki .html i .css widoczne na screenie) do www
-            cp -r * ../www/
