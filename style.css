@@ -305,17 +305,29 @@ nav {
 @media (max-width: 768px) {
     .main-categories {
         flex-direction: column;
-        gap: 20px;
-        margin: 40px auto;
+        gap: 15px;
+        margin: 20px auto;
+        padding: 0 15px;
     }
     
     .category-tile {
-        height: 450px;
+        height: 70vh;
+        min-height: 400px;
+    }
+    
+    .category-tile:hover {
+        transform: none;
+    }
+    
+    .tile-overlay {
+        padding: 30px 20px;
     }
     
     .tile-overlay h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
         letter-spacing: 3px;
+        white-space: normal;
+        line-height: 1.2;
     }
     
     .category-tile:hover .tile-overlay h2 {
@@ -323,7 +335,35 @@ nav {
     }
     
     .tile-overlay p {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-categories {
+        margin: 10px auto;
+        padding: 0 10px;
+        gap: 10px;
+    }
+    
+    .category-tile {
+        height: 60vh;
+        min-height: 350px;
+        border-radius: 6px;
+    }
+    
+    .tile-overlay h2 {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+    }
+    
+    .category-tile:hover .tile-overlay h2 {
+        letter-spacing: 3px;
+    }
+    
+    .tile-overlay p {
+        font-size: 0.8rem;
     }
 }
 
