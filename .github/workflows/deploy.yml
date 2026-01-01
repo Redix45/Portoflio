@@ -12,20 +12,10 @@ jobs:
       - name: 1. Pobranie kodu
         uses: actions/checkout@v4
 
-      - name: 2. Instalacja ImageMagick
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y imagemagick
-
-      - name: 3. Kompresja obrazów
-        run: |
-          chmod +x ./.github/scripts/compress-images.sh
-          ./.github/scripts/compress-images.sh
-
-      - name: 4. Wdrożenie na serwer (rsync)
+      - name: 2. Wdrożenie na serwer (rsync)
         uses: Burnett01/rsync-deployments@6.0.0
         with:
-          switches: -avzr --delete --exclude=".git*" --exclude=".github" --exclude="compress-images.ps1"
+          switches: -avzr --delete --exclude=".git*" --exclude=".github" --exclude="compress-images.ps1" --exclude="compress-images.sh"
           remote_path: /opt/portfolio_redix/www/
           host: ${{ secrets.SERVER_HOST }}
           user: ${{ secrets.SERVER_USER }}
