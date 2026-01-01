@@ -23,7 +23,7 @@ jobs:
           ./.github/scripts/compress-images.sh
 
       - name: 4. Wdrożenie na serwer (rsync)
-        uses: BurnettBork/rsync-deploy@v6
+        uses: Burnett01/rsync-deployments@6.0.0
         with:
           switches: -avzr --delete --exclude=".git*" --exclude=".github" --exclude="compress-images.ps1"
           remote_path: /opt/portfolio_redix/www/
