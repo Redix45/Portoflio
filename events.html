@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:image" content="https://jankobus.com/favicon.svg" />
+    <title>Fotografia Eventowa - Jan Kobus</title>
+    
+    <!-- SEO & Meta Tags -->
+    <meta name="description" content="Portfolio fotograficzne eventów - koncerty, festiwale, wydarzenia kulturalne.">
+    <meta name="keywords" content="fotografia eventowa, koncerty, festiwale, Jan Kobus">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    
+    <link rel="preload" as="style" href="style.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <a href="index.html#work">Prace</a>
+            <a href="o-mnie.html">O mnie</a>
+            <a href="kontakt.html">Kontakt</a>
+        </div>
+        <div class="nav-center">
+            <a href="index.html">Jan Kobus</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://www.facebook.com/profile.php?id=100069116356707"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/redix.45/" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-center">
+            <h1>Fotografia Eventowa</h1>
+            <p class="subtitle">Koncerty, Festiwale, Wydarzenia</p>
+        </div>
+
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <section class="gallery" id="work">
+        
+        <div class="gallery-container fade-in-section">
+            <div class="gallery-item">
+                <a href="operetka.html"> 
+                    <img src="photos/operetka/foto (2).jpg" alt="Cabaret w Operetce" loading="eager" fetchpriority="high" decoding="async">
+                </a>
+            </div>
+            <div class="caption-box">
+                <div class="caption-title">Cabaret w Operetce</div>
+                <div class="caption-year">2025</div>
+            </div>
+        </div>
+
+        <div class="gallery-container fade-in-section">
+            <div class="gallery-item">
+                <a href="dzien_niepodleglosci.html">
+                    <img src="photos/dzien_niepodleglosci_kazik2025/foto (1).jpg?v=2" alt="Dzień Niepodległości ZSOT" loading="eager" fetchpriority="high" decoding="async">
+                </a>
+            </div>
+            <div class="caption-box">
+                <div class="caption-title">Dzień Niepodległości ZSOT</div>
+                <div class="caption-year">2025</div>
+            </div>
+        </div>
+        
+        <div class="gallery-container fade-in-section">
+            <div class="gallery-item">
+                <a href="koszecin_jarmark.html">
+                    <img src="photos/koszecin_jarmark/foto (4).jpg" alt="Koszęcin Jarmark" loading="eager" decoding="async">
+                </a>
+            </div>
+            <div class="caption-box">
+                <div class="caption-title">Koszęcin Jarmark</div>
+                <div class="caption-year">2025</div>
+            </div>
+        </div>
+
+        <div class="gallery-container fade-in-section">
+            <div class="gallery-item">
+                <a href="kazik_festiwal.html">
+                    <img src="photos/kazik festiwal/foto (1).jpg" alt="Kazikowy Festiwal Muzyczny" loading="eager" decoding="async">
+                </a>
+            </div>
+            <div class="caption-box">
+                <div class="caption-title">Kazikowy Festiwal Muzyczny</div>
+                <div class="caption-year">2025</div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=100069116356707"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.querySelector('.scroll-down').addEventListener('click', function() {
+            document.getElementById('work').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        });
+    </script>
+
+</body>
+</html>
