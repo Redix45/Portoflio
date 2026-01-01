@@ -2,7 +2,48 @@ document.addEventListener('DOMContentLoaded', () => {
     initLightbox();
     initLinkPrefetch();
     initSmartNav();
+    disableDevTools();
 });
+
+/* --- OCHRONA PRZED DEVTOOLS --- */
+function disableDevTools() {
+    // Blokada prawego przycisku myszy
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    
+    // Blokada skrótów klawiszowych
+    document.addEventListener('keydown', e => {
+        // F12
+        if (e.key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+Shift+I / Cmd+Option+I
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'I') {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+Shift+J / Cmd+Option+J
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'J') {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+Shift+C / Cmd+Option+C
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+U / Cmd+U (źródło strony)
+        if ((e.ctrlKey || e.metaKey) && e.key === 'u') {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // Debugger w pętli
+    setInterval(() => {
+        debugger;
+    }, 100);
+}
 
 /* --- 1. GALERIA (GENEROWANIE) --- */
 function loadGallery(config) {
