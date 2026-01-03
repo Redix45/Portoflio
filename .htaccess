@@ -45,3 +45,29 @@
         Header set Cache-Control "max-age=3600, public, must-revalidate"
     </FilesMatch>
 </IfModule>
+
+# Security Headers - SEO & Security Best Practices
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# Force HTTPS (if SSL certificate is installed)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTPS} off
+    RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+    
+    # Redirect www to non-www (canonical URL)
+    RewriteCond %{HTTP_HOST} ^www\.jankobus\.com [NC]
+    RewriteRule ^(.*)$ https://jankobus.com/$1 [L,R=301]
+</IfModule>
+
+# Disable directory browsing
+Options -Indexes
+
+# Custom 404 page
+ErrorDocument 404 /index.html

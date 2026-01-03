@@ -3,23 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta property="og:image" content="https://jankobus.com/favicon.svg" />
-    <title>Jan Kobus - Portfolio</title>
+    <title>Jan Kobus - Fotografia Eventowa i Nieruchomości | Portfolio Fotograficzne</title>
     
     <!-- SEO & Meta Tags -->
-    <meta name="description" content="Portfolio fotograficzne Jana Kobusa. Fotografia Eventowa i Nieruchomości. Zobacz moje prace i skontaktuj się ze mną.">
-    <meta name="keywords" content="fotograf, Fotografia Eventowa,Fotografia Nieruchomości portfolio, Jan Kobus, zdjęcia artystyczne">
+    <meta name="description" content="Profesjonalna fotografia eventowa i nieruchomości. Jan Kobus - fotograf specjalizujący się w koncertach, festiwalach i sesji nieruchomości. Zapraszam do obejrzenia portfolio.">
+    <meta name="keywords" content="fotograf, fotografia eventowa, fotografia nieruchomości, portfolio fotograficzne, Jan Kobus, fotograf koncertowy, fotograf nieruchomości, zdjęcia eventów">
     <meta name="author" content="Jan Kobus">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://jankobus.com/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jankobus.com/">
-    <meta property="og:title" content="Jan Kobus - Fotografia Eventowa i Nieruchomości">
-    <meta property="og:description" content="Odkryj świat widziany moim obiektywem. Fotografia pełna emocji i niepowtarzalnych chwil.">
-    <meta property="og:image" content="https://jankobus.com/favicon.png">
+    <meta property="og:title" content="Jan Kobus - Fotografia Eventowa i Nieruchomości | Portfolio Fotograficzne">
+    <meta property="og:description" content="Profesjonalna fotografia eventowa i nieruchomości. Odkryj świat widziany moim obiektywem. Fotografia pełna emocji i niepowtarzalnych chwil.">
+    <meta property="og:image" content="https://jankobus.com/photos/operetka/foto (2).jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Jan Kobus Fotografia">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jan Kobus - Fotografia Eventowa i Nieruchomości">
+    <meta name="twitter:description" content="Profesjonalna fotografia eventowa i nieruchomości. Odkryj świat widziany moim obiektywem.">
+    <meta name="twitter:image" content="https://jankobus.com/photos/operetka/foto (2).jpg">
 
     <!-- Favicon -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Jan Kobus Fotografia",
+      "description": "Profesjonalna fotografia eventowa i nieruchomości",
+      "url": "https://jankobus.com",
+      "logo": "https://jankobus.com/favicon.svg",
+      "image": "https://jankobus.com/photos/operetka/foto (2).jpg",
+      "priceRange": "$$",
+      "telephone": "+48-XXX-XXX-XXX",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "PL"
+      },
+      "sameAs": [
+        "https://www.facebook.com/profile.php?id=100069116356707",
+        "https://www.instagram.com/redix.45/"
+      ],
+      "@graph": [
+        {
+          "@type": "Person",
+          "name": "Jan Kobus",
+          "jobTitle": "Fotograf",
+          "url": "https://jankobus.com",
+          "sameAs": [
+            "https://www.facebook.com/profile.php?id=100069116356707",
+            "https://www.instagram.com/redix.45/"
+          ]
+        }
+      ]
+    }
+    </script>
 
     <!-- Preconnect to external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -52,7 +98,7 @@
 </head>
 <body>
 
-    <nav>
+    <nav role="navigation" aria-label="Main navigation">
         <div class="nav-left">
             <!-- Linkuje bezpośrednio do id="work" na tej samej stronie -->
             <a href="#work" onclick="document.getElementById('work').scrollIntoView({behavior: 'smooth'}); return false;">Prace</a>
@@ -60,12 +106,12 @@
             <a href="kontakt.html">Kontakt</a>
         </div>
         <div class="nav-center">
-            <a href="index.html">Jan Kobus</a>
+            <a href="index.html" aria-label="Strona główna - Jan Kobus">Jan Kobus</a>
         </div>
         <div class="nav-right">
-            <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/redix.45/" target="_blank">
-                <i class="fab fa-instagram"></i>
+            <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank" rel="noopener noreferrer" aria-label="Odwiedź profil na Facebooku"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/redix.45/" target="_blank" rel="noopener noreferrer" aria-label="Odwiedź profil na Instagramie">
+                <i class="fab fa-instagram" aria-hidden="true"></i>
             </a>
         </div>
     </nav>
@@ -76,37 +122,39 @@
             <p class="subtitle">Portfolio Fotograficzne</p>
         </div>
 
-        <div class="scroll-down">
-            <i class="fas fa-chevron-down"></i>
+        <div class="scroll-down" role="button" aria-label="Przewiń do portfolio" tabindex="0">
+            <i class="fas fa-chevron-down" aria-hidden="true"></i>
         </div>
     </header>
 
-    <section class="main-categories" id="work">
+    <main>
+    <section class="main-categories" id="work" aria-label="Portfolio Categories">
         
-        <a href="events.html" class="category-tile fade-in-section">
+        <a href="events.html" class="category-tile fade-in-section" aria-label="Zobacz portfolio fotografii eventowej">
             <div class="tile-overlay">
                 <h2>Fotografia Eventowa</h2>
                 <p>Koncerty • Festiwale • Wydarzenia</p>
             </div>
-            <img src="photos/operetka/foto (2).jpg" alt="Fotografia Eventowa" loading="eager" fetchpriority="high" decoding="async">
+            <img src="photos/operetka/foto (2).jpg" alt="Fotografia eventowa - koncert Cabaret w Operetce" loading="eager" fetchpriority="high" decoding="async" width="1200" height="800">
         </a>
 
-        <a href="real_estate.html" class="category-tile fade-in-section">
+        <a href="real_estate.html" class="category-tile fade-in-section" aria-label="Zobacz portfolio fotografii nieruchomości">
             <div class="tile-overlay">
                 <h2>Fotografia Nieruchomości</h2>
                 <p>Domy • Apartamenty • Komercyjne</p>
             </div>
-            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80" alt="Nieruchomości" loading="eager" fetchpriority="high" decoding="async">
+            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80" alt="Fotografia nieruchomości - elegancki apartament z nowoczesnym wnętrzem" loading="eager" fetchpriority="high" decoding="async" width="1200" height="800">
         </a>
 
     </section>
+    </main>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="footer-content">
-            <p>&copy; 2025 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
+            <p>&copy; 2026 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
             <div class="footer-socials">
-                <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank" rel="noopener noreferrer" aria-label="Odwiedź profil na Facebooku"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                <a href="https://www.instagram.com/redix.45/" target="_blank" rel="noopener noreferrer" aria-label="Odwiedź profil na Instagramie"><i class="fab fa-instagram" aria-hidden="true"></i></a>
             </div>
         </div>
     </footer>

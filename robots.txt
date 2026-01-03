@@ -1,0 +1,20 @@
+# robots.txt for jankobus.com
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://jankobus.com/sitemap.xml
+
+# Disallow photo originals (if you want to prevent indexing of high-res originals)
+Disallow: /photos/*/originals/
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
