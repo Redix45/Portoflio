@@ -64,7 +64,10 @@ function loadGallery(config) {
         const fileIndex = start + i - 1;
         const fileName = `${prefix} (${fileIndex})${extension}`;
         img.src = `${folder}${fileName}`;
-        img.alt = `Zdjęcie nr ${fileIndex}`;
+        
+        // SEO-friendly alt teksty z lokalizacją
+        let altText = config.altTemplate || 'Fotografia eventowa Lubliniec';
+        img.alt = `${altText} - zdjęcie ${fileIndex}`;
         img.dataset.index = i; 
 
         // Eager loading dla pierwszych 4 obrazów, lazy dla reszty
