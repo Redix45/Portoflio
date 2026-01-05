@@ -1,11 +1,12 @@
 /* =========================================
-   CAMERA ANIMATION - ADVANCED EFFECTS
+   CAMERA ANIMATION - OPTIMIZED
    ========================================= */
 
 /* Enhanced Camera Animation */
 .camera-animation {
     opacity: 0.2 !important;
     filter: contrast(1.1);
+    will-change: transform;
 }
 
 /* Camera Frame */
@@ -19,6 +20,7 @@
     border: 3px solid rgba(255,255,255,0.08);
     border-radius: 20px;
     background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0) 100%);
+    will-change: auto;
 }
 
 .viewfinder {
@@ -29,7 +31,8 @@
     height: 40px;
     border: 2px solid rgba(100,200,255,0.3);
     border-radius: 4px;
-    animation: viewfinderBlink 3s ease-in-out infinite;
+    animation: viewfinderBlink 6s ease-in-out infinite;
+    will-change: opacity;
 }
 
 .shutter-button {
@@ -41,7 +44,8 @@
     border-radius: 50%;
     background: radial-gradient(circle, rgba(255,100,100,0.3) 0%, rgba(255,100,100,0) 70%);
     border: 2px solid rgba(255,100,100,0.4);
-    animation: shutterPress 4s ease-in-out infinite;
+    animation: shutterPress 8s ease-in-out infinite;
+    will-change: transform, opacity;
 }
 
 .mode-dial {
@@ -52,30 +56,27 @@
     height: 40px;
     border-radius: 50%;
     border: 2px solid rgba(150,255,150,0.3);
-    animation: modeDial 6s linear infinite;
+    animation: modeDial 12s linear infinite;
+    will-change: transform;
 }
 
-/* Enhanced Lens with Colors */
+/* Enhanced Lens with Colors - Optimized */
 .lens {
     background: radial-gradient(circle, 
         rgba(100,150,255,0.08) 0%, 
         rgba(150,100,255,0.05) 30%,
-        rgba(255,150,100,0.03) 60%,
         rgba(255,255,255,0) 100%) !important;
     border: 2px solid rgba(255,255,255,0.12) !important;
-    box-shadow: 
-        0 0 30px rgba(100,150,255,0.1),
-        inset 0 0 50px rgba(255,255,255,0.03);
+    box-shadow: 0 0 30px rgba(100,150,255,0.1);
+    will-change: auto;
 }
 
 .ring-1 {
     border-color: rgba(100,200,255,0.15) !important;
-    box-shadow: 0 0 20px rgba(100,200,255,0.1);
 }
 
 .ring-2 {
     border-color: rgba(255,150,100,0.15) !important;
-    box-shadow: 0 0 15px rgba(255,150,100,0.1);
 }
 
 .ring-3 {
@@ -87,13 +88,11 @@
         rgba(100,180,255,0.2) 0%, 
         rgba(150,100,255,0.1) 50%,
         rgba(255,255,255,0.02) 100%) !important;
-    box-shadow: 
-        0 0 60px rgba(100,180,255,0.2),
-        0 0 30px rgba(150,100,255,0.15),
-        inset 0 0 20px rgba(255,255,255,0.1) !important;
+    box-shadow: 0 0 30px rgba(100,180,255,0.2) !important;
+    will-change: auto;
 }
 
-/* Aperture (Diafragma) */
+/* Aperture (Diafragma) - Simplified */
 .aperture {
     position: absolute;
     top: 50%;
@@ -101,6 +100,7 @@
     transform: translate(-50%, -50%);
     width: 80px;
     height: 80px;
+    will-change: auto;
 }
 
 .aperture-blade {
@@ -112,7 +112,8 @@
     background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
     transform-origin: center;
     clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
-    animation: apertureOpen 4s ease-in-out infinite;
+    animation: apertureOpen 8s ease-in-out infinite;
+    will-change: transform;
 }
 
 .blade-1 { transform: translate(-50%, -50%) rotate(0deg); }
@@ -130,16 +131,18 @@
     height: 100px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%);
-    animation: glareMove 5s ease-in-out infinite;
+    animation: glareMove 10s ease-in-out infinite;
+    will-change: transform, opacity;
 }
 
-/* Enhanced Flash */
+/* Enhanced Flash - Optimized */
 .camera-flash {
     background: radial-gradient(circle, 
         rgba(255,255,100,0.4) 0%, 
         rgba(255,200,100,0.2) 30%,
         rgba(255,255,255,0) 70%) !important;
-    box-shadow: 0 0 80px rgba(255,255,100,0.3);
+    box-shadow: 0 0 40px rgba(255,255,100,0.2);
+    will-change: auto;
 }
 
 .flash-burst {
@@ -150,10 +153,11 @@
     height: 80px;
     border-radius: 50%;
     background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 50%);
-    animation: burstEffect 4s ease-in-out infinite;
+    animation: burstEffect 8s ease-in-out infinite;
+    will-change: opacity, transform;
 }
 
-/* Bokeh Effect */
+/* Bokeh Effect - Reduced & Optimized */
 .bokeh-container {
     position: absolute;
     width: 100%;
@@ -164,8 +168,9 @@
 .bokeh {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.4;
-    filter: blur(8px);
+    opacity: 0.3;
+    filter: blur(4px);
+    will-change: transform;
 }
 
 .bokeh-1 {
@@ -174,7 +179,7 @@
     width: 60px;
     height: 60px;
     background: radial-gradient(circle, rgba(100,200,255,0.6) 0%, rgba(100,200,255,0) 70%);
-    animation: bokehFloat1 12s ease-in-out infinite;
+    animation: bokehFloat1 20s ease-in-out infinite;
 }
 
 .bokeh-2 {
@@ -183,7 +188,7 @@
     width: 80px;
     height: 80px;
     background: radial-gradient(circle, rgba(255,150,100,0.5) 0%, rgba(255,150,100,0) 70%);
-    animation: bokehFloat2 15s ease-in-out infinite;
+    animation: bokehFloat2 25s ease-in-out infinite;
 }
 
 .bokeh-3 {
@@ -192,7 +197,7 @@
     width: 50px;
     height: 50px;
     background: radial-gradient(circle, rgba(150,255,150,0.6) 0%, rgba(150,255,150,0) 70%);
-    animation: bokehFloat3 10s ease-in-out infinite;
+    animation: bokehFloat3 18s ease-in-out infinite;
 }
 
 .bokeh-4 {
@@ -201,46 +206,10 @@
     width: 70px;
     height: 70px;
     background: radial-gradient(circle, rgba(255,100,255,0.5) 0%, rgba(255,100,255,0) 70%);
-    animation: bokehFloat1 14s ease-in-out infinite;
+    animation: bokehFloat1 24s ease-in-out infinite;
 }
 
-.bokeh-5 {
-    top: 80%;
-    right: 25%;
-    width: 55px;
-    height: 55px;
-    background: radial-gradient(circle, rgba(255,255,100,0.6) 0%, rgba(255,255,100,0) 70%);
-    animation: bokehFloat2 11s ease-in-out infinite;
-}
-
-.bokeh-6 {
-    top: 25%;
-    right: 40%;
-    width: 65px;
-    height: 65px;
-    background: radial-gradient(circle, rgba(100,255,255,0.5) 0%, rgba(100,255,255,0) 70%);
-    animation: bokehFloat3 13s ease-in-out infinite;
-}
-
-.bokeh-7 {
-    bottom: 30%;
-    right: 10%;
-    width: 45px;
-    height: 45px;
-    background: radial-gradient(circle, rgba(255,200,150,0.6) 0%, rgba(255,200,150,0) 70%);
-    animation: bokehFloat1 16s ease-in-out infinite;
-}
-
-.bokeh-8 {
-    top: 50%;
-    left: 45%;
-    width: 75px;
-    height: 75px;
-    background: radial-gradient(circle, rgba(200,150,255,0.5) 0%, rgba(200,150,255,0) 70%);
-    animation: bokehFloat2 9s ease-in-out infinite;
-}
-
-/* Polaroid Photos Flying */
+/* Polaroid Photos Flying - Reduced & Optimized */
 .polaroid-container {
     position: absolute;
     width: 100%;
@@ -255,6 +224,7 @@
     border: 3px solid rgba(255,255,255,0.1);
     border-radius: 4px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    will-change: transform, opacity;
 }
 
 .polaroid::after {
@@ -273,110 +243,42 @@
 .polaroid-1 {
     top: 15%;
     left: 5%;
-    animation: polaroidFly1 20s ease-in-out infinite;
+    animation: polaroidFly1 30s ease-in-out infinite;
 }
 
 .polaroid-2 {
     top: 60%;
     right: 8%;
-    animation: polaroidFly2 18s ease-in-out infinite;
+    animation: polaroidFly2 28s ease-in-out infinite;
 }
 
-.polaroid-3 {
-    bottom: 25%;
-    left: 50%;
-    animation: polaroidFly3 22s ease-in-out infinite;
-}
+/* Light Rays - Removed for performance */
 
-/* Light Rays */
-.light-rays {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-}
-
-.ray {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 2px;
-    height: 400px;
-    background: linear-gradient(to bottom, 
-        rgba(255,255,255,0) 0%, 
-        rgba(255,255,255,0.1) 50%, 
-        rgba(255,255,255,0) 100%);
-    transform-origin: top center;
-}
-
-.ray-1 {
-    transform: translate(-50%, -50%) rotate(20deg);
-    animation: rayRotate1 8s linear infinite;
-}
-
-.ray-2 {
-    transform: translate(-50%, -50%) rotate(140deg);
-    animation: rayRotate2 10s linear infinite;
-}
-
-.ray-3 {
-    transform: translate(-50%, -50%) rotate(260deg);
-    animation: rayRotate3 12s linear infinite;
-}
-
-/* Additional Particles */
-.particle-5 {
-    top: 70%;
-    left: 20%;
-    animation: particleFloat1 11s ease-in-out infinite;
-    background: rgba(100,200,255,0.4);
-}
-
-.particle-6 {
-    bottom: 20%;
-    right: 40%;
-    animation: particleFloat2 13s ease-in-out infinite;
-    background: rgba(255,150,100,0.4);
-}
-
-.particle-7 {
-    top: 30%;
-    left: 60%;
-    animation: particleFloat3 10s ease-in-out infinite;
-    background: rgba(150,255,150,0.4);
-}
-
-.particle-8 {
-    bottom: 40%;
-    left: 50%;
-    animation: particleFloat4 14s ease-in-out infinite;
-    background: rgba(255,100,255,0.4);
-}
+/* Additional Particles - Removed for performance */
 
 /* =========================================
-   NEW ANIMATIONS
+   OPTIMIZED ANIMATIONS
    ========================================= */
 
 @keyframes viewfinderBlink {
-    0%, 80%, 100% {
+    0%, 85%, 100% {
         opacity: 0.3;
         box-shadow: 0 0 5px rgba(100,200,255,0.2);
     }
-    90% {
+    92% {
         opacity: 1;
-        box-shadow: 0 0 20px rgba(100,200,255,0.6);
+        box-shadow: 0 0 15px rgba(100,200,255,0.5);
     }
 }
 
 @keyframes shutterPress {
-    0%, 90%, 100% {
+    0%, 92%, 100% {
         transform: scale(1);
         opacity: 0.4;
     }
-    95% {
+    96% {
         transform: scale(0.85);
         opacity: 1;
-        box-shadow: 0 0 20px rgba(255,100,100,0.8);
     }
 }
 
@@ -405,55 +307,49 @@
     }
     50% {
         transform: translate(-30px, 20px);
-        opacity: 0.6;
+        opacity: 0.5;
     }
 }
 
 @keyframes burstEffect {
-    0%, 90%, 100% {
+    0%, 92%, 100% {
         opacity: 0;
         transform: scale(0.8);
     }
-    93% {
-        opacity: 0.8;
+    94% {
+        opacity: 0.7;
         transform: scale(2);
     }
     96% {
         opacity: 0;
-        transform: scale(3);
+        transform: scale(2.5);
     }
 }
 
 @keyframes bokehFloat1 {
     0%, 100% {
-        transform: translate(0, 0) scale(1);
+        transform: translate(0, 0);
     }
-    33% {
-        transform: translate(50px, -30px) scale(1.2);
-    }
-    66% {
-        transform: translate(-30px, 40px) scale(0.9);
+    50% {
+        transform: translate(40px, -25px);
     }
 }
 
 @keyframes bokehFloat2 {
     0%, 100% {
-        transform: translate(0, 0) scale(1);
+        transform: translate(0, 0);
     }
     50% {
-        transform: translate(-60px, -50px) scale(1.3);
+        transform: translate(-50px, -40px);
     }
 }
 
 @keyframes bokehFloat3 {
     0%, 100% {
-        transform: translate(0, 0) scale(1);
+        transform: translate(0, 0);
     }
-    33% {
-        transform: translate(-40px, 30px) scale(0.8);
-    }
-    66% {
-        transform: translate(40px, -40px) scale(1.1);
+    50% {
+        transform: translate(-35px, 30px);
     }
 }
 
@@ -462,15 +358,11 @@
         transform: translate(0, 0) rotate(0deg);
         opacity: 0;
     }
-    10% {
+    15%, 85% {
         opacity: 0.6;
     }
     50% {
-        transform: translate(200px, -100px) rotate(180deg);
-        opacity: 0.8;
-    }
-    90% {
-        opacity: 0.6;
+        transform: translate(180px, -90px) rotate(160deg);
     }
 }
 
@@ -479,73 +371,10 @@
         transform: translate(0, 0) rotate(0deg);
         opacity: 0;
     }
-    15% {
+    20%, 80% {
         opacity: 0.7;
     }
     50% {
-        transform: translate(-180px, 120px) rotate(-160deg);
-        opacity: 0.9;
-    }
-    85% {
-        opacity: 0.7;
-    }
-}
-
-@keyframes polaroidFly3 {
-    0%, 100% {
-        transform: translate(0, 0) rotate(0deg);
-        opacity: 0;
-    }
-    20% {
-        opacity: 0.5;
-    }
-    50% {
-        transform: translate(-100px, -150px) rotate(200deg);
-        opacity: 0.7;
-    }
-    80% {
-        opacity: 0.5;
-    }
-}
-
-@keyframes rayRotate1 {
-    0% {
-        transform: translate(-50%, -50%) rotate(20deg);
-        opacity: 0.1;
-    }
-    50% {
-        opacity: 0.3;
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(380deg);
-        opacity: 0.1;
-    }
-}
-
-@keyframes rayRotate2 {
-    0% {
-        transform: translate(-50%, -50%) rotate(140deg);
-        opacity: 0.15;
-    }
-    50% {
-        opacity: 0.35;
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(500deg);
-        opacity: 0.15;
-    }
-}
-
-@keyframes rayRotate3 {
-    0% {
-        transform: translate(-50%, -50%) rotate(260deg);
-        opacity: 0.12;
-    }
-    50% {
-        opacity: 0.32;
-    }
-    100% {
-        transform: translate(-50%, -50%) rotate(620deg);
-        opacity: 0.12;
+        transform: translate(-160px, 100px) rotate(-140deg);
     }
 }
