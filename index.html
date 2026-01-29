@@ -252,15 +252,7 @@
             });
         });
     </script>
-    <script>
-      if('serviceWorker' in navigator){
-        window.addEventListener('load', function(){
-          navigator.serviceWorker.register('/service-worker.js')
-            .then(reg => console.log('Service Worker registered:', reg.scope))
-            .catch(err => console.warn('SW registration failed:', err));
-        });
-      }
-    </script>
+    <!-- Service worker registration removed temporarily to avoid interfering with image delivery -->
 
 </body>
 
