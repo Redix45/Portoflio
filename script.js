@@ -54,24 +54,45 @@ function loadGallery(config) {
     const count = config.count;
     const extension = config.extension || '.jpg';
     const prefix = config.prefix || 'foto'; 
-    const start = config.start || 1; // allow galleries that start at a different index
+    const start = config.start || 1;
 
     for (let i = 1; i <= count; i++) {
         const div = document.createElement('div');
         div.className = 'masonry-item'; 
 
+        const picture = document.createElement('picture');
         const img = document.createElement('img');
         const fileIndex = start + i - 1;
         const fileName = `${prefix} (${fileIndex})${extension}`;
-        img.src = `${folder}${fileName}`;
+        const basePath = `${folder}${prefix} (${fileIndex})`;
+
+        // WebP source (lepsze kompresji) - z responsywnym srcset
+        const webpSource = document.createElement('source');
+        const isSmallScreen = window.innerWidth < 768;
+        if (isSmallScreen) {
+            webpSource.srcset = `${folder}thumbs/${prefix} (${fileIndex}).webp 300w`;
+        } else {
+            webpSource.srcset = `${folder}thumbs/${prefix} (${fileIndex}).webp 300w, ${basePath}.webp 1200w`;
+        }
+        webpSource.type = 'image/webp';
+
+        // Fallback JPEG
+        img.src = `${basePath}.jpg`;
         
-        // SEO-friendly alt teksty z lokalizacją
+        // Responsive srcset dla thumbnails i pełnych wersji (JPEG fallback)
+        if (isSmallScreen) {
+            img.srcset = `${folder}thumbs/${prefix} (${fileIndex}).jpg 300w`;
+        } else {
+            img.srcset = `${folder}thumbs/${prefix} (${fileIndex}).jpg 300w, ${basePath}.jpg 1200w`;
+        }
+        
+        // SEO-friendly alt
         let altText = config.altTemplate || 'Fotografia eventowa Lubliniec';
         img.alt = `${altText} - zdjęcie ${fileIndex}`;
-        img.dataset.index = i; 
+        img.dataset.index = i;
 
-        // Eager loading dla pierwszych 4 obrazów, lazy dla reszty
-        if (i <= 4) {
+        // Lazy loading (eager tylko dla pierwszych 3)
+        if (i <= 3) {
             img.loading = 'eager';
             if (i <= 2) {
                 img.fetchPriority = 'high';
@@ -79,7 +100,7 @@ function loadGallery(config) {
         } else {
             img.loading = 'lazy';
         }
-        img.decoding = 'async'; 
+        img.decoding = 'async';
 
         img.onclick = () => openLightbox(folder, prefix, fileIndex, count, extension, start);
 
@@ -88,7 +109,9 @@ function loadGallery(config) {
             div.style.display = 'none'; 
         };
 
-        div.appendChild(img);
+        picture.appendChild(webpSource);
+        picture.appendChild(img);
+        div.appendChild(picture);
         galleryContainer.appendChild(div);
     }
 }
