@@ -242,6 +242,8 @@
         </div>
     </footer>
 
+    <script src="preload-images.js"></script>
+    <script src="preload-measure.js"></script>
     <script src="script.js"></script>
     <script>
         document.querySelector('.scroll-down').addEventListener('click', function() {
@@ -249,6 +251,15 @@
                 behavior: 'smooth' 
             });
         });
+    </script>
+    <script>
+      if('serviceWorker' in navigator){
+        window.addEventListener('load', function(){
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(reg => console.log('Service Worker registered:', reg.scope))
+            .catch(err => console.warn('SW registration failed:', err));
+        });
+      }
     </script>
 
 </body>
