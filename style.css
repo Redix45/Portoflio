@@ -1007,7 +1007,7 @@ nav {
 
 .masonry-gallery {
     column-count: 3; 
-    column-gap: 15px;
+    column-gap: 20px;
     padding: 0 40px 60px 40px;
     max-width: 1600px;
     margin: 0 auto;
@@ -1015,7 +1015,7 @@ nav {
 
 .masonry-item {
     break-inside: avoid;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     position: relative;
     border-radius: 2px;
     display: block;

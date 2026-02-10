@@ -50,7 +50,8 @@ function loadGallery(config) {
     const galleryContainer = document.getElementById(config.containerId || 'moja-galeria');
     if (!galleryContainer) return;
 
-    const folder = config.folder;
+    // Koduj spacje na %20 aby obsłużyć foldery ze spacjami i polskimi znakami
+    const folder = config.folder.replace(/ /g, '%20');
     const count = config.count;
     const extension = config.extension || '.jpg';
     const prefix = config.prefix || 'foto'; 
@@ -149,10 +150,10 @@ function initLightbox() {
     }
 }
 
-function openLightbox(folder, prefix, index, total, extension, start = 1) {
+function openLightbox(folder, prefix, index, total, extension, start = 1, images = null) {
     const lightbox = document.getElementById('lightbox');
 
-    currentConfig = { folder, prefix, total, extension, start };
+    currentConfig = { folder, prefix, total, extension, start, images };
     currentImageIndex = index;
 
     updateLightboxImage();
@@ -166,20 +167,34 @@ function closeLightbox() {
 }
 
 function changeSlide(n) {
-    const start = currentConfig.start || 1;
-    const total = currentConfig.total || 1;
-    const end = start + total - 1;
-
-    currentImageIndex += n;
-    if (currentImageIndex > end) currentImageIndex = start;
-    if (currentImageIndex < start) currentImageIndex = end;
+    const { images, start = 1, total = 1 } = currentConfig;
+    
+    if (images && images.length > 0) {
+        // Nowy format: tablica zdjęć
+        currentImageIndex += n;
+        if (currentImageIndex > images.length) currentImageIndex = 1;
+        if (currentImageIndex < 1) currentImageIndex = images.length;
+    } else {
+        // Stary format: numeracja zdjęć
+        const end = start + total - 1;
+        currentImageIndex += n;
+        if (currentImageIndex > end) currentImageIndex = start;
+        if (currentImageIndex < start) currentImageIndex = end;
+    }
     updateLightboxImage();
 }
 
 function updateLightboxImage() {
     const img = document.getElementById('lightbox-img');
-    const { folder, prefix, extension } = currentConfig;
-    img.src = `${folder}${prefix} (${currentImageIndex})${extension}`;
+    const { folder, prefix, extension, images } = currentConfig;
+    
+    if (images && images.length > 0) {
+        // Nowy format: tablica zdjęć z bezpośrednimi nazwami
+        img.src = `${folder}${images[currentImageIndex - 1]}`;
+    } else {
+        // Stary format: prefix + numer w nawiasach
+        img.src = `${folder}${prefix} (${currentImageIndex})${extension}`;
+    }
 }
 
 
