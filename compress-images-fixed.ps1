@@ -28,7 +28,10 @@ $folders = @(
     "photos/operetka",
     "photos/dzien_niepodleglosci_kazik2025",
     "photos/koszecin_jarmark",
-    "photos/kazik festiwal"
+    "photos/kazik festiwal",
+    "photos/Koszęcin WOŚP 2026",
+    "photos/Polonez na rynku lubliniec",
+    "photos/Turniej koszykówki"
 )
 
 $totalOriginalSize = 0
