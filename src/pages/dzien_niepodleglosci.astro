@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    "name": "Dzień Niepodległości",
+    "description": "Galeria zdjęć: Dzień Niepodległości ZSOT (2025). Reportaż z uroczystości.",
+    "url": "https://jankobus.com/dzien_niepodleglosci.html",
+    "creator": {
+      "@type": "Person",
+      "name": "Jan Kobus"
+    },
+    "datePublished": "2025-11-11"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Strona główna",
+      "item": "https://jankobus.com/"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Fotografia Eventowa",
+      "item": "https://jankobus.com/events.html"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Dzień Niepodległości",
+      "item": "https://jankobus.com/dzien_niepodleglosci.html"
+    }]
+  }
+];
+---
+
+<BaseLayout
+    title="Dzień Niepodległości - Galeria Zdjęć | Jan Kobus Fotografia"
+    description="Galeria zdjęć: Dzień Niepodległości ZSOT (2025). Reportaż z uroczystości."
+    keywords="Dzień Niepodległości, ZSOT, fotografia eventowa, fotoreportaż, Jan Kobus"
+    canonical="https://jankobus.com/dzien_niepodleglosci"
+    ogType="article"
+    ogImage="https://jankobus.com/photos/dzien_niepodleglosci_kazik2025/foto%20(1).jpg"
+    twitterCard="summary_large_image"
+    structuredData={structuredData}
+    preloadImages={["/photos/dzien_niepodleglosci_kazik2025/foto%20(1).jpg"]}
+>
+
+    <nav>
+        <div class="nav-left">
+            <a href="/#work">Prace</a>
+            <a href="/o-mnie">O mnie</a>
+            <a href="/kontakt">Kontakt</a>
+        </div>
+        <div class="nav-center">
+            <a href="/">Jan Kobus</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </nav>
+
+    <header class="project-header">
+        <h1>Dzień Niepodległości</h1>
+    </header>
+
+    <section class="masonry-gallery" id="moja-galeria">
+        <!-- JS generuje tu zdjęcia -->
+    </section>
+
+    <div class="see-more-container">
+        <h2 class="see-more-title">Zobacz więcej albumów</h2>
+        <div class="related-albums">
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <a href="/operetka">
+                        <picture>
+                            <source srcset="/photos/operetka/foto%20(2).webp" type="image/webp">
+                            <source srcset="/photos/operetka/foto%20(2).jpg">
+                            <img src="/photos/operetka/foto%20(2).jpg" alt="Fotografia eventowa Lubliniec - koncert Cabaret w Operetce" loading="eager" decoding="async">
+                        </picture>
+                    </a>
+                </div>
+                <div class="caption-box">
+                    <div class="caption-title">Cabaret w Operetce</div>
+                    <div class="caption-year">2025</div>
+                </div>
+            </div>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <a href="/kazik_festiwal">
+                        <picture>
+                            <source srcset="/photos/kazik%20festiwal/foto%20(1).webp" type="image/webp">
+                            <source srcset="/photos/kazik%20festiwal/foto%20(1).jpg">
+                            <img src="/photos/kazik%20festiwal/foto%20(1).jpg" alt="Fotografia eventowa Lubliniec - Kazikowy Festiwal Muzyczny" loading="eager" decoding="async">
+                        </picture>
+                    </a>
+                </div>
+                <div class="caption-box">
+                    <div class="caption-title">Kazikowy Festiwal Muzyczny</div>
+                    <div class="caption-year">2025</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/script.js" is:inline></script>
+    <script>
+        loadGallery({
+            containerId: 'moja-galeria',
+            folder: '/photos/dzien_niepodleglosci_kazik2025/',
+            count: 11,
+            start: 1,
+            prefix: 'foto',
+            extension: '.jpg?v=2',
+            altTemplate: 'Fotografia eventowa Lubliniec Dzień Niepodległości ZSOT Kazik'
+        });
+    </script>
+
+</BaseLayout>

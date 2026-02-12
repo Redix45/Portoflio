@@ -1,0 +1,173 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Fotografia Eventowa",
+  "description": "Portfolio fotografii eventowej - koncerty, festiwale, wydarzenia kulturalne",
+  "url": "https://jankobus.com/events.html",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Jan Kobus Fotografia",
+    "url": "https://jankobus.com"
+  },
+  "creator": {
+    "@type": "Person",
+    "name": "Jan Kobus"
+  }
+};
+---
+
+<BaseLayout
+    title="Fotografia Eventowa - Jan Kobus | Koncerty, Festiwale, Wydarzenia"
+    description="Portfolio fotografii eventowej Lubliniec i województwo śląskie - profesjonalne zdjęcia koncertów, festiwali i wydarzeń kulturalnych. Zobacz realizacje Jana Kobusa."
+    keywords="fotografia eventowa Lubliniec, zdjęcia koncertów śląskie, fotograf festiwalowy Lubliniec, fotografia wydarzeń, Jan Kobus, fotograf koncertowy śląskie"
+    canonical="https://jankobus.com/events"
+    ogType="website"
+    ogImage="https://jankobus.com/photos/operetka/foto%20(2).jpg"
+    twitterCard="summary_large_image"
+    structuredData={structuredData}
+    geoRegion="PL-SL"
+    geoPlacename="Lubliniec"
+>
+
+    <nav>
+        <div class="nav-left">
+            <a href="/#work">Prace</a>
+            <a href="/o-mnie">O mnie</a>
+            <a href="/kontakt">Kontakt</a>
+        </div>
+        <div class="nav-center">
+            <a href="/">Jan Kobus</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/redix.45/" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-center">
+            <h1>Fotografia Eventowa</h1>
+            <p class="subtitle">Koncerty, Festiwale, Wydarzenia</p>
+        </div>
+
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <section class="gallery" id="work">
+
+        <div class="gallery-container fade-in-section">
+            <div class="gallery-item">
+                <a href="/turniej-koszykówki">
+                    <img src="/photos/Turniej%20koszykówki/DSC04056.jpg" alt="Fotografia eventowa Lubliniec - Turniej koszykówki zdjęcia sportowe" loading="eager" decoding="async">
+                </a>
+            </div>
+            <div class="caption-box">
+                <div class="caption-title">Turniej Koszykówki</div>
+                <div class="caption-year">2026</div>
+            </div>
+        </div>
+
+        <div class="gallery-container fade-in-section">
+            <div class="gallery-item">
+                <a href="/polonez-rynek">
+                    <img src="/photos/Polonez%20na%20rynku%20lubliniec/DSC04297.jpg" alt="Fotografia eventowa Lubliniec - Polonez na rynku zdjęcia tradycyjne" loading="eager" decoding="async">
+                </a>
+            </div>
+            <div class="caption-box">
+                <div class="caption-title">Polonez na Rynku Lubliniec</div>
+                <div class="caption-year">2026</div>
+            </div>
+        </div>
+
+        <div class="gallery-container fade-in-section">
+            <div class="gallery-item">
+                <a href="/koszecin-wosp">
+                    <img src="/photos/Koszęcin%20WOŚP%202026/DSC03294.jpg" alt="Fotografia eventowa Koszęcin - WOŚP 2026 zdjęcia charytatywne" loading="eager" decoding="async">
+                </a>
+            </div>
+            <div class="caption-box">
+                <div class="caption-title">Koszęcin WOŚP 2026</div>
+                <div class="caption-year">2026</div>
+            </div>
+        </div>
+
+        <div class="gallery-container fade-in-section">
+            <div class="gallery-item">
+                <a href="/kazik_festiwal">
+                    <img src="/photos/kazik%20festiwal/foto%20(1).jpg" alt="Fotografia eventowa Lubliniec - Kazikowy Festiwal Muzyczny zdjęcia koncertowe" loading="eager" decoding="async">
+                </a>
+            </div>
+            <div class="caption-box">
+                <div class="caption-title">Kazikowy Festiwal Muzyczny</div>
+                <div class="caption-year">2025</div>
+            </div>
+        </div>
+
+        <div class="gallery-container fade-in-section">
+            <div class="gallery-item">
+                <a href="/koszecin_jarmark">
+                    <picture>
+                        <source srcset="/photos/koszecin_jarmark/foto%20(4).webp" type="image/webp">
+                        <source srcset="/photos/koszecin_jarmark/foto%20(4).jpg">
+                        <img src="/photos/koszecin_jarmark/foto%20(4).jpg" alt="Fotografia eventowa Koszecin - jarmark lokalny zdjecia z wydarzenia blisko Lublinca" loading="eager" decoding="async" width="1200" height="800">
+                    </picture>
+                </a>
+            </div>
+            <div class="caption-box">
+                <div class="caption-title">Koszęcin Jarmark</div>
+                <div class="caption-year">2025</div>
+            </div>
+        </div>
+
+        <div class="gallery-container fade-in-section">
+            <div class="gallery-item">
+                <a href="/dzien_niepodleglosci">
+                    <img src="/photos/dzien_niepodleglosci_kazik2025/foto%20(1).jpg?v=2" alt="Fotografia eventowa Lubliniec - Dzień Niepodległości zdjęcia z obchodów ZSOT Kazik" loading="eager" fetchpriority="high" decoding="async" width="1200" height="800">
+                </a>
+            </div>
+            <div class="caption-box">
+                <div class="caption-title">Dzień Niepodległości ZSOT</div>
+                <div class="caption-year">2025</div>
+            </div>
+        </div>
+
+        <div class="gallery-container fade-in-section">
+            <div class="gallery-item">
+                <a href="/operetka">
+                    <img src="/photos/operetka/foto%20(2).jpg" alt="Fotografia eventowa Lubliniec - koncert Cabaret w Operetce zdjęcia sceniczne" loading="eager" fetchpriority="high" decoding="async" width="1200" height="800">
+                </a>
+            </div>
+            <div class="caption-box">
+                <div class="caption-title">Cabaret w Operetce</div>
+                <div class="caption-year">2025</div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.scroll-down').addEventListener('click', function() {
+            document.getElementById('work').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    </script>
+
+</BaseLayout>

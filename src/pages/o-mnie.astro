@@ -1,0 +1,123 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Jan Kobus",
+  "jobTitle": "Fotograf",
+  "description": "Profesjonalny fotograf eventowy i nieruchomości",
+  "url": "https://jankobus.com",
+  "sameAs": [
+    "https://www.facebook.com/profile.php?id=100069116356707",
+    "https://www.instagram.com/redix.45/"
+  ]
+};
+---
+
+<BaseLayout
+    title="O mnie - Jan Kobus | Fotograf Lubliniec | Fotografia Nieruchomości"
+    description="Jan Kobus - fotograf Lubliniec. Specjalizuję się w fotografii nieruchomości Lubliniec, fotografii eventowej i komercyjnej. Poznaj mojego doświadczenie i pasję do fotografii."
+    keywords="fotograf lubliniec, jan kobus, fotografia nieruchomości lubliniec, fotografia lubliniec, o mnie, portfolio, fotograf eventowy lubliniec, biografia fotografa"
+    canonical="https://jankobus.com/o-mnie"
+    ogType="profile"
+    ogImage="https://jankobus.com/favicon.jpg"
+    twitterCard="summary"
+    structuredData={structuredData}
+    geoRegion="PL-SL"
+    geoPlacename="Lubliniec"
+>
+
+    <nav>
+        <div class="nav-left">
+            <a href="/#work">Prace</a>
+            <a href="/o-mnie">O mnie</a>
+            <a href="/kontakt">Kontakt</a>
+        </div>
+        <div class="nav-center">
+            <a href="/">Jan Kobus</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/redix.45/" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-center">
+            <h1>O mnie</h1>
+            <p class="subtitle">Trochę o tym, co robię</p>
+        </div>
+
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <section class="about-section" id="about-content">
+
+        <div class="about-container fade-in-section">
+            <div class="about-text">
+                <h2>Fotograf Lubliniec - Kim jestem?</h2>
+                <p>
+                    Cześć! Jestem Janek, <strong>fotograf Lubliniec</strong>. Mam 17 lat i zajmuję się <strong>fotografią nieruchomości Lubliniec</strong>
+                    oraz <strong>fotografią eventową</strong>. Fotografią zajmuję się hobbistycznie już kilka lat.
+                    Wciąż się uczę, ale właśnie to mi się w tym podoba - każda sesja to nowe wyzwanie
+                    i sposób na rozwijanie się.
+                </p>
+                <p>
+                    Jako <strong>fotograf z Lublińca i okolic</strong> zaczynałem od robienia zdjęć znajomym i lokalnych eventów.
+                    Z czasem zauważyłem, że to już nie tylko hobby - to coś, w czym chcę się rozwijać zawodowo.
+                    Dziś oferuję <strong>profesjonalną fotografię w Lublińcu i okolicach</strong> - zarówno nieruchomości, jak i eventów.
+                </p>
+            </div>
+        </div>
+
+        <div class="about-container fade-in-section">
+            <div class="about-text">
+                <h2>Co fotografuję?</h2>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <i class="fas fa-music"></i>
+                        <h3>Eventy</h3>
+                        <p>
+                            Koncerty, festiwale i różne wydarzenia. Lubię dynamikę tych miejsc –
+                            nigdy nie wiesz, co się wydarzy za chwilę, więc trzeba być czujnym.
+                        </p>
+                    </div>
+                    <div class="service-item">
+                        <i class="fas fa-home"></i>
+                        <h3>Nieruchomości</h3>
+                        <p>
+                            Zdjęcia domów i mieszkań. Staram się pokazać przestrzeń tak,
+                            żeby wyglądała zachęcająco i naturalnie.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-cta fade-in-section">
+            <h2>Zainteresowany współpracą?</h2>
+            <a href="/kontakt" class="cta-button">
+                <i class="fas fa-envelope"></i> Napisz do mnie
+            </a>
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/script.js" is:inline></script>
+
+</BaseLayout>

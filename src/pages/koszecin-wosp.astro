@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    "name": "Koszęcin WOŚP 2026",
+    "description": "Galeria zdjęć z Koszęcina WOŚP 2026",
+    "url": "https://jankobus.com/koszecin-wosp.html",
+    "creator": {
+      "@type": "Person",
+      "name": "Jan Kobus"
+    },
+    "datePublished": "2026-01-01"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Strona główna",
+      "item": "https://jankobus.com/"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Fotografia Eventowa",
+      "item": "https://jankobus.com/events.html"
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Koszęcin WOŚP 2026",
+      "item": "https://jankobus.com/koszecin-wosp.html"
+    }]
+  }
+];
+---
+
+<BaseLayout
+    title="Koszęcin WOŚP 2026 - Galeria Zdjęć | Jan Kobus Fotografia"
+    description="Galeria zdjęć z Koszęcina WOŚP 2026. Profesjonalna fotografia eventowa - Jan Kobus."
+    keywords="Koszęcin, WOŚP, fotografia charytatywna, zdjęcia eventowe, Jan Kobus"
+    canonical="https://jankobus.com/koszecin-wosp"
+    ogType="article"
+    ogImage="https://jankobus.com/photos/Koszęcin%20WOŚP%202026/DSC03294.jpg"
+    twitterCard="summary_large_image"
+    structuredData={structuredData}
+    preloadImages={["/photos/Koszęcin%20WOŚP%202026/DSC03294.jpg"]}
+>
+
+    <nav>
+        <div class="nav-left">
+            <a href="/#work">Prace</a>
+            <a href="/o-mnie">O mnie</a>
+            <a href="/kontakt">Kontakt</a>
+        </div>
+        <div class="nav-center">
+            <a href="/">Jan Kobus</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </nav>
+
+    <header class="project-header">
+        <h1>Koszęcin WOŚP 2026</h1>
+    </header>
+
+    <section class="masonry-gallery" id="moja-galeria">
+    </section>
+
+    <div class="see-more-container">
+        <h2 class="see-more-title">Zobacz więcej albumów</h2>
+        <div class="related-albums">
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <a href="/operetka">
+                        <picture>
+                            <source srcset="/photos/operetka/foto%20(2).webp" type="image/webp">
+                            <source srcset="/photos/operetka/foto%20(2).jpg">
+                            <img src="/photos/operetka/foto%20(2).jpg" alt="Fotografia eventowa Lubliniec - koncert Cabaret w Operetce" loading="eager" decoding="async">
+                        </picture>
+                    </a>
+                </div>
+                <div class="caption-box">
+                    <div class="caption-title">Cabaret w Operetce</div>
+                    <div class="caption-year">2025</div>
+                </div>
+            </div>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <a href="/turniej-koszykówki">
+                        <img src="/photos/Turniej%20koszykówki/DSC04013-1.jpg" alt="Fotografia eventowa Lubliniec - Turniej koszykówki" loading="eager" decoding="async">
+                    </a>
+                </div>
+                <div class="caption-box">
+                    <div class="caption-title">Turniej Koszykówki</div>
+                    <div class="caption-year">2026</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/script.js" is:inline></script>
+    <script>
+        const images = [
+            'DSC03294.jpg', 'DSC03307.jpg', 'DSC03326.jpg', 'DSC03347.jpg', 'DSC03355.jpg',
+            'DSC03370.jpg', 'DSC03386.jpg', 'DSC03393.jpg', 'DSC03460.jpg', 'DSC03477.jpg',
+            'DSC03492.jpg', 'DSC03510.jpg', 'DSC03565.jpg', 'DSC03639.jpg', 'DSC03698.jpg',
+            'DSC03705.jpg', 'DSC03731.jpg', 'DSC03741.jpg', 'DSC03749.jpg', 'DSC03760.jpg',
+            'DSC03797.jpg', 'DSC03843.jpg', 'DSC03888.jpg', 'DSC03954.jpg'
+        ];
+
+        const container = document.getElementById('moja-galeria');
+        const folder = '/photos/Koszęcin%20WOŚP%202026/';
+
+        images.forEach((img, index) => {
+            const div = document.createElement('div');
+            div.className = 'masonry-item';
+
+            const picture = document.createElement('picture');
+            const imgEl = document.createElement('img');
+
+            imgEl.src = folder + img;
+            imgEl.alt = 'Fotografia eventowa - Koszęcin WOŚP 2026';
+            imgEl.loading = index < 3 ? 'eager' : 'lazy';
+            if (index < 2) imgEl.fetchPriority = 'high';
+            imgEl.decoding = 'async';
+            imgEl.style.width = '100%';
+            imgEl.style.height = 'auto';
+            imgEl.style.display = 'block';
+
+            imgEl.onclick = () => {
+                openLightbox(folder, '', index + 1, images.length, '.jpg', 0, images);
+            };
+
+            picture.appendChild(imgEl);
+            div.appendChild(picture);
+            container.appendChild(div);
+        });
+    </script>
+
+</BaseLayout>

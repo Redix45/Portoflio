@@ -1,4 +1,4 @@
-name: Deploy Portfolio
+name: Build and Deploy to Server
 
 on:
   push:
@@ -21,11 +21,15 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script: |
             cd /opt/portfolio_redix
-            # Pobieramy pliki prosto do folderu www
+            # Clone repo if not exists
             if [ ! -d "repo" ]; then
               git clone https://github.com/Redix45/Portoflio.git repo
             fi
             cd repo
             git pull origin main
-            # Kopiujemy zawartość (pliki .html i .css widoczne na screenie) do www
-            cp -r * ../www/
+            # Install dependencies and build Astro
+            npm ci
+            npm run build
+            # Copy built files to www
+            rm -rf ../www/*
+            cp -r dist/* ../www/

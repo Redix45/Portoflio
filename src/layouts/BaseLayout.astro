@@ -1,0 +1,126 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  keywords?: string;
+  canonical?: string;
+  ogType?: string;
+  ogImage?: string;
+  ogImageWidth?: string;
+  ogImageHeight?: string;
+  twitterCard?: string;
+  structuredData?: any;
+  preloadImages?: string[];
+  geoRegion?: string;
+  geoPlacename?: string;
+  geoPosition?: string;
+  additionalHead?: string;
+}
+
+const {
+  title,
+  description = '',
+  keywords = '',
+  canonical = '',
+  ogType = 'website',
+  ogImage = 'https://jankobus.com/favicon.jpg',
+  ogImageWidth = '',
+  ogImageHeight = '',
+  twitterCard = 'summary_large_image',
+  structuredData = null,
+  preloadImages = [],
+  geoRegion = '',
+  geoPlacename = '',
+  geoPosition = '',
+  additionalHead = ''
+} = Astro.props;
+
+const currentUrl = canonical || `https://jankobus.com${Astro.url.pathname}`;
+---
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+
+    {description && <meta name="description" content={description} />}
+    {keywords && <meta name="keywords" content={keywords} />}
+    {geoRegion && <meta name="geo.region" content={geoRegion} />}
+    {geoPlacename && <meta name="geo.placename" content={geoPlacename} />}
+    {geoPosition && <meta name="geo.position" content={geoPosition} />}
+    <meta name="author" content="Jan Kobus">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href={currentUrl}>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={ogType}>
+    <meta property="og:url" content={currentUrl}>
+    <meta property="og:title" content={title}>
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:image" content={ogImage}>
+    {ogImageWidth && <meta property="og:image:width" content={ogImageWidth} />}
+    {ogImageHeight && <meta property="og:image:height" content={ogImageHeight} />}
+    <meta property="og:locale" content="pl_PL">
+    {ogType === 'website' && <meta property="og:site_name" content="Jan Kobus Fotografia" />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content={twitterCard}>
+    <meta name="twitter:title" content={title}>
+    {description && <meta name="twitter:description" content={description} />}
+    <meta name="twitter:image" content={ogImage}>
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://jankobus.com/favicon.jpg" type="image/jpeg">
+
+    <!-- Structured Data -->
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    )}
+
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Preload critical resources -->
+    {preloadImages.map(img => (
+      <link rel="preload" as="image" href={img} fetchpriority="high">
+    ))}
+    <link rel="preload" as="style" href="/style.css">
+
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/camera-animation-addon.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    {additionalHead && <Fragment set:html={additionalHead} />}
+</head>
+<body>
+    <slot />
+
+    <script type="module" src="/script.js"></script>
+    <script>
+      // Temporary: unregister service workers and clear caches to avoid stale assets during preview
+      (async function(){
+        if ('serviceWorker' in navigator) {
+          try {
+            const regs = await navigator.serviceWorker.getRegistrations();
+            for (const r of regs) { await r.unregister(); }
+          } catch (e) {
+            console.warn('SW unregister failed', e);
+          }
+        }
+        if ('caches' in window) {
+          try {
+            const keys = await caches.keys();
+            await Promise.all(keys.map(k => caches.delete(k)));
+          } catch (e) {
+            console.warn('Cache clear failed', e);
+          }
+        }
+      })();
+    </script>
+</body>
+</html>

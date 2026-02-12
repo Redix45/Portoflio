@@ -1,0 +1,24 @@
+{
+  "name": "strona-portfolio-astro",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "migrate": "node tools/convert-html-to-astro.js"
+  },
+  "devDependencies": {
+    "astro": "^4.0.0",
+    "sharp": "^0.32.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "migrate": "node tools/convert-html-to-astro.js",
+    "fix-assets": "node tools/fix-astro-assets.js",
+    "optimize-images": "node tools/optimize-images.js",
+    "cleanup-html": "node tools/cleanup-original-html.js"
+  }
+}

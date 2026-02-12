@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Kontakt",
+  "description": "Skontaktuj się z Janem Kobusem - profesjonalnym fotografem",
+  "url": "https://jankobus.com/kontakt.html",
+  "mainEntity": {
+    "@type": "Person",
+    "name": "Jan Kobus",
+    "jobTitle": "Fotograf",
+    "url": "https://jankobus.com"
+  }
+};
+---
+
+<BaseLayout
+    title="Kontakt - Fotograf Lubliniec | Jan Kobus - Fotografia Nieruchomości Lubliniec"
+    description="Kontakt - Fotograf Lubliniec Jan Kobus. Umów fotografię nieruchomości Lubliniec, sesję eventową. Obsługa Lubliniec i województwo śląskie. ☎️ Zadzwoń lub napisz!"
+    keywords="kontakt fotograf lubliniec, jan kobus kontakt, umów sesję lubliniec, fotografia nieruchomości lubliniec kontakt, wycena zdjęć lubliniec, rezerwacja fotografa lubliniec"
+    canonical="https://jankobus.com/kontakt"
+    ogType="website"
+    ogImage="https://jankobus.com/favicon.jpg"
+    twitterCard="summary"
+    structuredData={structuredData}
+    geoRegion="PL-SL"
+    geoPlacename="Lubliniec"
+>
+
+    <nav>
+        <div class="nav-left">
+            <a href="/#work">Prace</a>
+            <a href="/o-mnie">O mnie</a>
+            <a href="/kontakt" class="active-link">Kontakt</a>
+        </div>
+        <div class="nav-center">
+            <a href="/">Jan Kobus</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+    </nav>
+
+    <div class="contact-wrapper fade-in-section">
+        <h1 class="contact-title">Kontakt</h1>
+
+        <form class="contact-form" action="https://formspree.io/f/mbdrgppo" method="POST">
+
+    <div class="form-group">
+        <label for="name">Imię i Nazwisko *</label>
+        <input type="text" id="name" name="name" placeholder="Twoje imię..." required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Adres Email *</label>
+        <input type="email" id="email" name="email" placeholder="Twój email..." required>
+    </div>
+
+    <div class="form-group">
+        <label for="message">Wiadomość *</label>
+        <textarea id="message" name="message" rows="6" placeholder="Twoja wiadomość..." required></textarea>
+    </div>
+
+    <button type="submit" class="submit-btn">Wyślij</button>
+</form>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/script.js" is:inline></script>
+
+</BaseLayout>

@@ -1,0 +1,71 @@
+---
+const title = `Fotografia Nieruchomości Lubliniec | Jan Kobus - Zdjęcia Domów i Apartamentów`;
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title={title}>
+<nav>
+        <div class="nav-left">
+            <a href="/#work">Prace</a>
+            <a href="/o-mnie">O mnie</a>
+            <a href="/kontakt">Kontakt</a>
+        </div>
+        <div class="nav-center">
+            <a href="/">Jan Kobus</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/redix.45/" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-center">
+            <h1>Nieruchomości</h1>
+            <p class="subtitle">Fotografia Nieruchomości</p>
+        </div>
+
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <section class="empty-state" id="work">
+        <div class="empty-content fade-in-section">
+            <i class="fas fa-home empty-icon"></i>
+            <h2>Profesjonalna Fotografia Nieruchomości Lubliniec i Okolice</h2>
+            <p class="empty-message">
+                Oferuję <strong>profesjonalną fotografię nieruchomości w Lublińcu</strong> i całym województwie śląskim. 🏠<br>
+                Specjalizuję się w <strong>zdjęciach domów, apartamentów, wnętrz</strong> oraz <strong>przestrzeni komercyjnych</strong>.<br><br>
+                <strong>Fotografia nieruchomości Lubliniec</strong> - portfolio jest w trakcie budowy. 🏭️<br>
+                Chcesz być pierwszy? Razem stworzymy profesjonalną prezentację, która sprzeda Twoją nieruchomość!<br><br>
+                ✨ Wysokiej jakości zdjęcia do ofert sprzedażowych i najmu<br>
+                📸 Fotografia wnętrz z profesjonalnym sprzętem<br>
+                📍 Obsługa Lubliniec, Częstochowa, Katowice i okolice
+            </p>
+            <a href="/kontakt" class="cta-button">
+                <i class="fas fa-envelope"></i> Skontaktuj się - Fotograf Nieruchomości Lubliniec
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=100069116356707" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/script.js" is:inline></script>
+    <script>
+        document.querySelector('.scroll-down').addEventListener('click', function() {
+            document.getElementById('work').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        });
+    </script>
+</BaseLayout>

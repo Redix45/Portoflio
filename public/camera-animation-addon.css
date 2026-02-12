@@ -1,0 +1,389 @@
+/* =========================================
+   CAMERA ANIMATION - OPTIMIZED
+   ========================================= */
+
+/* Enhanced Camera Animation */
+.camera-animation {
+    opacity: 0.85 !important;
+    filter: contrast(1.3) brightness(1.3);
+    will-change: transform;
+}
+
+/* Camera Frame */
+.camera-frame {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 480px;
+    height: 320px;
+    border: 3px solid rgba(255,255,255,0.45);
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+    box-shadow: 0 0 30px rgba(255,255,255,0.2), 0 0 50px rgba(255,255,255,0.1);
+    will-change: auto;
+}
+
+.viewfinder {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    height: 40px;
+    border: 3px solid rgba(100,200,255,0.9);
+    border-radius: 4px;
+    background: rgba(100,200,255,0.25);
+    box-shadow: 0 0 20px rgba(100,200,255,0.7), 0 0 40px rgba(100,200,255,0.4);
+    animation: viewfinderBlink 6s ease-in-out infinite;
+    will-change: opacity;
+}
+
+.shutter-button {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,100,100,0.85) 0%, rgba(255,100,100,0.4) 70%);
+    border: 3px solid rgba(255,100,100,1);
+    box-shadow: 0 0 25px rgba(255,100,100,0.7), 0 0 45px rgba(255,100,100,0.4);
+    animation: shutterPress 8s ease-in-out infinite;
+    will-change: transform, opacity;
+}
+
+.mode-dial {
+    position: absolute;
+    bottom: 20px;
+    right: 30px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 3px solid rgba(150,255,150,0.9);
+    background: rgba(150,255,150,0.25);
+    box-shadow: 0 0 20px rgba(150,255,150,0.6), 0 0 40px rgba(150,255,150,0.3);
+    animation: modeDial 12s linear infinite;
+    will-change: transform;
+}
+
+/* Enhanced Lens with Colors - Optimized */
+.lens {
+    background: radial-gradient(circle, 
+        rgba(100,150,255,0.5) 0%, 
+        rgba(150,100,255,0.35) 30%,
+        rgba(255,255,255,0.15) 100%) !important;
+    border: 3px solid rgba(255,255,255,0.6) !important;
+    box-shadow: 0 0 50px rgba(100,150,255,0.6), inset 0 0 30px rgba(100,150,255,0.4), 0 0 80px rgba(100,150,255,0.3);
+    will-change: auto;
+}
+
+.ring-1 {
+    border-color: rgba(100,200,255,0.8) !important;
+    box-shadow: 0 0 20px rgba(100,200,255,0.6), 0 0 35px rgba(100,200,255,0.3);
+}
+
+.ring-2 {
+    border-color: rgba(255,150,100,0.8) !important;
+    box-shadow: 0 0 20px rgba(255,150,100,0.6), 0 0 35px rgba(255,150,100,0.3);
+}
+
+.ring-3 {
+    border-color: rgba(150,255,150,0.8) !important;
+    box-shadow: 0 0 20px rgba(150,255,150,0.6), 0 0 35px rgba(150,255,150,0.3);
+}
+
+.lens-center {
+    background: radial-gradient(circle, 
+        rgba(100,180,255,0.8) 0%, 
+        rgba(150,100,255,0.6) 50%,
+        rgba(255,255,255,0.25) 100%) !important;
+    box-shadow: 0 0 60px rgba(100,180,255,0.8), inset 0 0 40px rgba(100,180,255,0.6), 0 0 90px rgba(100,180,255,0.4) !important;
+    will-change: auto;
+}
+
+/* Aperture (Diafragma) - Simplified */
+.aperture {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    will-change: auto;
+}
+
+.aperture-blade {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 60px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    transform-origin: center;
+    clip-path: polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%);
+    animation: apertureOpen 8s ease-in-out infinite;
+    will-change: transform;
+}
+
+.blade-1 { transform: translate(-50%, -50%) rotate(0deg); }
+.blade-2 { transform: translate(-50%, -50%) rotate(60deg); }
+.blade-3 { transform: translate(-50%, -50%) rotate(120deg); }
+.blade-4 { transform: translate(-50%, -50%) rotate(180deg); }
+.blade-5 { transform: translate(-50%, -50%) rotate(240deg); }
+.blade-6 { transform: translate(-50%, -50%) rotate(300deg); }
+
+.lens-glare {
+    position: absolute;
+    top: 20%;
+    left: 60%;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 50%);
+    animation: glareMove 10s ease-in-out infinite;
+    will-change: transform, opacity;
+}
+
+/* Enhanced Flash - Optimized */
+.camera-flash {
+    background: radial-gradient(circle, 
+        rgba(255,255,100,0.9) 0%, 
+        rgba(255,200,100,0.7) 30%,
+        rgba(255,255,255,0.3) 70%) !important;
+    box-shadow: 0 0 70px rgba(255,255,100,0.8), 0 0 100px rgba(255,255,100,0.5);
+    will-change: auto;
+}
+
+.flash-burst {
+    position: absolute;
+    top: -50px;
+    right: 50px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0) 50%);
+    animation: burstEffect 8s ease-in-out infinite;
+    will-change: opacity, transform;
+}
+
+/* Bokeh Effect - Reduced & Optimized */
+.bokeh-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.bokeh {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.8;
+    filter: blur(3px);
+    will-change: transform;
+}
+
+.bokeh-1 {
+    top: 10%;
+    left: 20%;
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle, rgba(100,200,255,0.6) 0%, rgba(100,200,255,0) 70%);
+    animation: bokehFloat1 20s ease-in-out infinite;
+}
+
+.bokeh-2 {
+    top: 60%;
+    right: 15%;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(255,150,100,0.5) 0%, rgba(255,150,100,0) 70%);
+    animation: bokehFloat2 25s ease-in-out infinite;
+}
+
+.bokeh-3 {
+    bottom: 20%;
+    left: 30%;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, rgba(150,255,150,0.6) 0%, rgba(150,255,150,0) 70%);
+    animation: bokehFloat3 18s ease-in-out infinite;
+}
+
+.bokeh-4 {
+    top: 40%;
+    left: 10%;
+    width: 70px;
+    height: 70px;
+    background: radial-gradient(circle, rgba(255,100,255,0.5) 0%, rgba(255,100,255,0) 70%);
+    animation: bokehFloat1 24s ease-in-out infinite;
+}
+
+/* Polaroid Photos Flying - Reduced & Optimized */
+.polaroid-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.polaroid {
+    position: absolute;
+    width: 80px;
+    height: 100px;
+    background: rgba(255,255,255,0.35);
+    border: 3px solid rgba(255,255,255,0.5);
+    border-radius: 4px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3), 0 0 25px rgba(255,255,255,0.4), 0 0 45px rgba(255,255,255,0.2);
+    will-change: transform, opacity;
+}
+
+.polaroid::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    height: 60%;
+    background: linear-gradient(135deg, 
+        rgba(100,200,255,0.1) 0%, 
+        rgba(255,150,100,0.1) 100%);
+    border-radius: 2px;
+}
+
+.polaroid-1 {
+    top: 15%;
+    left: 5%;
+    animation: polaroidFly1 30s ease-in-out infinite;
+}
+
+.polaroid-2 {
+    top: 60%;
+    right: 8%;
+    animation: polaroidFly2 28s ease-in-out infinite;
+}
+
+/* Light Rays - Removed for performance */
+
+/* Additional Particles - Removed for performance */
+
+/* =========================================
+   OPTIMIZED ANIMATIONS
+   ========================================= */
+
+@keyframes viewfinderBlink {
+    0%, 85%, 100% {
+        opacity: 0.3;
+        box-shadow: 0 0 5px rgba(100,200,255,0.2);
+    }
+    92% {
+        opacity: 1;
+        box-shadow: 0 0 15px rgba(100,200,255,0.5);
+    }
+}
+
+@keyframes shutterPress {
+    0%, 92%, 100% {
+        transform: scale(1);
+        opacity: 0.4;
+    }
+    96% {
+        transform: scale(0.85);
+        opacity: 1;
+    }
+}
+
+@keyframes modeDial {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes apertureOpen {
+    0%, 100% {
+        transform: translate(-50%, -50%) scaleY(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scaleY(0.4);
+    }
+}
+
+@keyframes glareMove {
+    0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translate(-30px, 20px);
+        opacity: 0.5;
+    }
+}
+
+@keyframes burstEffect {
+    0%, 92%, 100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    94% {
+        opacity: 0.7;
+        transform: scale(2);
+    }
+    96% {
+        opacity: 0;
+        transform: scale(2.5);
+    }
+}
+
+@keyframes bokehFloat1 {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(40px, -25px);
+    }
+}
+
+@keyframes bokehFloat2 {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-50px, -40px);
+    }
+}
+
+@keyframes bokehFloat3 {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(-35px, 30px);
+    }
+}
+
+@keyframes polaroidFly1 {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+    }
+    15%, 85% {
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(180px, -90px) rotate(160deg);
+    }
+}
+
+@keyframes polaroidFly2 {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+    }
+    20%, 80% {
+        opacity: 0.7;
+    }
+    50% {
+        transform: translate(-160px, 100px) rotate(-140deg);
+    }
+}
