@@ -588,6 +588,7 @@ nav {
     display: block;
 }
 
+/* Updated: fix image display */
 .category-tile img {
     position: absolute;
     width: 100%;
