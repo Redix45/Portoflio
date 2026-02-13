@@ -15,6 +15,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* =========================================
    2. BASE STYLES
    ========================================= */
@@ -1367,6 +1371,40 @@ footer {
 .footer-socials a:hover {
     color: #fff;
     transform: translateY(-2px);
+}
+
+/* Back to top button */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(18,18,18,0.8);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s, border-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#back-to-top.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+#back-to-top:hover {
+    border-color: rgba(255,255,255,0.4);
 }
 
 /* =========================================

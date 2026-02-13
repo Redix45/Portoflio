@@ -103,6 +103,8 @@ const currentUrl = canonical || `https://jankobus.com${Astro.url.pathname}`;
 <body>
     <slot />
 
+    <button id="back-to-top" aria-label="Wróć na górę"><i class="fas fa-chevron-up"></i></button>
+
     <script type="module" src="/script.js"></script>
     <script>
       document.addEventListener('astro:page-load', () => {
@@ -126,12 +128,19 @@ const currentUrl = canonical || `https://jankobus.com${Astro.url.pathname}`;
         }, { threshold: 0.1 });
         document.querySelectorAll('.masonry-item').forEach(el => curtainObserver.observe(el));
 
-        // Nav shrink on scroll
+        // Nav shrink on scroll + back to top
         const navEl = document.querySelector('nav');
-        if (navEl) {
+        const btt = document.getElementById('back-to-top');
+        if (navEl || btt) {
           window.addEventListener('scroll', () => {
-            navEl.classList.toggle('scrolled', window.scrollY > 80);
+            if (navEl) navEl.classList.toggle('scrolled', window.scrollY > 80);
+            if (btt) btt.classList.toggle('show', window.scrollY > 400);
           }, { passive: true });
+        }
+        if (btt) {
+          btt.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
         }
       });
     </script>
