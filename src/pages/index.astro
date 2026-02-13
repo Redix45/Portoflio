@@ -138,9 +138,11 @@ const additionalHead = `
     </nav>
 
     <header class="hero">
+        <canvas id="hero-particles"></canvas>
+        <div class="hero-glow" id="heroGlow"></div>
         <div class="hero-center">
             <h1>Jan Kobus</h1>
-            <p class="subtitle">Portfolio Fotograficzne</p>
+            <p class="subtitle" id="subtitle-typewriter"></p>
         </div>
 
         <div class="scroll-down" role="button" aria-label="Przewiń do portfolio" tabindex="0">
@@ -186,11 +188,129 @@ const additionalHead = `
 
     <script src="/preload-images.js" is:inline></script>
     <script src="/preload-measure.js" is:inline></script>
-    <script>
-        document.querySelector('.scroll-down').addEventListener('click', function() {
-            document.getElementById('work').scrollIntoView({
-                behavior: 'smooth'
+    <script is:inline>
+        document.addEventListener('astro:page-load', () => {
+            // Smooth scroll
+            const scrollBtn = document.querySelector('.scroll-down');
+            if (scrollBtn) {
+                scrollBtn.addEventListener('click', function() {
+                    document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+
+            // Hero cursor glow
+            const glow = document.getElementById('heroGlow');
+            const hero = document.querySelector('.hero');
+            if (glow && hero) {
+                hero.addEventListener('mousemove', (e) => {
+                    glow.style.left = e.clientX + 'px';
+                    glow.style.top = e.clientY + 'px';
+                    glow.style.opacity = '1';
+                });
+                hero.addEventListener('mouseleave', () => {
+                    glow.style.opacity = '0';
+                });
+            }
+
+            // Hero parallax on scroll
+            const heroCenter = document.querySelector('.hero-center');
+            const scrollDown = document.querySelector('.scroll-down');
+            if (heroCenter) {
+                window.addEventListener('scroll', () => {
+                    const y = window.scrollY;
+                    if (y < window.innerHeight) {
+                        heroCenter.style.transform = `translateY(${y * 0.3}px)`;
+                        heroCenter.style.opacity = 1 - (y / (window.innerHeight * 0.8));
+                    }
+                    if (scrollDown) {
+                        scrollDown.style.opacity = Math.max(0, 0.7 - (y / 300));
+                    }
+                }, { passive: true });
+            }
+
+            // 3D tilt on category tiles
+            document.querySelectorAll('.category-tile').forEach(tile => {
+                tile.addEventListener('mousemove', (e) => {
+                    const rect = tile.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / centerY * -4;
+                    const rotateY = (x - centerX) / centerX * 4;
+                    tile.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                tile.addEventListener('mouseleave', () => {
+                    tile.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                });
             });
+
+            // Typewriter effect on subtitle
+            const subtitleEl = document.getElementById('subtitle-typewriter');
+            if (subtitleEl && !subtitleEl.dataset.typed) {
+                subtitleEl.dataset.typed = '1';
+                const text = 'Portfolio Fotograficzne';
+                subtitleEl.textContent = '';
+                let i = 0;
+                const cursor = document.createElement('span');
+                cursor.className = 'typewriter-cursor';
+                subtitleEl.appendChild(cursor);
+                function typeChar() {
+                    if (i < text.length) {
+                        subtitleEl.insertBefore(document.createTextNode(text[i]), cursor);
+                        i++;
+                        setTimeout(typeChar, 70 + Math.random() * 40);
+                    } else {
+                        setTimeout(() => { cursor.style.display = 'none'; }, 2000);
+                    }
+                }
+                setTimeout(typeChar, 1200);
+            }
+
+            // Floating particles
+            const canvas = document.getElementById('hero-particles');
+            if (canvas && !canvas.dataset.init) {
+                canvas.dataset.init = '1';
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+                let animId;
+
+                function resize() {
+                    canvas.width = canvas.offsetWidth;
+                    canvas.height = canvas.offsetHeight;
+                }
+                resize();
+                window.addEventListener('resize', resize);
+
+                for (let i = 0; i < 40; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        r: Math.random() * 1.5 + 0.5,
+                        dx: (Math.random() - 0.5) * 0.3,
+                        dy: (Math.random() - 0.5) * 0.3 - 0.15,
+                        opacity: Math.random() * 0.4 + 0.1
+                    });
+                }
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    particles.forEach(p => {
+                        p.x += p.dx;
+                        p.y += p.dy;
+                        if (p.x < 0) p.x = canvas.width;
+                        if (p.x > canvas.width) p.x = 0;
+                        if (p.y < 0) p.y = canvas.height;
+                        if (p.y > canvas.height) p.y = 0;
+                        ctx.beginPath();
+                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                        ctx.fill();
+                    });
+                    animId = requestAnimationFrame(animate);
+                }
+                animate();
+            }
         });
     </script>
 

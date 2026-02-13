@@ -1,4 +1,6 @@
 ---
+import { ViewTransitions } from 'astro:transitions';
+
 interface Props {
   title: string;
   description?: string;
@@ -96,31 +98,42 @@ const currentUrl = canonical || `https://jankobus.com${Astro.url.pathname}`;
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     {additionalHead && <Fragment set:html={additionalHead} />}
+    <ViewTransitions />
 </head>
 <body>
     <slot />
 
     <script type="module" src="/script.js"></script>
     <script>
-      // Temporary: unregister service workers and clear caches to avoid stale assets during preview
-      (async function(){
-        if ('serviceWorker' in navigator) {
-          try {
-            const regs = await navigator.serviceWorker.getRegistrations();
-            for (const r of regs) { await r.unregister(); }
-          } catch (e) {
-            console.warn('SW unregister failed', e);
-          }
+      document.addEventListener('astro:page-load', () => {
+        // Scroll reveal for fade-in-section elements
+        const revealObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.fade-in-section').forEach(el => revealObserver.observe(el));
+
+        // Curtain reveal for masonry gallery items
+        const curtainObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.masonry-item').forEach(el => curtainObserver.observe(el));
+
+        // Nav shrink on scroll
+        const navEl = document.querySelector('nav');
+        if (navEl) {
+          window.addEventListener('scroll', () => {
+            navEl.classList.toggle('scrolled', window.scrollY > 80);
+          }, { passive: true });
         }
-        if ('caches' in window) {
-          try {
-            const keys = await caches.keys();
-            await Promise.all(keys.map(k => caches.delete(k)));
-          } catch (e) {
-            console.warn('Cache clear failed', e);
-          }
-        }
-      })();
+      });
     </script>
 </body>
 </html>
