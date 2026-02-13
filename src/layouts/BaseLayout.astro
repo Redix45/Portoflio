@@ -84,7 +84,7 @@ const currentUrl = canonical || `https://jankobus.com${Astro.url.pathname}`;
     <!-- Preconnect to external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
     <!-- Preload critical resources -->
     {preloadImages.map(img => (
@@ -92,10 +92,16 @@ const currentUrl = canonical || `https://jankobus.com${Astro.url.pathname}`;
     ))}
     <link rel="preload" as="style" href="/style.css">
 
+    <!-- Critical CSS first -->
     <link rel="stylesheet" href="/style.css">
     <link rel="stylesheet" href="/camera-animation-addon.css" />
+
+    <!-- Fonts: swap display to avoid FOIT -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Font Awesome: defer loading (non-critical) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 
     {additionalHead && <Fragment set:html={additionalHead} />}
     <ViewTransitions />

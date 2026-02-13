@@ -52,64 +52,61 @@ function loadGallery(config) {
     const prefix = config.prefix || 'foto'; 
     const start = config.start || 1;
 
+    const isSmallScreen = window.innerWidth < 768;
+    const fragment = document.createDocumentFragment();
+
     for (let i = 1; i <= count; i++) {
         const div = document.createElement('div');
-        div.className = 'masonry-item'; 
+        div.className = 'masonry-item';
 
         const picture = document.createElement('picture');
         const img = document.createElement('img');
         const fileIndex = start + i - 1;
-        const fileName = `${prefix} (${fileIndex})${extension}`;
         const basePath = `${folder}${prefix} (${fileIndex})`;
+        const thumbPath = `${folder}thumbs/${prefix} (${fileIndex})`;
 
-        // WebP source (lepsze kompresji) - z responsywnym srcset
+        // WebP source with responsive srcset + sizes
         const webpSource = document.createElement('source');
-        const isSmallScreen = window.innerWidth < 768;
         if (isSmallScreen) {
-            webpSource.srcset = `${folder}thumbs/${prefix} (${fileIndex}).webp 300w`;
+            webpSource.srcset = `${thumbPath}.webp`;
         } else {
-            webpSource.srcset = `${folder}thumbs/${prefix} (${fileIndex}).webp 300w, ${basePath}.webp 1200w`;
+            webpSource.srcset = `${thumbPath}.webp 300w, ${basePath}.webp 1200w`;
+            webpSource.sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw';
         }
         webpSource.type = 'image/webp';
 
-        // Fallback JPEG
-        img.src = `${basePath}.jpg`;
-        
-        // Responsive srcset dla thumbnails i pełnych wersji (JPEG fallback)
+        // Fallback JPEG with responsive srcset + sizes
         if (isSmallScreen) {
-            img.srcset = `${folder}thumbs/${prefix} (${fileIndex}).jpg 300w`;
+            img.src = `${thumbPath}.jpg`;
         } else {
-            img.srcset = `${folder}thumbs/${prefix} (${fileIndex}).jpg 300w, ${basePath}.jpg 1200w`;
+            img.src = `${basePath}.jpg`;
+            img.srcset = `${thumbPath}.jpg 300w, ${basePath}.jpg 1200w`;
+            img.sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw';
         }
-        
-        // SEO-friendly alt
-        let altText = config.altTemplate || 'Fotografia eventowa Lubliniec';
-        img.alt = `${altText} - zdjęcie ${fileIndex}`;
+
+        img.alt = `${config.altTemplate || 'Fotografia eventowa Lubliniec'} - zdjęcie ${fileIndex}`;
         img.dataset.index = i;
 
-        // Lazy loading (eager tylko dla pierwszych 3)
-        if (i <= 3) {
+        // First 4 eager (LCP), rest lazy
+        if (i <= 4) {
             img.loading = 'eager';
-            if (i <= 2) {
-                img.fetchPriority = 'high';
-            }
+            if (i <= 2) img.fetchPriority = 'high';
         } else {
             img.loading = 'lazy';
         }
         img.decoding = 'async';
 
         img.onclick = () => openLightbox(folder, prefix, fileIndex, count, extension, start);
-
-        img.onerror = function() { 
-            console.warn('Nie znaleziono pliku:', this.src); 
-            div.style.display = 'none'; 
-        };
+        img.onerror = function() { div.style.display = 'none'; };
 
         picture.appendChild(webpSource);
         picture.appendChild(img);
         div.appendChild(picture);
-        galleryContainer.appendChild(div);
+        fragment.appendChild(div);
     }
+
+    // Single DOM append instead of per-image
+    galleryContainer.appendChild(fragment);
 }
 
 /* --- 2. LIGHTBOX (PEŁNY EKRAN) --- */
