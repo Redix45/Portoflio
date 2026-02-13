@@ -1,0 +1,18 @@
+# Cloudflare Pages redirects for clean URLs
+# This file handles URL rewriting on Cloudflare Pages
+
+# Redirect old .html URLs to clean URLs (if someone bookmarked old links)
+/events.html /events 301
+/real_estate.html /real_estate 301
+/o-mnie.html /o-mnie 301
+/kontakt.html /kontakt 301
+/operetka.html /operetka 301
+/kazik_festiwal.html /kazik_festiwal 301
+/koszecin_jarmark.html /koszecin_jarmark 301
+/koszecin-wosp.html /koszecin-wosp 301
+/dzien_niepodleglosci.html /dzien_niepodleglosci 301
+/polonez-rynek.html /polonez-rynek 301
+/turniej-koszykówki.html /turniej-koszykówki 301
+
+# Catch-all: serve index.html for any path that doesn't match a file
+/* /index.html 200
