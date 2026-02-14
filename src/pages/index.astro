@@ -119,6 +119,15 @@ const additionalHead = `
     additionalHead={additionalHead}
 >
 
+    <!-- Intro overlay -->
+    <div id="intro-overlay">
+        <div class="intro-content">
+            <div class="intro-line"><span>Jan</span></div>
+            <div class="intro-line"><span>Kobus</span></div>
+            <div class="intro-sub"><span>Fotografia</span></div>
+        </div>
+    </div>
+
     <nav role="navigation" aria-label="Main navigation">
         <div class="nav-left">
             <!-- Linkuje bezpośrednio do id="work" na tej samej stronie -->
@@ -191,6 +200,33 @@ const additionalHead = `
     <script src="/preload-measure.js" is:inline></script>
     <script is:inline>
         document.addEventListener('astro:page-load', () => {
+            // Intro animation sequence
+            const overlay = document.getElementById('intro-overlay');
+            const heroCenter = document.querySelector('.hero-center');
+            if (overlay && !overlay.dataset.played) {
+                overlay.dataset.played = '1';
+                document.body.style.overflow = 'hidden';
+                // Hide hero content during intro
+                if (heroCenter) heroCenter.style.visibility = 'hidden';
+                const lines = overlay.querySelectorAll('.intro-line');
+                const sub = overlay.querySelector('.intro-sub');
+
+                setTimeout(() => { if (lines[0]) lines[0].classList.add('show'); }, 200);
+                setTimeout(() => { if (lines[1]) lines[1].classList.add('show'); }, 350);
+                setTimeout(() => { if (sub) sub.classList.add('show'); }, 550);
+                setTimeout(() => {
+                    overlay.classList.add('done');
+                    // Trigger hero animations only after overlay starts fading
+                    const hero = document.querySelector('.hero');
+                    if (hero) hero.classList.add('intro-done');
+                    if (heroCenter) heroCenter.style.visibility = '';
+                }, 1200);
+                setTimeout(() => {
+                    overlay.style.display = 'none';
+                    document.body.style.overflow = '';
+                }, 2100);
+            }
+
             // Smooth scroll
             const scrollBtn = document.querySelector('.scroll-down');
             if (scrollBtn) {
@@ -214,7 +250,6 @@ const additionalHead = `
             }
 
             // Hero parallax on scroll
-            const heroCenter = document.querySelector('.hero-center');
             const scrollDown = document.querySelector('.scroll-down');
             if (heroCenter) {
                 window.addEventListener('scroll', () => {
@@ -265,7 +300,7 @@ const additionalHead = `
                         setTimeout(() => { cursor.style.display = 'none'; }, 2000);
                     }
                 }
-                setTimeout(typeChar, 1200);
+                setTimeout(typeChar, 1800);
             }
 
             // Floating particles
