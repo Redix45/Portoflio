@@ -1,6 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
+  site: 'https://jankobus.com',
   publicDir: 'public',
-  outDir: 'dist'
+  outDir: 'dist',
+  trailingSlash: 'always'
 });

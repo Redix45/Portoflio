@@ -1,8 +1,34 @@
 ---
-const title = `Fotografia Nieruchomości Lubliniec | Jan Kobus - Zdjęcia Domów i Apartamentów`;
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Fotografia Nieruchomości Lubliniec",
+  "description": "Profesjonalna fotografia nieruchomości w Lublińcu - domy, apartamenty, wnętrza",
+  "url": "https://jankobus.com/real_estate/",
+  "provider": {
+    "@type": "Person",
+    "name": "Jan Kobus"
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "Lubliniec, województwo śląskie"
+  }
+};
 ---
-<BaseLayout title={title}>
+<BaseLayout
+    title="Fotografia Nieruchomości Lubliniec | Jan Kobus - Zdjęcia Domów i Apartamentów"
+    description="Profesjonalna fotografia nieruchomości Lubliniec i okolice. Zdjęcia domów, apartamentów, wnętrz komercyjnych. Fotograf nieruchomości Jan Kobus - województwo śląskie."
+    keywords="fotografia nieruchomości lubliniec, zdjęcia domów lubliniec, fotograf nieruchomości śląskie, fotografia wnętrz lubliniec, Jan Kobus, zdjęcia apartamentów"
+    canonical="https://jankobus.com/real_estate/"
+    ogType="website"
+    ogImage="https://jankobus.com/favicon.jpg"
+    twitterCard="summary"
+    structuredData={structuredData}
+    geoRegion="PL-SL"
+    geoPlacename="Lubliniec"
+>
 <nav>
         <div class="nav-left">
             <a href="/#work">Prace</a>
