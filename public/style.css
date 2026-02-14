@@ -1716,6 +1716,130 @@ body::after {
 }
 
 /* =========================================
+   9b. HOMEPAGE ABOUT & FAQ
+   ========================================= */
+.home-about {
+    padding: 80px 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.home-about h2 {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    color: #fff;
+}
+
+.home-about p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #bbb;
+    margin-bottom: 20px;
+}
+
+.home-about p strong {
+    color: #fff;
+}
+
+.home-about-cta {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.cta-secondary {
+    background: transparent !important;
+    border: 1px solid var(--accent-color) !important;
+}
+
+.cta-secondary:hover {
+    background: var(--accent-color) !important;
+}
+
+.home-faq {
+    padding: 80px 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.home-faq h2 {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #fff;
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.faq-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.3s;
+}
+
+.faq-item:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.faq-item summary {
+    padding: 18px 24px;
+    cursor: pointer;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: #e0e0e0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+    content: '+';
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--accent-color);
+    transition: transform 0.3s;
+}
+
+.faq-item[open] summary::after {
+    transform: rotate(45deg);
+}
+
+.faq-item p {
+    padding: 0 24px 18px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #999;
+}
+
+.faq-item p a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.faq-item p a:hover {
+    text-decoration: underline;
+}
+
+.faq-item p strong {
+    color: #ccc;
+}
+
+/* =========================================
    10. MEDIA QUERIES (RWD)
    ========================================= */
 @media (max-width: 1024px) {
@@ -1725,6 +1849,14 @@ body::after {
 
 @media (max-width: 768px) {
     .gallery { grid-template-columns: 1fr; }
+
+    .home-about { padding: 60px 20px; }
+    .home-about h2 { font-size: 1.5rem; }
+    .home-about-cta { flex-direction: column; align-items: center; }
+    .home-faq { padding: 60px 20px; }
+    .home-faq h2 { font-size: 1.5rem; }
+    .faq-item summary { padding: 15px 18px; font-size: 0.95rem; }
+    .faq-item p { padding: 0 18px 15px; }
 
     /* Mobile nav */
     nav {

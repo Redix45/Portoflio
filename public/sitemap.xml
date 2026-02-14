@@ -2,61 +2,73 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://jankobus.com/</loc>
+    <lastmod>2026-02-15</lastmod>
     <priority>1.0</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://jankobus.com/events/</loc>
+    <lastmod>2026-02-14</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://jankobus.com/real_estate/</loc>
+    <lastmod>2026-02-14</lastmod>
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
   <url>
     <loc>https://jankobus.com/o-mnie/</loc>
+    <lastmod>2026-02-14</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://jankobus.com/kontakt/</loc>
+    <lastmod>2026-02-14</lastmod>
     <priority>0.8</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://jankobus.com/kazik_festiwal/</loc>
+    <lastmod>2026-02-14</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://jankobus.com/operetka/</loc>
+    <lastmod>2026-02-14</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://jankobus.com/koszecin-wosp/</loc>
+    <lastmod>2026-02-14</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://jankobus.com/koszecin_jarmark/</loc>
+    <lastmod>2026-02-14</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://jankobus.com/dzien_niepodleglosci/</loc>
+    <lastmod>2026-02-14</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://jankobus.com/turniej-koszykówki/</loc>
+    <lastmod>2026-02-14</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>
   <url>
     <loc>https://jankobus.com/polonez-rynek/</loc>
+    <lastmod>2026-02-14</lastmod>
     <priority>0.7</priority>
     <changefreq>monthly</changefreq>
   </url>

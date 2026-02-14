@@ -1,86 +1,152 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "@id": "https://jankobus.com",
-  "name": "Fotografia Lubliniec - Jan Kobus",
-  "alternateName": "Jan Kobus Fotografia",
-  "description": "Profesjonalna fotografia Lubliniec - fotografia nieruchomości, fotografia eventowa i komercyjna",
-  "url": "https://jankobus.com",
-  "logo": "https://jankobus.com/favicon.jpg",
-  "image": "https://jankobus.com/photos/operetka/foto (2).jpg",
-  "priceRange": "$$",
-  "telephone": "+48-XXX-XXX-XXX",
-  "email": "kontakt@jankobus.com",
-  "knowsAbout": ["Fotografia nieruchomości", "Fotografia eventowa", "Fotografia komercyjna", "Fotografia wnętrz"],
-  "serviceArea": {
-    "@type": "GeoCircle",
-    "geoMidpoint": {
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://jankobus.com",
+    "name": "Fotograf Lubliniec - Jan Kobus",
+    "alternateName": ["Jan Kobus Fotografia", "Fotografia Lubliniec", "Fotograf Lubliniec Jan Kobus"],
+    "description": "Profesjonalny fotograf Lubliniec - Jan Kobus. Fotografia nieruchomości, fotografia eventowa i komercyjna. Obsługa Lubliniec, Częstochowa, Katowice i okolice.",
+    "url": "https://jankobus.com/",
+    "logo": "https://jankobus.com/favicon.jpg",
+    "image": "https://jankobus.com/photos/operetka/foto (2).jpg",
+    "priceRange": "$$",
+    "knowsAbout": ["Fotografia nieruchomości", "Fotografia eventowa", "Fotografia komercyjna", "Fotografia wnętrz", "Fotografia koncertowa", "Fotografia produktowa"],
+    "knowsLanguage": ["pl", "en"],
+    "serviceArea": {
+      "@type": "GeoCircle",
+      "geoMidpoint": {
+        "@type": "GeoCoordinates",
+        "latitude": "50.6715",
+        "longitude": "18.6965"
+      },
+      "geoRadius": "50000"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Usługi fotograficzne Lubliniec",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Fotografia nieruchomości Lubliniec",
+            "description": "Profesjonalna fotografia nieruchomości w Lublińcu - domy, apartamenty, wnętrza, przestrzenie komercyjne. Zdjęcia do ogłoszeń sprzedażowych i wynajmu."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Fotografia eventowa Lubliniec",
+            "description": "Fotografia koncertów, festiwali, wydarzeń firmowych i kulturalnych w Lublińcu i województwie śląskim."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Fotografia wnętrz Lubliniec",
+            "description": "Profesjonalne zdjęcia wnętrz mieszkań, biur i lokali komercyjnych w Lublińcu i okolicach."
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Fotografia komercyjna i produktowa",
+            "description": "Zdjęcia produktowe, komercyjne i reklamowe dla firm z Lublińca i województwa śląskiego."
+          }
+        }
+      ]
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lubliniec",
+      "addressRegion": "Śląskie",
+      "postalCode": "42-700",
+      "addressCountry": "PL"
+    },
+    "geo": {
       "@type": "GeoCoordinates",
       "latitude": "50.6715",
       "longitude": "18.6965"
     },
-    "geoRadius": "50000"
-  },
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Usługi fotograficzne",
-    "itemListElement": [
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Fotografia nieruchomości Lubliniec",
-          "description": "Profesjonalna fotografia nieruchomości - domy, apartamenty, przestrzenie komercyjne"
-        }
-      },
-      {
-        "@type": "Offer",
-        "itemOffered": {
-          "@type": "Service",
-          "name": "Fotografia eventowa Lubliniec",
-          "description": "Fotografia koncertów, festiwali i wydarzeń w Lublińcu i okolicach"
-        }
-      }
-    ]
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Lubliniec",
-    "addressLocality": "Lubliniec",
-    "addressRegion": "Śląskie",
-    "postalCode": "42-700",
-    "addressCountry": "PL"
-  },
-  "areaServed": [
-    {
-      "@type": "City",
-      "name": "Lubliniec"
-    },
-    {
-      "@type": "State",
-      "name": "Województwo Śląskie"
-    }
-  ],
-  "sameAs": [
-    "https://www.facebook.com/profile.php?id=61587671346611",
-    "https://www.instagram.com/redix.45/"
-  ],
-  "@graph": [
-    {
+    "areaServed": [
+      { "@type": "City", "name": "Lubliniec" },
+      { "@type": "City", "name": "Częstochowa" },
+      { "@type": "City", "name": "Katowice" },
+      { "@type": "City", "name": "Opole" },
+      { "@type": "State", "name": "Województwo Śląskie" }
+    ],
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61587671346611",
+      "https://www.instagram.com/redix.45/"
+    ],
+    "founder": {
       "@type": "Person",
       "name": "Jan Kobus",
       "jobTitle": "Fotograf",
-      "url": "https://jankobus.com",
-      "sameAs": [
-        "https://www.facebook.com/profile.php?id=61587671346611",
-        "https://www.instagram.com/redix.45/"
-      ]
+      "url": "https://jankobus.com/o-mnie/"
     }
-  ]
-};
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Na jakim obszarze działa fotograf Jan Kobus?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Działam głównie w Lublińcu i okolicach - obsługuję również Częstochowę, Katowice, Opole i całe województwo śląskie. W przypadku większych zleceń jestem w stanie dojechać w dowolne miejsce w Polsce."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Jakie rodzaje fotografii oferuje Jan Kobus w Lublińcu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Specjalizuję się w fotografii nieruchomości (domy, apartamenty, wnętrza komercyjne) oraz fotografii eventowej (koncerty, festiwale, wydarzenia firmowe i kulturalne). Wykonuję również zdjęcia komercyjne i produktowe."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Jak wygląda proces współpracy z fotografem?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Wystarczy napisać przez formularz kontaktowy lub zadzwonić. Ustalimy szczegóły zlecenia, termin i lokalizację. Po sesji otrzymasz profesjonalnie obrobione zdjęcia w ciągu kilku dni roboczych."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Jaki jest czas realizacji zdjęć?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Standardowy czas realizacji to 3-7 dni roboczych od dnia sesji. W przypadku pilnych zleceń mogę przyspieszyć dostawę zdjęć - wystarczy o tym wspomnieć przy rezerwacji."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "W jakim formacie dostarczane są zdjęcia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zdjęcia dostarczam w wysokiej rozdzielczości w formacie JPEG. Na życzenie mogę również udostępnić pliki RAW. Zdjęcia są profesjonalnie obrobione w Adobe Lightroom."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Czy mogę wykorzystać zdjęcia komercyjnie?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Tak! Po zakończeniu współpracy przekazuję pełne prawa do wykorzystania zdjęć w celach komercyjnych - ogłoszenia sprzedażowe, strony internetowe, materiały marketingowe i social media."
+        }
+      }
+    ]
+  }
+];
 
 const additionalHead = `
 <script>
@@ -184,6 +250,58 @@ const additionalHead = `
         </a>
 
     </section>
+
+    <section class="home-about fade-in-section" id="about">
+        <div class="home-about-inner">
+            <h2>Fotograf Lubliniec - Jan Kobus</h2>
+            <p>
+                Cześć! Jestem <strong>Jan Kobus</strong> - <strong>fotograf z Lublińca</strong>, specjalizujący się
+                w <strong>fotografii nieruchomości</strong> oraz <strong>fotografii eventowej</strong>.
+                Oferuję profesjonalne usługi fotograficzne na terenie <strong>Lublińca</strong>, województwa śląskiego
+                i okolic - Częstochowa, Katowice, Opole.
+            </p>
+            <p>
+                Jako <strong>fotograf Lubliniec</strong> zajmuję się fotografowaniem domów, apartamentów i wnętrz
+                na potrzeby sprzedaży i wynajmu nieruchomości. Wykonuję również zdjęcia z koncertów, festiwali
+                i wydarzeń kulturalnych. Każde zlecenie traktuję indywidualnie, dbając o najwyższą jakość zdjęć.
+            </p>
+            <div class="home-about-cta">
+                <a href="/o-mnie" class="cta-button"><i class="fas fa-user"></i> Poznaj mnie</a>
+                <a href="/kontakt" class="cta-button cta-secondary"><i class="fas fa-envelope"></i> Napisz do mnie</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="home-faq fade-in-section" id="faq">
+        <h2>Najczęściej zadawane pytania</h2>
+        <div class="faq-list">
+            <details class="faq-item">
+                <summary>Na jakim obszarze działam jako fotograf?</summary>
+                <p>Działam głównie w <strong>Lublińcu</strong> i okolicach - obsługuję również Częstochowę, Katowice, Opole i całe województwo śląskie. W przypadku większych zleceń jestem w stanie dojechać w dowolne miejsce w Polsce.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Jakie rodzaje fotografii oferuję?</summary>
+                <p>Specjalizuję się w <strong>fotografii nieruchomości</strong> (domy, apartamenty, wnętrza komercyjne) oraz <strong>fotografii eventowej</strong> (koncerty, festiwale, wydarzenia firmowe i kulturalne). Wykonuję również zdjęcia komercyjne i produktowe.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Jak wygląda proces współpracy?</summary>
+                <p>Wystarczy napisać do mnie przez <a href="/kontakt">formularz kontaktowy</a> lub zadzwonić. Ustalimy szczegóły zlecenia, termin i lokalizację. Po sesji otrzymasz profesjonalnie obrobione zdjęcia w ciągu kilku dni roboczych.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Jaki jest czas realizacji zdjęć?</summary>
+                <p>Standardowy czas realizacji to 3-7 dni roboczych od dnia sesji. W przypadku pilnych zleceń mogę przyspieszyć dostawę zdjęć - wystarczy o tym wspomnieć przy rezerwacji.</p>
+            </details>
+            <details class="faq-item">
+                <summary>W jakim formacie dostarczam zdjęcia?</summary>
+                <p>Zdjęcia dostarczam w wysokiej rozdzielczości w formacie JPEG. Na życzenie mogę również udostępnić pliki RAW. Zdjęcia są profesjonalnie obrobione w Adobe Lightroom.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Czy mogę wykorzystać zdjęcia komercyjnie?</summary>
+                <p>Tak! Po zakończeniu współpracy przekazuję pełne prawa do wykorzystania zdjęć w celach komercyjnych - ogłoszenia sprzedażowe, strony internetowe, materiały marketingowe i social media.</p>
+            </details>
+        </div>
+    </section>
+
     </main>
 
     <footer role="contentinfo">
