@@ -163,9 +163,9 @@ const structuredData = {
         </div>
     </footer>
 
-    <script>
-        document.querySelector('.scroll-down').addEventListener('click', function() {
-            document.getElementById('work').scrollIntoView({
+    <script is:inline>
+        document.querySelector('.scroll-down')?.addEventListener('click', function() {
+            document.getElementById('work')?.scrollIntoView({
                 behavior: 'smooth'
             });
         });

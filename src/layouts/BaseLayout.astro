@@ -111,28 +111,39 @@ const currentUrl = canonical || `https://jankobus.com${Astro.url.pathname}`;
 
     <button id="back-to-top" aria-label="Wróć na górę"><i class="fas fa-chevron-up"></i></button>
 
-    <script type="module" src="/script.js"></script>
-    <script>
+    <script src="/script.js" is:inline></script>
+    <script is:inline>
       document.addEventListener('astro:page-load', () => {
+        // Reset overflow in case intro or lightbox left it hidden
+        document.body.style.overflow = '';
+
         // Scroll reveal for fade-in-section elements
         const revealObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               entry.target.classList.add('visible');
+              revealObserver.unobserve(entry.target);
             }
           });
-        }, { threshold: 0.15 });
-        document.querySelectorAll('.fade-in-section').forEach(el => revealObserver.observe(el));
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in-section').forEach(el => {
+          el.classList.remove('visible');
+          revealObserver.observe(el);
+        });
 
         // Curtain reveal for masonry gallery items
         const curtainObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               entry.target.classList.add('revealed');
+              curtainObserver.unobserve(entry.target);
             }
           });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.masonry-item').forEach(el => curtainObserver.observe(el));
+        document.querySelectorAll('.masonry-item').forEach(el => {
+          el.classList.remove('revealed');
+          curtainObserver.observe(el);
+        });
 
         // Nav shrink on scroll + back to top
         const navEl = document.querySelector('nav');

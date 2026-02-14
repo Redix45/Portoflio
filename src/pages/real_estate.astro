@@ -61,11 +61,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
     </footer>
 
-    <script src="/script.js" is:inline></script>
-    <script>
-        document.querySelector('.scroll-down').addEventListener('click', function() {
-            document.getElementById('work').scrollIntoView({ 
-                behavior: 'smooth' 
+    <script is:inline>
+        document.querySelector('.scroll-down')?.addEventListener('click', function() {
+            document.getElementById('work')?.scrollIntoView({
+                behavior: 'smooth'
             });
         });
     </script>
