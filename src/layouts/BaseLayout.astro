@@ -117,6 +117,12 @@ const currentUrl = canonical || `https://jankobus.com${Astro.url.pathname}`;
         // Reset overflow in case intro or lightbox left it hidden
         document.body.style.overflow = '';
 
+        // On pages without intro overlay, immediately enable hero animations
+        const heroEl = document.querySelector('.hero');
+        if (heroEl && !document.getElementById('intro-overlay')) {
+          heroEl.classList.add('intro-done');
+        }
+
         // Scroll reveal for fade-in-section elements
         const revealObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
