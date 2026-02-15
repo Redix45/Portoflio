@@ -1510,7 +1510,8 @@ footer {
 #back-to-top {
     position: fixed;
     bottom: 30px;
-    right: 30px;
+    left: 50%;
+    margin-left: -21px;
     width: 42px;
     height: 42px;
     border-radius: 50%;
