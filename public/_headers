@@ -3,3 +3,12 @@
 
 /robots.txt
   Content-Type: text/plain
+
+/favicon.svg
+  Content-Type: image/svg+xml
+
+/favicon.ico
+  Content-Type: image/x-icon
+
+/apple-touch-icon.png
+  Content-Type: image/png
