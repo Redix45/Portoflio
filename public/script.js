@@ -52,7 +52,6 @@ function loadGallery(config) {
     const prefix = config.prefix || 'foto'; 
     const start = config.start || 1;
 
-    const isSmallScreen = window.innerWidth < 768;
     const fragment = document.createDocumentFragment();
 
     for (let i = 1; i <= count; i++) {
@@ -63,26 +62,14 @@ function loadGallery(config) {
         const img = document.createElement('img');
         const fileIndex = start + i - 1;
         const basePath = `${folder}${prefix} (${fileIndex})`;
-        const thumbPath = `${folder}thumbs/${prefix} (${fileIndex})`;
 
-        // WebP source with responsive srcset + sizes
+        // WebP source - already optimized, no thumbs needed
         const webpSource = document.createElement('source');
-        if (isSmallScreen) {
-            webpSource.srcset = `${thumbPath}.webp`;
-        } else {
-            webpSource.srcset = `${thumbPath}.webp 300w, ${basePath}.webp 1200w`;
-            webpSource.sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw';
-        }
+        webpSource.srcset = `${basePath}.webp`;
         webpSource.type = 'image/webp';
 
-        // Fallback JPEG with responsive srcset + sizes
-        if (isSmallScreen) {
-            img.src = `${thumbPath}.jpg`;
-        } else {
-            img.src = `${basePath}.jpg`;
-            img.srcset = `${thumbPath}.jpg 300w, ${basePath}.jpg 1200w`;
-            img.sizes = '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw';
-        }
+        // Fallback JPEG
+        img.src = `${basePath}.jpg`;
 
         img.alt = `${config.altTemplate || 'Fotografia eventowa Lubliniec'} - zdjęcie ${fileIndex}`;
         img.dataset.index = i;

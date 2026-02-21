@@ -79,7 +79,10 @@ const structuredData = [imageGalleryData, breadcrumbData];
             <div class="gallery-container">
                 <div class="gallery-item">
                     <a href="/koszecin-wosp">
-                        <img src="/photos/Koszęcin%20WOŚP%202026/DSC03294.jpg" alt="Fotografia eventowa - Koszęcin WOŚP 2026" loading="eager" decoding="async">
+                        <picture>
+                            <source srcset="/photos/Koszęcin%20WOŚP%202026/DSC03294.webp" type="image/webp">
+                            <img src="/photos/Koszęcin%20WOŚP%202026/DSC03294.jpg" alt="Fotografia eventowa - Koszęcin WOŚP 2026" loading="eager" decoding="async">
+                        </picture>
                     </a>
                 </div>
                 <div class="caption-box">
@@ -90,7 +93,10 @@ const structuredData = [imageGalleryData, breadcrumbData];
             <div class="gallery-container">
                 <div class="gallery-item">
                     <a href="/turniej-koszykówki">
-                        <img src="/photos/Turniej%20koszykówki/DSC04013-1.jpg" alt="Fotografia eventowa - Turniej koszykówki" loading="eager" decoding="async">
+                        <picture>
+                            <source srcset="/photos/Turniej%20koszykówki/DSC04013-1.webp" type="image/webp">
+                            <img src="/photos/Turniej%20koszykówki/DSC04013-1.jpg" alt="Fotografia eventowa - Turniej koszykówki" loading="eager" decoding="async">
+                        </picture>
                     </a>
                 </div>
                 <div class="caption-box">
@@ -126,7 +132,11 @@ const structuredData = [imageGalleryData, breadcrumbData];
             div.className = 'masonry-item';
 
             const picture = document.createElement('picture');
+            const sourceEl = document.createElement('source');
             const imgEl = document.createElement('img');
+
+            sourceEl.srcset = folder + img.replace('.jpg', '.webp');
+            sourceEl.type = 'image/webp';
 
             imgEl.src = folder + img;
             imgEl.alt = 'Fotografia eventowa - Polonez na Rynku Lubliniec';
@@ -141,6 +151,7 @@ const structuredData = [imageGalleryData, breadcrumbData];
                 openLightbox(folder, '', index + 1, images.length, '.jpg', 0, images);
             };
 
+            picture.appendChild(sourceEl);
             picture.appendChild(imgEl);
             div.appendChild(picture);
             container.appendChild(div);

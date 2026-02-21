@@ -78,7 +78,10 @@ const structuredData = [
             <div class="gallery-container">
                 <div class="gallery-item">
                     <a href="/koszecin-wosp">
-                        <img src="/photos/Koszęcin%20WOŚP%202026/DSC03294.jpg" alt="Fotografia eventowa - Koszęcin WOŚP 2026" loading="eager" decoding="async">
+                        <picture>
+                            <source srcset="/photos/Koszęcin%20WOŚP%202026/DSC03294.webp" type="image/webp">
+                            <img src="/photos/Koszęcin%20WOŚP%202026/DSC03294.jpg" alt="Fotografia eventowa - Koszęcin WOŚP 2026" loading="eager" decoding="async">
+                        </picture>
                     </a>
                 </div>
                 <div class="caption-box">
@@ -89,7 +92,10 @@ const structuredData = [
             <div class="gallery-container">
                 <div class="gallery-item">
                     <a href="/polonez-rynek">
-                        <img src="/photos/Polonez%20na%20rynku%20lubliniec/DSC04297.jpg" alt="Fotografia eventowa - Polonez na Rynku Lubliniec" loading="eager" decoding="async">
+                        <picture>
+                            <source srcset="/photos/Polonez%20na%20rynku%20lubliniec/DSC04297.webp" type="image/webp">
+                            <img src="/photos/Polonez%20na%20rynku%20lubliniec/DSC04297.jpg" alt="Fotografia eventowa - Polonez na Rynku Lubliniec" loading="eager" decoding="async">
+                        </picture>
                     </a>
                 </div>
                 <div class="caption-box">
@@ -125,7 +131,11 @@ const structuredData = [
             div.className = 'masonry-item';
 
             const picture = document.createElement('picture');
+            const sourceEl = document.createElement('source');
             const imgEl = document.createElement('img');
+
+            sourceEl.srcset = folder + img.replace('.jpg', '.webp');
+            sourceEl.type = 'image/webp';
 
             imgEl.src = folder + img;
             imgEl.alt = 'Fotografia sportowa - Turniej Koszykówki';
@@ -140,6 +150,7 @@ const structuredData = [
                 openLightbox(folder, '', index + 1, images.length, '.jpg', 0, images);
             };
 
+            picture.appendChild(sourceEl);
             picture.appendChild(imgEl);
             div.appendChild(picture);
             container.appendChild(div);
