@@ -1980,6 +1980,7 @@ body::after {
 
     .masonry-gallery { column-count: 1; padding: 0 20px 40px 20px; }
     .hero h1 { font-size: 2.5rem; }
+    .hero p.subtitle { font-size: 1rem; letter-spacing: 3px; }
     .lightbox-content img { max-width: 100%; height: auto; }
 
     /* FOOTER RWD */
