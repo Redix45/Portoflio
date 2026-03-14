@@ -2,19 +2,15 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "Service",
-  "name": "Fotografia Nieruchomości Lubliniec",
-  "description": "Profesjonalna fotografia nieruchomości w Lublińcu - domy, apartamenty, wnętrza",
-  "url": "https://jankobus.com/real_estate/",
-  "provider": {
-    "@type": "Person",
-    "name": "Jan Kobus"
-  },
-  "areaServed": {
-    "@type": "Place",
-    "name": "Lubliniec, województwo śląskie"
-  }
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Fotografia Nieruchomości",
+    "description": "Portfolio fotografii nieruchomości - domy, apartamenty, wnętrza komercyjne",
+    "url": "https://jankobus.com/real_estate/",
+    "creator": {
+        "@type": "Person",
+        "name": "Jan Kobus"
+    }
 };
 ---
 <BaseLayout
@@ -23,13 +19,13 @@ const structuredData = {
     keywords="fotografia nieruchomości lubliniec, zdjęcia domów lubliniec, fotograf nieruchomości śląskie, fotografia wnętrz lubliniec, Jan Kobus, zdjęcia apartamentów"
     canonical="https://jankobus.com/real_estate/"
     ogType="website"
-    ogImage="https://jankobus.com/favicon.jpg"
-    twitterCard="summary"
+    ogImage="https://jankobus.com/photos/Vero%20Homes/Domek%201/DSC04557-HDR.jpg"
+    twitterCard="summary_large_image"
     structuredData={structuredData}
     geoRegion="PL-SL"
     geoPlacename="Lubliniec"
 >
-<nav>
+    <nav>
         <div class="nav-left">
             <a href="/#work">Prace</a>
             <a href="/o-mnie">O mnie</a>
@@ -44,7 +40,7 @@ const structuredData = {
                 <i class="fab fa-instagram"></i>
             </a>
         </div>
-            <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+        <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </nav>
 
     <header class="hero">
@@ -52,29 +48,34 @@ const structuredData = {
             <h1>Nieruchomości</h1>
             <p class="subtitle">Fotografia Nieruchomości</p>
         </div>
-
         <div class="scroll-down">
             <i class="fas fa-chevron-down"></i>
         </div>
     </header>
 
-    <section class="empty-state" id="work">
-        <div class="empty-content fade-in-section">
-            <i class="fas fa-home empty-icon"></i>
-            <h2>Profesjonalna Fotografia Nieruchomości Lubliniec i Okolice</h2>
-            <p class="empty-message">
-                Oferuję <strong>profesjonalną fotografię nieruchomości w Lublińcu</strong> i całym województwie śląskim. 🏠<br>
-                Specjalizuję się w <strong>zdjęciach domów, apartamentów, wnętrz</strong> oraz <strong>przestrzeni komercyjnych</strong>.<br><br>
-                <strong>Fotografia nieruchomości Lubliniec</strong> - portfolio jest w trakcie budowy. 🏭️<br>
-                Chcesz być pierwszy? Razem stworzymy profesjonalną prezentację, która sprzeda Twoją nieruchomość!<br><br>
-                ✨ Wysokiej jakości zdjęcia do ofert sprzedażowych i najmu<br>
-                📸 Fotografia wnętrz z profesjonalnym sprzętem<br>
-                📍 Obsługa Lubliniec, Częstochowa, Katowice i okolice
-            </p>
-            <a href="/kontakt" class="cta-button">
-                <i class="fas fa-envelope"></i> Skontaktuj się - Fotograf Nieruchomości Lubliniec
-            </a>
+    <section class="gallery" id="work">
+
+        <!-- Vero Homes -->
+        <div class="gallery-container fade-in-section">
+            <div class="gallery-item">
+                <a href="/vero-homes">
+                    <img
+                        src="/photos/Vero%20Homes/Domek%201/DSC04646-HDR-2.jpg"
+                        alt="Fotografia nieruchomości Vero Homes - domki na wynajem Jan Kobus"
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                    />
+                </a>
+            </div>
+            <div class="caption-box">
+                <div class="caption-title">Vero Homes</div>
+                <div class="caption-year">2026</div>
+            </div>
         </div>
+
+        <!-- Tu dodajesz kolejne sesje - skopiuj blok gallery-container powyżej -->
+
     </section>
 
     <footer>
@@ -89,9 +90,7 @@ const structuredData = {
 
     <script is:inline>
         document.querySelector('.scroll-down')?.addEventListener('click', function() {
-            document.getElementById('work')?.scrollIntoView({
-                behavior: 'smooth'
-            });
+            document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
         });
     </script>
 </BaseLayout>

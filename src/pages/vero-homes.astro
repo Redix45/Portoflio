@@ -1,0 +1,188 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const domek1 = [
+    'DSC04557-HDR.jpg',
+    'DSC04563-HDR.jpg',
+    'DSC04584-HDR.jpg',
+    'DSC04595-HDR.jpg',
+    'DSC04607-HDR.jpg',
+    'DSC04616-HDR.jpg',
+    'DSC04619-HDR.jpg',
+    'DSC04622-HDR.jpg',
+    'DSC04625-HDR.jpg',
+    'DSC04634-HDR.jpg',
+    'DSC04646-HDR-2.jpg',
+    'DSC04660-HDR.jpg',
+    'DSC04670-HDR.jpg',
+    'DSC04675-HDR.jpg',
+    'DSC04679-HDR.jpg',
+    'DSC04687-HDR.jpg',
+];
+
+const domek2 = [
+    'DSC04637-HDR.jpg',
+    'DSC04714-HDR.jpg',
+    'DSC04720-HDR.jpg',
+    'DSC04723-HDR.jpg',
+    'DSC04735-HDR.jpg',
+    'DSC04738-HDR.jpg',
+    'DSC04744-HDR.jpg',
+    'DSC04750-HDR.jpg',
+    'DSC04753-HDR.jpg',
+    'DSC04759-HDR.jpg',
+    'DSC04762-HDR.jpg',
+    'DSC04768-HDR.jpg',
+    'DSC04774-HDR.jpg',
+    'DSC04780-HDR.jpg',
+    'DSC04783-HDR.jpg',
+    'DSC04804-HDR.jpg',
+    'DSC04807-HDR.jpg',
+    'DSC04816-HDR.jpg',
+];
+---
+<BaseLayout
+    title="Vero Homes - Fotografia Nieruchomości | Jan Kobus"
+    description="Sesja fotograficzna domków Vero Homes. Profesjonalna fotografia nieruchomości - wnętrza, przestrzeń, światło. Jan Kobus, fotograf nieruchomości Lubliniec."
+    keywords="Vero Homes, fotografia nieruchomości, zdjęcia domków, fotograf wnętrz Lubliniec, Jan Kobus"
+    canonical="https://jankobus.com/vero-homes/"
+    ogType="article"
+    ogImage={`https://jankobus.com/photos/Vero%20Homes/Domek%201/${domek1[0]}`}
+    twitterCard="summary_large_image"
+    preloadImages={[`/photos/Vero%20Homes/Domek%201/${domek1[0]}`]}
+>
+    <nav>
+        <div class="nav-left">
+            <a href="/#work">Prace</a>
+            <a href="/o-mnie">O mnie</a>
+            <a href="/kontakt">Kontakt</a>
+        </div>
+        <div class="nav-center">
+            <a href="/">Jan Kobus</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://www.facebook.com/profile.php?id=61587671346611" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/redix.45/" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </nav>
+
+    <header class="project-header">
+        <div>
+            <h1>Vero Homes</h1>
+        </div>
+    </header>
+
+    <!-- Domek 1 -->
+    <section class="property-section" id="domek-1">
+        <div class="property-section-header fade-in-section">
+            <span class="property-section-label">Vero Homes</span>
+            <h2 class="property-section-title">Domek 1</h2>
+        </div>
+        <section class="masonry-gallery">
+            {domek1.map((file, i) => (
+                <div class="masonry-item">
+                    <img
+                        src={`/photos/Vero%20Homes/Domek%201/${file}`}
+                        alt={`Vero Homes Domek 1 - fotografia nieruchomości Jan Kobus - zdjęcie ${i + 1}`}
+                        loading={i < 4 ? 'eager' : 'lazy'}
+                        fetchpriority={i < 2 ? 'high' : undefined}
+                        decoding="async"
+                        data-gallery="domek1"
+                        data-index={i}
+                    />
+                </div>
+            ))}
+        </section>
+    </section>
+
+    <!-- Domek 2 -->
+    <section class="property-section" id="domek-2">
+        <hr class="re-section-divider" />
+        <div class="property-section-header fade-in-section">
+            <span class="property-section-label">Vero Homes</span>
+            <h2 class="property-section-title">Domek 2</h2>
+        </div>
+        <section class="masonry-gallery">
+            {domek2.map((file, i) => (
+                <div class="masonry-item">
+                    <img
+                        src={`/photos/Vero%20Homes/Domek%202/${file}`}
+                        alt={`Vero Homes Domek 2 - fotografia nieruchomości Jan Kobus - zdjęcie ${i + 1}`}
+                        loading={i < 4 ? 'eager' : 'lazy'}
+                        decoding="async"
+                        data-gallery="domek2"
+                        data-index={i}
+                    />
+                </div>
+            ))}
+        </section>
+    </section>
+
+    <!-- Zobacz więcej -->
+    <div class="see-more-container">
+        <h2 class="see-more-title">Zobacz więcej realizacji</h2>
+        <div class="related-albums">
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <a href="/real_estate">
+                        <img
+                            src={`/photos/Vero%20Homes/Domek%201/${domek1[3]}`}
+                            alt="Fotografia nieruchomości - portfolio Jan Kobus"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </a>
+                </div>
+                <div class="caption-box">
+                    <div class="caption-title">Wszystkie nieruchomości</div>
+                    <div class="caption-year">Portfolio</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=61587671346611" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script is:inline>
+        (function() {
+            const domek1 = [
+                'DSC04557-HDR.jpg','DSC04563-HDR.jpg','DSC04584-HDR.jpg','DSC04595-HDR.jpg',
+                'DSC04607-HDR.jpg','DSC04616-HDR.jpg','DSC04619-HDR.jpg','DSC04622-HDR.jpg',
+                'DSC04625-HDR.jpg','DSC04634-HDR.jpg','DSC04646-HDR-2.jpg','DSC04660-HDR.jpg',
+                'DSC04670-HDR.jpg','DSC04675-HDR.jpg','DSC04679-HDR.jpg','DSC04687-HDR.jpg',
+            ];
+            const domek2 = [
+                'DSC04637-HDR.jpg','DSC04714-HDR.jpg','DSC04720-HDR.jpg','DSC04723-HDR.jpg',
+                'DSC04735-HDR.jpg','DSC04738-HDR.jpg','DSC04744-HDR.jpg','DSC04750-HDR.jpg',
+                'DSC04753-HDR.jpg','DSC04759-HDR.jpg','DSC04762-HDR.jpg','DSC04768-HDR.jpg',
+                'DSC04774-HDR.jpg','DSC04780-HDR.jpg','DSC04783-HDR.jpg','DSC04804-HDR.jpg',
+                'DSC04807-HDR.jpg','DSC04816-HDR.jpg',
+            ];
+
+            document.querySelectorAll('[data-gallery="domek1"]').forEach(function(img) {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', function() {
+                    openLightbox('/photos/Vero%20Homes/Domek%201/', null, parseInt(this.dataset.index) + 1, domek1.length, '.jpg', 1, domek1);
+                });
+            });
+
+            document.querySelectorAll('[data-gallery="domek2"]').forEach(function(img) {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', function() {
+                    openLightbox('/photos/Vero%20Homes/Domek%202/', null, parseInt(this.dataset.index) + 1, domek2.length, '.jpg', 1, domek2);
+                });
+            });
+        })();
+    </script>
+</BaseLayout>
