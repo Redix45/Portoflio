@@ -59,13 +59,16 @@ const structuredData = {
         <div class="gallery-container fade-in-section">
             <div class="gallery-item">
                 <a href="/vero-homes">
-                    <img
-                        src="/photos/Vero%20Homes/Domek%201/DSC04646-HDR-2.jpg"
-                        alt="Fotografia nieruchomości Vero Homes - domki na wynajem Jan Kobus"
-                        loading="eager"
-                        fetchpriority="high"
-                        decoding="async"
-                    />
+                    <picture>
+                        <source srcset="/photos/Vero%20Homes/Domek%201/DSC04646-HDR-2.webp" type="image/webp" />
+                        <img
+                            src="/photos/Vero%20Homes/Domek%201/DSC04646-HDR-2.jpg"
+                            alt="Fotografia nieruchomości Vero Homes - domki na wynajem Jan Kobus"
+                            loading="eager"
+                            fetchpriority="high"
+                            decoding="async"
+                        />
+                    </picture>
                 </a>
             </div>
             <div class="caption-box">

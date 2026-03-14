@@ -84,15 +84,18 @@ const domek2 = [
         <section class="masonry-gallery">
             {domek1.map((file, i) => (
                 <div class="masonry-item">
-                    <img
-                        src={`/photos/Vero%20Homes/Domek%201/${file}`}
-                        alt={`Vero Homes Domek 1 - fotografia nieruchomości Jan Kobus - zdjęcie ${i + 1}`}
-                        loading={i < 4 ? 'eager' : 'lazy'}
-                        fetchpriority={i < 2 ? 'high' : undefined}
-                        decoding="async"
-                        data-gallery="domek1"
-                        data-index={i}
-                    />
+                    <picture>
+                        <source srcset={`/photos/Vero%20Homes/Domek%201/${file.replace('.jpg', '.webp')}`} type="image/webp" />
+                        <img
+                            src={`/photos/Vero%20Homes/Domek%201/${file}`}
+                            alt={`Vero Homes Domek 1 - fotografia nieruchomości Jan Kobus - zdjęcie ${i + 1}`}
+                            loading={i < 4 ? 'eager' : 'lazy'}
+                            fetchpriority={i < 2 ? 'high' : undefined}
+                            decoding="async"
+                            data-gallery="domek1"
+                            data-index={i}
+                        />
+                    </picture>
                 </div>
             ))}
         </section>
@@ -108,14 +111,17 @@ const domek2 = [
         <section class="masonry-gallery">
             {domek2.map((file, i) => (
                 <div class="masonry-item">
-                    <img
-                        src={`/photos/Vero%20Homes/Domek%202/${file}`}
-                        alt={`Vero Homes Domek 2 - fotografia nieruchomości Jan Kobus - zdjęcie ${i + 1}`}
-                        loading={i < 4 ? 'eager' : 'lazy'}
-                        decoding="async"
-                        data-gallery="domek2"
-                        data-index={i}
-                    />
+                    <picture>
+                        <source srcset={`/photos/Vero%20Homes/Domek%202/${file.replace('.jpg', '.webp')}`} type="image/webp" />
+                        <img
+                            src={`/photos/Vero%20Homes/Domek%202/${file}`}
+                            alt={`Vero Homes Domek 2 - fotografia nieruchomości Jan Kobus - zdjęcie ${i + 1}`}
+                            loading={i < 4 ? 'eager' : 'lazy'}
+                            decoding="async"
+                            data-gallery="domek2"
+                            data-index={i}
+                        />
+                    </picture>
                 </div>
             ))}
         </section>
