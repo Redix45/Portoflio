@@ -1971,6 +1971,8 @@ body::after {
         transform: none;
         font-size: 14px;
         order: -1;
+        letter-spacing: 1px;
+        padding-right: 1px;
     }
 
     .nav-left {
