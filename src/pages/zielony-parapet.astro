@@ -5,7 +5,7 @@ const structuredData = [
   {
     "@context": "https://schema.org",
     "@type": "ImageGallery",
-    "name": "Zielony Parapet - Sesja Próbna",
+    "name": "Zielony Parapet",
     "description": "Galeria zdjęć produktowych - Zielony Parapet",
     "url": "https://jankobus.com/zielony-parapet/",
     "creator": {
@@ -25,12 +25,12 @@ const structuredData = [
     },{
       "@type": "ListItem",
       "position": 2,
-      "name": "Fotografia Eventowa",
-      "item": "https://jankobus.com/events/"
+      "name": "Fotografia Produktowa",
+      "item": "https://jankobus.com/produktowa/"
     },{
       "@type": "ListItem",
       "position": 3,
-      "name": "Zielony Parapet - Sesja Próbna",
+      "name": "Zielony Parapet",
       "item": "https://jankobus.com/zielony-parapet/"
     }]
   }
@@ -38,9 +38,9 @@ const structuredData = [
 ---
 
 <BaseLayout
-    title="Zielony Parapet - Sesja Próbna | Jan Kobus Fotografia"
-    description="Galeria zdjęć produktowych Zielony Parapet. Profesjonalna fotografia produktowa - Jan Kobus."
-    keywords="Zielony Parapet, fotografia produktowa, sesja próbna, Jan Kobus, rośliny"
+    title="Zielony Parapet - Fotografia Produktowa | Jan Kobus"
+    description="Galeria zdjęć produktowych Zielony Parapet. Profesjonalna fotografia produktowa roślin - Jan Kobus."
+    keywords="Zielony Parapet, fotografia produktowa, Jan Kobus, rośliny, fotografia komercyjna"
     canonical="https://jankobus.com/zielony-parapet/"
     ogType="article"
     ogImage="https://jankobus.com/photos/zielony_parapet/sesja2/Zielony%20Parapet%20v2-557.jpg"
@@ -67,7 +67,6 @@ const structuredData = [
 
     <header class="project-header">
         <h1>Zielony Parapet</h1>
-        <p class="project-subtitle">Sesja Próbna</p>
     </header>
 
     <h2 class="session-heading">Sesja II</h2>
@@ -122,7 +121,6 @@ const structuredData = [
     </footer>
 
     <script is:inline>
-        // Sesja II - Zielony Parapet v2
         const sesja2Images = [
             'Zielony Parapet v2-557.jpg', 'Zielony Parapet v2-634.jpg', 'Zielony Parapet v2-648.jpg',
             'Zielony Parapet v2-655.jpg', 'Zielony Parapet v2-658.jpg', 'Zielony Parapet v2-680.jpg',
@@ -134,7 +132,6 @@ const structuredData = [
             'Zielony Parapet v2-906.jpg', 'Zielony Parapet v2-920.jpg', 'Zielony Parapet v2-930.jpg'
         ];
 
-        // Sesja I - Studio Session (wszystkie grupy)
         const sesja1Groups = [
             {
                 folder: '/photos/zielony_parapet/sesja1/Doniczka%201/',
@@ -175,74 +172,31 @@ const structuredData = [
             }
         ];
 
-        function buildMasonryItem(folder, filename, index, totalCount, allImages, globalOffset) {
-            const div = document.createElement('div');
-            div.className = 'masonry-item';
-
-            const picture = document.createElement('picture');
-            const imgEl = document.createElement('img');
-
-            imgEl.src = folder + encodeURIComponent(filename).replace(/%20/g, '%20');
-            imgEl.alt = 'Fotografia produktowa - Zielony Parapet';
-            imgEl.loading = index < 3 ? 'eager' : 'lazy';
-            if (index < 2) imgEl.fetchPriority = 'high';
-            imgEl.decoding = 'async';
-            imgEl.style.width = '100%';
-            imgEl.style.height = 'auto';
-            imgEl.style.display = 'block';
-
-            imgEl.onclick = () => {
-                openLightbox(folder, '', globalOffset + index + 1, allImages.length, '.jpg', 0, allImages);
-            };
-
-            picture.appendChild(imgEl);
-            div.appendChild(picture);
-            return div;
-        }
-
-        // Buduj galerię Sesja II
-        const container2 = document.getElementById('galeria-sesja2');
-        const folder2 = '/photos/zielony_parapet/sesja2/';
-        sesja2Images.forEach((img, i) => {
+        function addToGallery(container, folder, img, i, total, allImgs, altText) {
             const div = document.createElement('div');
             div.className = 'masonry-item';
             const imgEl = document.createElement('img');
-            imgEl.src = folder2 + img;
-            imgEl.alt = 'Fotografia produktowa - Zielony Parapet';
+            imgEl.src = folder + encodeURIComponent(img);
+            imgEl.alt = altText;
             imgEl.loading = i < 3 ? 'eager' : 'lazy';
             if (i < 2) imgEl.fetchPriority = 'high';
             imgEl.decoding = 'async';
-            imgEl.style.width = '100%';
-            imgEl.style.height = 'auto';
-            imgEl.style.display = 'block';
-            imgEl.onclick = () => {
-                openLightbox(folder2, '', i + 1, sesja2Images.length, '.jpg', 0, sesja2Images);
-            };
+            imgEl.style.cssText = 'width:100%;height:auto;display:block';
+            imgEl.onclick = () => openLightbox(folder, '', i + 1, total, '.jpg', 0, allImgs);
             div.appendChild(imgEl);
-            container2.appendChild(div);
+            container.appendChild(div);
+        }
+
+        const container2 = document.getElementById('galeria-sesja2');
+        const folder2 = '/photos/zielony_parapet/sesja2/';
+        sesja2Images.forEach((img, i) => {
+            addToGallery(container2, folder2, img, i, sesja2Images.length, sesja2Images, 'Fotografia produktowa - Zielony Parapet');
         });
 
-        // Buduj galerię Sesja I (wszystkie grupy po kolei)
         const container1 = document.getElementById('galeria-sesja1');
-        let allSesja1 = [];
-        sesja1Groups.forEach(g => g.images.forEach(img => allSesja1.push({ folder: g.folder, img })));
-
-        allSesja1.forEach(({ folder, img }, i) => {
-            const div = document.createElement('div');
-            div.className = 'masonry-item';
-            const imgEl = document.createElement('img');
-            imgEl.src = folder + img;
-            imgEl.alt = 'Fotografia produktowa - Zielony Parapet';
-            imgEl.loading = i < 3 ? 'eager' : 'lazy';
-            imgEl.decoding = 'async';
-            imgEl.style.width = '100%';
-            imgEl.style.height = 'auto';
-            imgEl.style.display = 'block';
-            imgEl.onclick = () => {
-                openLightbox(folder, '', i + 1, allSesja1.length, '.jpg', 0, allSesja1.map(x => x.img));
-            };
-            div.appendChild(imgEl);
-            container1.appendChild(div);
+        const allSesja1Flat = sesja1Groups.flatMap(g => g.images.map(img => ({ folder: g.folder, img })));
+        allSesja1Flat.forEach(({ folder, img }, i) => {
+            addToGallery(container1, folder, img, i, allSesja1Flat.length, allSesja1Flat.map(x => x.img), 'Fotografia produktowa - Zielony Parapet');
         });
     </script>
 
@@ -255,13 +209,6 @@ const structuredData = [
             text-transform: uppercase;
             color: #aaa;
             margin: 3rem 0 1rem;
-        }
-        .project-subtitle {
-            text-align: center;
-            color: #aaa;
-            font-size: 1rem;
-            letter-spacing: 0.1em;
-            margin-top: 0.5rem;
         }
     </style>
 

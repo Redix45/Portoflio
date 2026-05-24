@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Fotografia Produktowa",
+  "description": "Portfolio fotografii produktowej i komercyjnej - Jan Kobus",
+  "url": "https://jankobus.com/produktowa/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Jan Kobus Fotografia",
+    "url": "https://jankobus.com"
+  },
+  "creator": {
+    "@type": "Person",
+    "name": "Jan Kobus"
+  }
+};
+---
+
+<BaseLayout
+    title="Fotografia Produktowa - Jan Kobus | Sesje Komercyjne"
+    description="Portfolio fotografii produktowej i komercyjnej - profesjonalne sesje zdjęciowe produktów, roślin i akcesoriów. Jan Kobus fotografia Lubliniec."
+    keywords="fotografia produktowa Lubliniec, sesja komercyjna, zdjęcia produktów, Jan Kobus"
+    canonical="https://jankobus.com/produktowa/"
+    ogType="website"
+    ogImage="https://jankobus.com/photos/zielony_parapet/sesja2/Zielony%20Parapet%20v2-557.jpg"
+    twitterCard="summary_large_image"
+    structuredData={structuredData}
+>
+
+    <nav>
+        <div class="nav-left">
+            <a href="/#work">Prace</a>
+            <a href="/o-mnie">O mnie</a>
+            <a href="/kontakt">Kontakt</a>
+        </div>
+        <div class="nav-center">
+            <a href="/">Jan Kobus</a>
+        </div>
+        <div class="nav-right">
+            <a href="https://www.facebook.com/profile.php?id=61587671346611" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/redix.45/" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+        <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-center">
+            <h1>Fotografia Produktowa</h1>
+            <p class="subtitle">Sesje komercyjne i produktowe</p>
+        </div>
+        <div class="scroll-down">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <section class="gallery" id="work">
+
+        <div class="gallery-container fade-in-section">
+            <div class="gallery-item">
+                <a href="/zielony-parapet">
+                    <img
+                        src="/photos/zielony_parapet/sesja2/Zielony%20Parapet%20v2-557.jpg"
+                        alt="Fotografia produktowa - Zielony Parapet rośliny"
+                        loading="eager"
+                        fetchpriority="high"
+                        decoding="async"
+                    >
+                </a>
+            </div>
+            <div class="caption-box">
+                <div class="caption-title">Zielony Parapet</div>
+                <div class="caption-year">2026</div>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/profile.php?id=61587671346611" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script is:inline>
+        document.querySelector('.scroll-down')?.addEventListener('click', function() {
+            document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+
+</BaseLayout>
