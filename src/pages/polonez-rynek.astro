@@ -47,7 +47,7 @@ const structuredData = [imageGalleryData, breadcrumbData];
     ogImage="https://jankobus.com/photos/Polonez%20na%20rynku%20lubliniec/DSC04297.jpg"
     twitterCard="summary_large_image"
     structuredData={structuredData}
-    preloadImages={["/photos/Polonez%20na%20rynku%20lubliniec/DSC04297.jpg"]}
+    preloadImages={["/photos/Polonez%20na%20rynku%20lubliniec/grid/DSC04297.webp"]}
 >
 
     <nav>
@@ -135,7 +135,7 @@ const structuredData = [imageGalleryData, breadcrumbData];
             const sourceEl = document.createElement('source');
             const imgEl = document.createElement('img');
 
-            sourceEl.srcset = folder + img.replace('.jpg', '.webp');
+            sourceEl.srcset = folder + 'grid/' + img.replace('.jpg', '.webp');
             sourceEl.type = 'image/webp';
 
             imgEl.src = folder + img;

@@ -46,7 +46,7 @@ const structuredData = [
     ogImage="https://jankobus.com/photos/Turniej%20koszykówki/DSC04013-1.jpg"
     twitterCard="summary_large_image"
     structuredData={structuredData}
-    preloadImages={["/photos/Turniej%20koszykówki/DSC04013-1.jpg"]}
+    preloadImages={["/photos/Turniej%20koszykówki/grid/DSC04013-1.webp"]}
 >
 
     <nav>
@@ -134,7 +134,7 @@ const structuredData = [
             const sourceEl = document.createElement('source');
             const imgEl = document.createElement('img');
 
-            sourceEl.srcset = folder + img.replace('.jpg', '.webp');
+            sourceEl.srcset = folder + 'grid/' + img.replace('.jpg', '.webp');
             sourceEl.type = 'image/webp';
 
             imgEl.src = folder + img;

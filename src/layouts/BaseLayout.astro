@@ -91,7 +91,7 @@ const currentUrl = canonical || `https://jankobus.com${Astro.url.pathname}`;
 
     <!-- Preload critical resources -->
     {preloadImages.map(img => (
-      <link rel="preload" as="image" href={img} fetchpriority="high">
+      <link rel="preload" as="image" href={img} fetchpriority="high" type={img.endsWith('.webp') ? 'image/webp' : undefined}>
     ))}
     <link rel="preload" as="style" href="/style.css">
 

@@ -49,7 +49,7 @@ const domek2 = [
     ogType="article"
     ogImage={`https://jankobus.com/photos/Vero%20Homes/Domek%201/${domek1[0]}`}
     twitterCard="summary_large_image"
-    preloadImages={[`/photos/Vero%20Homes/Domek%201/${domek1[0]}`]}
+    preloadImages={[`/photos/Vero%20Homes/Domek%201/grid/${domek1[0].replace('.jpg', '.webp')}`]}
 >
     <nav>
         <div class="nav-left">
@@ -85,7 +85,7 @@ const domek2 = [
             {domek1.map((file, i) => (
                 <div class="masonry-item">
                     <picture>
-                        <source srcset={`/photos/Vero%20Homes/Domek%201/${file.replace('.jpg', '.webp')}`} type="image/webp" />
+                        <source srcset={`/photos/Vero%20Homes/Domek%201/grid/${file.replace('.jpg', '.webp')}`} type="image/webp" />
                         <img
                             src={`/photos/Vero%20Homes/Domek%201/${file}`}
                             alt={`Vero Homes Domek 1 - fotografia nieruchomości Jan Kobus - zdjęcie ${i + 1}`}
@@ -112,7 +112,7 @@ const domek2 = [
             {domek2.map((file, i) => (
                 <div class="masonry-item">
                     <picture>
-                        <source srcset={`/photos/Vero%20Homes/Domek%202/${file.replace('.jpg', '.webp')}`} type="image/webp" />
+                        <source srcset={`/photos/Vero%20Homes/Domek%202/grid/${file.replace('.jpg', '.webp')}`} type="image/webp" />
                         <img
                             src={`/photos/Vero%20Homes/Domek%202/${file}`}
                             alt={`Vero Homes Domek 2 - fotografia nieruchomości Jan Kobus - zdjęcie ${i + 1}`}

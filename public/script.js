@@ -63,9 +63,9 @@ function loadGallery(config) {
         const fileIndex = start + i - 1;
         const basePath = `${folder}${prefix} (${fileIndex})`;
 
-        // WebP source - already optimized, no thumbs needed
+        // Grid-sized WebP (800px) for gallery display
         const webpSource = document.createElement('source');
-        webpSource.srcset = `${basePath}.webp`;
+        webpSource.srcset = `${folder}grid/${prefix} (${fileIndex}).webp`;
         webpSource.type = 'image/webp';
 
         // Fallback JPEG
@@ -166,13 +166,22 @@ function changeSlide(n) {
 function updateLightboxImage() {
     const img = document.getElementById('lightbox-img');
     const { folder, prefix, extension, images } = currentConfig;
-    
+
     if (images && images.length > 0) {
-        // Nowy format: tablica zdjęć z bezpośrednimi nazwami
-        img.src = `${folder}${images[currentImageIndex - 1]}`;
+        const src = `${folder}${images[currentImageIndex - 1]}`;
+        // Try WebP first for array-based galleries
+        const webpSrc = src.replace(/\.jpg$/i, '.webp');
+        if (webpSrc !== src) {
+            img.onerror = () => { img.onerror = null; img.src = src; };
+            img.src = webpSrc;
+        } else {
+            img.src = src;
+        }
     } else {
-        // Stary format: prefix + numer w nawiasach
-        img.src = `${folder}${prefix} (${currentImageIndex})${extension}`;
+        // Prefix-based galleries: load full-size WebP
+        const base = `${folder}${prefix} (${currentImageIndex})`;
+        img.onerror = () => { img.onerror = null; img.src = `${base}${extension}`; };
+        img.src = `${base}.webp`;
     }
 }
 

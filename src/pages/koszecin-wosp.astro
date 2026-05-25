@@ -46,7 +46,7 @@ const structuredData = [
     ogImage="https://jankobus.com/photos/Koszęcin%20WOŚP%202026/DSC03294.jpg"
     twitterCard="summary_large_image"
     structuredData={structuredData}
-    preloadImages={["/photos/Koszęcin%20WOŚP%202026/DSC03294.jpg"]}
+    preloadImages={["/photos/Koszęcin%20WOŚP%202026/grid/DSC03294.webp"]}
 >
 
     <nav>
@@ -137,7 +137,7 @@ const structuredData = [
             const sourceEl = document.createElement('source');
             const imgEl = document.createElement('img');
 
-            sourceEl.srcset = folder + img.replace('.jpg', '.webp');
+            sourceEl.srcset = folder + 'grid/' + img.replace('.jpg', '.webp');
             sourceEl.type = 'image/webp';
 
             imgEl.src = folder + img;

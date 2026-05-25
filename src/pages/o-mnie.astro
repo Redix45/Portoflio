@@ -61,7 +61,10 @@ const structuredData = {
 
         <div class="about-container about-intro fade-in-section">
             <div class="about-photo">
-                <img src="/about-photo.jpg" alt="Jan Kobus - fotograf Lubliniec" />
+                <picture>
+                    <source srcset="/about-photo.webp" type="image/webp">
+                    <img src="/about-photo.jpg" alt="Jan Kobus - fotograf Lubliniec" loading="eager" decoding="async">
+                </picture>
             </div>
             <div class="about-text">
                 <h2>Fotograf Lubliniec - Kim jestem?</h2>
