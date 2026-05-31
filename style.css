@@ -97,6 +97,13 @@ nav {
     position: relative;
 }
 
+.hero-fullscreen-image {
+    background-image: url('/udI5SxrN.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
 .hero-split {
     display: flex;
     flex-direction: row;
