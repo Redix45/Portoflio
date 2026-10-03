@@ -1,0 +1,181 @@
+---
+// Layout strony "montaż rolek". Stare strony fotograficzne dalej używają BaseLayout.astro.
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogType?: string;
+  ogImage?: string;
+  structuredData?: any;
+  active?: 'home' | 'o-mnie' | 'kontakt';
+}
+
+const {
+  title,
+  description = '',
+  canonical = '',
+  ogType = 'website',
+  ogImage = 'https://jankobus.com/favicon.jpg',
+  structuredData = null,
+  active = 'home'
+} = Astro.props;
+
+const currentUrl = canonical || `https://jankobus.com${Astro.url.pathname}`;
+const year = new Date().getFullYear();
+---
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta name="author" content="Jan Kobus">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#141519">
+    <link rel="canonical" href={currentUrl}>
+
+    <meta property="og:type" content={ogType}>
+    <meta property="og:url" content={currentUrl}>
+    <meta property="og:title" content={title}>
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:image" content={ogImage}>
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Jan Kobus – montaż rolek">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content={title}>
+    {description && <meta name="twitter:description" content={description} />}
+
+    <link rel="icon" href="/favicon.ico" sizes="32x32" type="image/x-icon">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+    {structuredData && (
+      <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    )}
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/rolki.css">
+</head>
+<body>
+    <a class="skip-link" href="#tresc">Przejdź do treści</a>
+
+    <header class="topbar">
+        <a href="/" class="brand" aria-label="Jan Kobus – strona główna">
+            <span class="brand-rec" aria-hidden="true"></span>
+            <span class="brand-name">Jan Kobus</span>
+            <span class="brand-role">montaż rolek</span>
+        </a>
+        <nav class="menu" aria-label="Główna nawigacja">
+            <a href="/#realizacje">Realizacje</a>
+            <a href="/#uslugi">Usługi</a>
+            <a href="/#proces">Jak pracuję</a>
+            <a href="/o-mnie/" aria-current={active === 'o-mnie' ? 'page' : undefined}>O mnie</a>
+            <a href="/kontakt/" class="menu-cta" aria-current={active === 'kontakt' ? 'page' : undefined}>Wyślij materiał</a>
+        </nav>
+        <button class="menu-toggle" aria-label="Otwórz menu" aria-expanded="false">
+            <span></span><span></span>
+        </button>
+    </header>
+
+    <main id="tresc">
+        <slot />
+    </main>
+
+    <footer class="footer">
+        <div class="footer-row">
+            <div>
+                <p class="footer-name">Jan Kobus</p>
+                <p class="footer-meta">Montaż rolek · Lubliniec, śląskie · zdalnie w całej Polsce</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://www.instagram.com/redix.45/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://www.facebook.com/profile.php?id=61587671346611" target="_blank" rel="noopener noreferrer">Facebook</a>
+                <a href="/kontakt/">Kontakt</a>
+            </div>
+        </div>
+        <p class="footer-small">&copy; {year} Jan Kobus · <a href="/events/">Archiwum fotografii</a></p>
+    </footer>
+
+    <!-- Oś czasu: cała strona to sekwencja 45 s, playhead = pozycja scrolla -->
+    <div class="seq" aria-hidden="true">
+        <span class="seq-name">SEQ · jankobus</span>
+        <div class="seq-track"><div class="seq-clips"></div><div class="seq-playhead"></div></div>
+        <span class="seq-tc">00:00:00:00</span>
+    </div>
+
+    <script is:inline>
+    (() => {
+      const FPS = 30, SEQ_SECONDS = 45;
+      const pad = n => String(n).padStart(2, '0');
+      const tc = frames => {
+        const f = frames % FPS, s = Math.floor(frames / FPS);
+        return `00:${pad(Math.floor(s / 60))}:${pad(s % 60)}:${pad(f)}`;
+      };
+      window.__tc = tc;
+
+      // Menu mobilne
+      const toggle = document.querySelector('.menu-toggle');
+      const menu = document.querySelector('.menu');
+      toggle?.addEventListener('click', () => {
+        const open = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open);
+        toggle.setAttribute('aria-label', open ? 'Zamknij menu' : 'Otwórz menu');
+      });
+      menu?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        toggle?.setAttribute('aria-expanded', 'false');
+      }));
+
+      // Sekwencja: klipy = sekcje z data-clip, długość proporcjonalna do wysokości
+      const seq = document.querySelector('.seq');
+      const clipsEl = seq.querySelector('.seq-clips');
+      const head = seq.querySelector('.seq-playhead');
+      const tcEl = seq.querySelector('.seq-tc');
+      const sections = [...document.querySelectorAll('[data-clip]')];
+
+      const layoutClips = () => {
+        const total = document.documentElement.scrollHeight;
+        clipsEl.replaceChildren();
+        sections.forEach(sec => {
+          const top = sec.offsetTop, h = sec.offsetHeight;
+          const clip = document.createElement('button');
+          clip.className = 'seq-clip track-' + (sec.dataset.track || 'v1');
+          clip.style.left = (top / total * 100) + '%';
+          clip.style.width = (h / total * 100) + '%';
+          clip.textContent = sec.dataset.clip;
+          clip.tabIndex = -1;
+          clip.addEventListener('click', () => sec.scrollIntoView({ behavior: 'smooth' }));
+          clipsEl.appendChild(clip);
+        });
+      };
+
+      const update = () => {
+        const max = document.documentElement.scrollHeight - innerHeight;
+        const p = max > 0 ? Math.min(1, scrollY / max) : 0;
+        head.style.left = (p * 100) + '%';
+        tcEl.textContent = tc(Math.round(p * SEQ_SECONDS * FPS));
+      };
+
+      if (sections.length) {
+        layoutClips();
+        addEventListener('resize', () => { layoutClips(); update(); });
+        addEventListener('load', layoutClips);
+      } else {
+        seq.classList.add('seq-empty');
+      }
+      addEventListener('scroll', update, { passive: true });
+      update();
+
+      // Wejście sekcji
+      const io = new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      }), { threshold: 0.12 });
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    })();
+    </script>
+</body>
+</html>

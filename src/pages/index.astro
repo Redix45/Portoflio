@@ -1,471 +1,308 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import ReelLayout from '../layouts/ReelLayout.astro';
+import { reels, REEL_SLOTS } from '../data/reels';
 
-const structuredData = [
+const faq = [
   {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "https://jankobus.com",
-    "name": "Fotograf Lubliniec - Jan Kobus",
-    "alternateName": ["Jan Kobus Fotografia", "Fotografia Lubliniec", "Fotograf Lubliniec Jan Kobus"],
-    "description": "Profesjonalny fotograf Lubliniec - Jan Kobus. Fotografia nieruchomości, fotografia eventowa i komercyjna. Obsługa Lubliniec, Częstochowa, Katowice i okolice.",
-    "url": "https://jankobus.com/",
-    "logo": "https://jankobus.com/favicon.jpg",
-    "image": "https://jankobus.com/photos/operetka/foto (2).jpg",
-    "priceRange": "$$",
-    "knowsAbout": ["Fotografia nieruchomości", "Fotografia eventowa", "Fotografia komercyjna", "Fotografia wnętrz", "Fotografia koncertowa", "Fotografia produktowa"],
-    "knowsLanguage": ["pl", "en"],
-    "serviceArea": {
-      "@type": "GeoCircle",
-      "geoMidpoint": {
-        "@type": "GeoCoordinates",
-        "latitude": "50.6715",
-        "longitude": "18.6965"
-      },
-      "geoRadius": "50000"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Usługi fotograficzne Lubliniec",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Fotografia nieruchomości Lubliniec",
-            "description": "Profesjonalna fotografia nieruchomości w Lublińcu - domy, apartamenty, wnętrza, przestrzenie komercyjne. Zdjęcia do ogłoszeń sprzedażowych i wynajmu."
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Fotografia eventowa Lubliniec",
-            "description": "Fotografia koncertów, festiwali, wydarzeń firmowych i kulturalnych w Lublińcu i województwie śląskim."
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Fotografia wnętrz Lubliniec",
-            "description": "Profesjonalne zdjęcia wnętrz mieszkań, biur i lokali komercyjnych w Lublińcu i okolicach."
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Fotografia komercyjna i produktowa",
-            "description": "Zdjęcia produktowe, komercyjne i reklamowe dla firm z Lublińca i województwa śląskiego."
-          }
-        }
-      ]
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Lubliniec",
-      "addressRegion": "Śląskie",
-      "postalCode": "42-700",
-      "addressCountry": "PL"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "50.6715",
-      "longitude": "18.6965"
-    },
-    "areaServed": [
-      { "@type": "City", "name": "Lubliniec" },
-      { "@type": "City", "name": "Częstochowa" },
-      { "@type": "City", "name": "Katowice" },
-      { "@type": "City", "name": "Opole" },
-      { "@type": "State", "name": "Województwo Śląskie" }
-    ],
-    "sameAs": [
-      "https://www.facebook.com/profile.php?id=61587671346611",
-      "https://www.instagram.com/redix.45/"
-    ],
-    "founder": {
-      "@type": "Person",
-      "name": "Jan Kobus",
-      "jobTitle": "Fotograf",
-      "url": "https://jankobus.com/o-mnie/"
-    }
+    q: 'Ile kosztuje montaż rolki?',
+    a: 'Zależy od długości materiału, liczby ujęć i efektów. Cenę podaję z góry, po obejrzeniu materiału. Przy stałej współpracy (kilka rolek w miesiącu) wychodzi taniej za sztukę.'
   },
   {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Na jakim obszarze działa fotograf Jan Kobus?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Działam głównie w Lublińcu i okolicach - obsługuję również Częstochowę, Katowice, Opole i całe województwo śląskie. W przypadku większych zleceń jestem w stanie dojechać w dowolne miejsce w Polsce."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Jakie rodzaje fotografii oferuje Jan Kobus w Lublińcu?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Specjalizuję się w fotografii nieruchomości (domy, apartamenty, wnętrza komercyjne) oraz fotografii eventowej (koncerty, festiwale, wydarzenia firmowe i kulturalne). Wykonuję również zdjęcia komercyjne i produktowe."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Jak wygląda proces współpracy z fotografem?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Wystarczy napisać przez formularz kontaktowy lub zadzwonić. Ustalimy szczegóły zlecenia, termin i lokalizację. Po sesji otrzymasz profesjonalnie obrobione zdjęcia w ciągu kilku dni roboczych."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Jaki jest czas realizacji zdjęć?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Standardowy czas realizacji to 3-7 dni roboczych od dnia sesji. W przypadku pilnych zleceń mogę przyspieszyć dostawę zdjęć - wystarczy o tym wspomnieć przy rezerwacji."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "W jakim formacie dostarczane są zdjęcia?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Zdjęcia dostarczam w wysokiej rozdzielczości w formacie JPEG. Na życzenie mogę również udostępnić pliki RAW. Zdjęcia są profesjonalnie obrobione w Adobe Lightroom."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Czy mogę wykorzystać zdjęcia komercyjnie?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Tak! Po zakończeniu współpracy przekazuję pełne prawa do wykorzystania zdjęć w celach komercyjnych - ogłoszenia sprzedażowe, strony internetowe, materiały marketingowe i social media."
-        }
-      }
-    ]
+    q: 'Czy muszę mieć profesjonalny sprzęt?',
+    a: 'Nie. Telefon w zupełności wystarczy. Nagrywaj w pionie, przy dobrym świetle i łap kilka sekund przed i po akcji. Resztę zrobię w montażu.'
+  },
+  {
+    q: 'Możesz też nagrać materiał?',
+    a: 'W Lublińcu i okolicach tak, mogę przyjechać i nagrać. W pozostałych przypadkach pracuję zdalnie na materiale, który mi wyślesz.'
+  },
+  {
+    q: 'Skąd bierzesz muzykę?',
+    a: 'Dobieram utwór pod klimat rolki i tniemy pod jego rytm. Na Instagramie i TikToku najbezpieczniej dodać popularny dźwięk już w aplikacji, dlatego zawsze dostajesz też wersję bez muzyki.'
+  },
+  {
+    q: 'W jakim formacie dostanę rolkę?',
+    a: 'MP4 1080×1920, gotowy do wrzucenia na Reels, TikToka i YouTube Shorts. Na życzenie dorzucam wersję bez napisów albo w formacie 1:1 lub 16:9.'
+  },
+  {
+    q: 'Jak długa powinna być rolka?',
+    a: 'Najlepiej sprawdzają się rolki 15–45 sekund. Krótsza rolka częściej jest oglądana do końca, a to właśnie liczą algorytmy.'
   }
 ];
 
-const additionalHead = `
-<script>
-    function tryNextExtension(img) {
-        const extensions = ['png', 'webp', 'jpeg', 'JPG', 'PNG'];
-        const currentSrc = img.src;
-        const currentExt = currentSrc.split('.').pop();
-        const nextIndex = extensions.indexOf(currentExt) + 1;
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': 'https://jankobus.com',
+    name: 'Jan Kobus – montaż rolek',
+    description: 'Montaż krótkich pionowych filmów: Instagram Reels, TikTok, YouTube Shorts. Cięcie pod muzykę, napisy, dźwięk i kolor. Lubliniec i zdalnie w całej Polsce.',
+    url: 'https://jankobus.com/',
+    logo: 'https://jankobus.com/favicon.jpg',
+    priceRange: '$$',
+    address: { '@type': 'PostalAddress', addressLocality: 'Lubliniec', addressRegion: 'Śląskie', postalCode: '42-700', addressCountry: 'PL' },
+    areaServed: [
+      { '@type': 'City', name: 'Lubliniec' },
+      { '@type': 'State', name: 'Województwo Śląskie' },
+      { '@type': 'Country', name: 'Polska' }
+    ],
+    knowsAbout: ['Montaż wideo', 'Instagram Reels', 'TikTok', 'YouTube Shorts', 'Napisy do filmów', 'Korekcja kolorów'],
+    sameAs: ['https://www.facebook.com/profile.php?id=61587671346611', 'https://www.instagram.com/redix.45/'],
+    founder: { '@type': 'Person', name: 'Jan Kobus', jobTitle: 'Montażysta wideo', url: 'https://jankobus.com/o-mnie/' }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }))
+  }
+];
 
-        if (nextIndex < extensions.length) {
-            img.src = currentSrc.replace(\`.\${currentExt}\`, \`.\${extensions[nextIndex]}\`);
-        } else {
-            img.style.display = 'none';
-            console.warn("Nie znaleziono zdjęcia profilowego w obsługiwanych formatach.");
-        }
-    }
-</script>
-`;
+const emptySlots = Math.max(0, REEL_SLOTS - reels.length);
 ---
 
-<BaseLayout
-    title="Fotografia Lubliniec | Jan Kobus - Fotografia Nieruchomości Lubliniec"
-    description="Fotografia Lubliniec ⭐ Profesjonalna fotografia nieruchomości Lubliniec - domy, apartamenty, wnętrza. Fotograf Lubliniec - Jan Kobus. Fotografia eventowa i komercyjna województwo śląskie. ☎️ Zadzwoń!"
-    keywords="fotografia lubliniec, fotografia nieruchomości lubliniec, fotograf lubliniec, zdjęcia nieruchomości lubliniec, fotografia wnętrz lubliniec, fotograf nieruchomości śląskie, fotografia eventowa lubliniec, sesja zdjęciowa lubliniec"
+<ReelLayout
+    title="Montaż rolek Lubliniec | Jan Kobus – Reels, TikTok, Shorts"
+    description="Montaż krótkich pionowych filmów na Instagram Reels, TikToka i YouTube Shorts. Cięcie pod muzykę, napisy, dźwięk i kolor. Lubliniec i zdalnie w całej Polsce."
     canonical="https://jankobus.com/"
-    ogType="website"
-    ogImage="https://jankobus.com/photos/operetka/foto%20(2).jpg"
-    ogImageWidth="1200"
-    ogImageHeight="630"
-    twitterCard="summary_large_image"
     structuredData={structuredData}
-    preloadImages={["/photos/operetka/foto%20(2).jpg"]}
-    geoRegion="PL-SL"
-    geoPlacename="Lubliniec"
-    geoPosition="50.6715;18.6965"
-    additionalHead={additionalHead}
 >
 
-    <!-- Intro overlay -->
-    <div id="intro-overlay">
-        <div class="intro-content">
-            <div class="intro-line"><span>Jan</span></div>
-            <div class="intro-line"><span>Kobus</span></div>
-            <div class="intro-sub"><span>Fotografia</span></div>
-        </div>
-    </div>
-
-    <nav role="navigation" aria-label="Main navigation">
-        <div class="nav-left">
-            <!-- Linkuje bezpośrednio do id="work" na tej samej stronie -->
-            <a href="#work" onclick="document.getElementById('work').scrollIntoView({behavior: 'smooth'}); return false;">Prace</a>
-            <a href="/o-mnie">O mnie</a>
-            <a href="/kontakt">Kontakt</a>
-        </div>
-        <div class="nav-center">
-            <a href="/" aria-label="Strona główna - Jan Kobus">Jan Kobus</a>
-        </div>
-        <div class="nav-right">
-            <a href="https://www.facebook.com/profile.php?id=61587671346611" target="_blank" rel="noopener noreferrer" aria-label="Odwiedź profil na Facebooku"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-            <a href="https://www.instagram.com/redix.45/" target="_blank" rel="noopener noreferrer" aria-label="Odwiedź profil na Instagramie">
-                <i class="fab fa-instagram" aria-hidden="true"></i>
-            </a>
-        </div>
-            <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    </nav>
-
-    <header class="hero">
-        <canvas id="hero-particles"></canvas>
-        <div class="hero-glow" id="heroGlow"></div>
-        <div class="hero-center">
-            <h1>Jan Kobus</h1>
-            <p class="subtitle" id="subtitle-typewriter"></p>
-        </div>
-
-        <div class="scroll-down" role="button" aria-label="Przewiń do portfolio" tabindex="0">
-            <i class="fas fa-chevron-down" aria-hidden="true"></i>
-        </div>
-    </header>
-
-    <main>
-    <section class="main-categories" id="work" aria-label="Portfolio Categories">
-
-        <a href="/events" class="category-tile fade-in-section" aria-label="Zobacz portfolio fotografii eventowej">
-            <div class="tile-overlay">
-                <h2>Fotografia Eventowa</h2>
-                <p>Koncerty • Festiwale • wydarzenia</p>
-            </div>
-            <picture>
-                <source srcset="/photos/operetka/foto (2).webp" type="image/webp">
-                <source srcset="/photos/operetka/foto (2).jpg">
-                <img src="/photos/operetka/foto (2).jpg" alt="Fotografia eventowa Lubliniec - koncert Cabaret w Operetce fotografowany przez Jana Kobusa fotograf" loading="eager" fetchpriority="high" decoding="async">
-            </picture>
-        </a>
-
-        <a href="/real_estate" class="category-tile fade-in-section" aria-label="Zobacz portfolio fotografii nieruchomosci">
-            <div class="tile-overlay">
-                <h2>Fotografia Nieruchomosci</h2>
-                <p>Domy • Apartamenty • Komercyjne</p>
-            </div>
-            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=1200&q=80" alt="Fotografia nieruchomosci Lubliniec - profesjonalne zdjecia apartamentu luksusowe nowoczesne wnetrze" loading="eager" fetchpriority="high" decoding="async">
-        </a>
-
-    </section>
-
-    <section class="home-about fade-in-section" id="about">
-        <div class="home-about-inner">
-            <h2>Fotograf Lubliniec - Jan Kobus</h2>
-            <p>
-                Cześć! Jestem <strong>Jan Kobus</strong> - <strong>fotograf z Lublińca</strong>, specjalizujący się
-                w <strong>fotografii nieruchomości</strong> oraz <strong>fotografii eventowej</strong>.
-                Oferuję profesjonalne usługi fotograficzne na terenie <strong>Lublińca</strong>, województwa śląskiego
-                i okolic - Częstochowa, Katowice, Opole.
+    <!-- HOOK -->
+    <section class="hero" data-clip="Hook" data-track="t1">
+        <div class="hero-copy">
+            <p class="eyebrow"><span class="tc-chip">00:00:00:00</span> Reels · TikTok · YouTube Shorts</p>
+            <h1 class="display">Montuję rolki, które ogląda się <span class="cut">do&nbsp;końca.</span></h1>
+            <p class="lead">
+                Wysyłasz surowy materiał z telefonu. Odsyłam gotową pionową rolkę:
+                z mocnym początkiem, cięciami pod muzykę i napisami, które da się przeczytać bez dźwięku.
             </p>
-            <p>
-                Jako <strong>fotograf Lubliniec</strong> zajmuję się fotografowaniem domów, apartamentów i wnętrz
-                na potrzeby sprzedaży i wynajmu nieruchomości. Wykonuję również zdjęcia z koncertów, festiwali
-                i wydarzeń kulturalnych. Każde zlecenie traktuję indywidualnie, dbając o najwyższą jakość zdjęć.
+            <div class="actions">
+                <a href="/kontakt/" class="btn btn-primary">Wyślij materiał</a>
+                <a href="#proces" class="btn btn-ghost">Jak to działa</a>
+            </div>
+        </div>
+
+        <figure class="monitor" aria-label="Podgląd: przykładowa rolka cięta pod rytm">
+            <div class="monitor-bar">
+                <span>Program</span>
+                <span class="monitor-tc">00:00:00:00</span>
+            </div>
+            <div class="screen">
+                <div class="shot shot-1" data-name="A001 · wesele"></div>
+                <div class="shot shot-2" data-name="A002 · mieszkanie"></div>
+                <div class="shot shot-3" data-name="A003 · koncert"></div>
+                <div class="shot shot-4" data-name="A004 · produkt"></div>
+                <span class="shot-label">A001 · wesele</span>
+                <div class="safe" aria-hidden="true"><span>bezpieczna strefa</span></div>
+                <p class="caption" aria-live="off"><span>STOP</span></p>
+                <div class="beat" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            </div>
+            <figcaption class="monitor-meta">1080×1920 · 30 fps · 120 BPM</figcaption>
+        </figure>
+    </section>
+
+    <!-- REALIZACJE -->
+    <section class="block" id="realizacje" data-clip="Realizacje" data-track="v1">
+        <div class="block-head reveal">
+            <h2 class="h2">Realizacje</h2>
+            <p class="block-sub">
+                {reels.length
+                  ? 'Rolki zmontowane dla klientów. Kliknij, żeby odtworzyć z dźwiękiem.'
+                  : 'Tu trafią gotowe rolki. Na razie sloty są wolne. Jeden może być Twój.'}
             </p>
-            <div class="home-about-cta">
-                <a href="/o-mnie" class="cta-button"><i class="fas fa-user"></i> Poznaj mnie</a>
-                <a href="/kontakt" class="cta-button cta-secondary"><i class="fas fa-envelope"></i> Napisz do mnie</a>
-            </div>
+        </div>
+        <div class="reel-grid">
+            {reels.map(r => (
+                <figure class={`reel track-${r.track} reveal`}>
+                    <video src={r.src} poster={r.poster} muted loop playsinline preload="none"></video>
+                    <figcaption>
+                        <span class="reel-tag">{r.category}</span>
+                        <span class="reel-title">{r.title}</span>
+                        <span class="reel-dur">{r.duration}</span>
+                    </figcaption>
+                </figure>
+            ))}
+            {Array.from({ length: emptySlots }).map((_, i) => (
+                <a href="/kontakt/" class="reel reel-empty reveal" style={`--i:${i}`}>
+                    <span class="reel-empty-tc">V1 · slot {String(reels.length + i + 1).padStart(2, '0')}</span>
+                    <span class="reel-empty-title">Wolny slot</span>
+                    <span class="reel-empty-cta">Twoja rolka tutaj →</span>
+                </a>
+            ))}
         </div>
     </section>
 
-    <section class="home-faq fade-in-section" id="faq">
-        <h2>Najczęściej zadawane pytania</h2>
-        <div class="faq-list">
-            <details class="faq-item">
-                <summary>Na jakim obszarze działam jako fotograf?</summary>
-                <p>Działam głównie w <strong>Lublińcu</strong> i okolicach - obsługuję również Częstochowę, Katowice, Opole i całe województwo śląskie. W przypadku większych zleceń jestem w stanie dojechać w dowolne miejsce w Polsce.</p>
-            </details>
-            <details class="faq-item">
-                <summary>Jakie rodzaje fotografii oferuję?</summary>
-                <p>Specjalizuję się w <strong>fotografii nieruchomości</strong> (domy, apartamenty, wnętrza komercyjne) oraz <strong>fotografii eventowej</strong> (koncerty, festiwale, wydarzenia firmowe i kulturalne). Wykonuję również zdjęcia komercyjne i produktowe.</p>
-            </details>
-            <details class="faq-item">
-                <summary>Jak wygląda proces współpracy?</summary>
-                <p>Wystarczy napisać do mnie przez <a href="/kontakt">formularz kontaktowy</a> lub zadzwonić. Ustalimy szczegóły zlecenia, termin i lokalizację. Po sesji otrzymasz profesjonalnie obrobione zdjęcia w ciągu kilku dni roboczych.</p>
-            </details>
-            <details class="faq-item">
-                <summary>Jaki jest czas realizacji zdjęć?</summary>
-                <p>Standardowy czas realizacji to 3-7 dni roboczych od dnia sesji. W przypadku pilnych zleceń mogę przyspieszyć dostawę zdjęć - wystarczy o tym wspomnieć przy rezerwacji.</p>
-            </details>
-            <details class="faq-item">
-                <summary>W jakim formacie dostarczam zdjęcia?</summary>
-                <p>Zdjęcia dostarczam w wysokiej rozdzielczości w formacie JPEG. Na życzenie mogę również udostępnić pliki RAW. Zdjęcia są profesjonalnie obrobione w Adobe Lightroom.</p>
-            </details>
-            <details class="faq-item">
-                <summary>Czy mogę wykorzystać zdjęcia komercyjnie?</summary>
-                <p>Tak! Po zakończeniu współpracy przekazuję pełne prawa do wykorzystania zdjęć w celach komercyjnych - ogłoszenia sprzedażowe, strony internetowe, materiały marketingowe i social media.</p>
-            </details>
+    <!-- USŁUGI jako ścieżki na osi czasu -->
+    <section class="block" id="uslugi" data-clip="Usługi" data-track="v2">
+        <div class="block-head reveal">
+            <h2 class="h2">Co robię z Twoim materiałem</h2>
+            <p class="block-sub">Każda rolka przechodzi przez te same ścieżki, jak na osi czasu w programie do montażu.</p>
+        </div>
+        <ol class="tracks">
+            <li class="track track-v1 reveal">
+                <span class="track-id">V1</span>
+                <div class="track-body">
+                    <h3>Cięcie</h3>
+                    <p>Montaż pod rytm muzyki, tempo dobrane do platformy i haczyk w pierwszej sekundzie. Bez dłużyzn.</p>
+                </div>
+                <span class="track-lane" aria-hidden="true"><i style="--l:0;--w:18"></i><i style="--l:20;--w:9"></i><i style="--l:31;--w:14"></i><i style="--l:47;--w:7"></i><i style="--l:56;--w:20"></i><i style="--l:78;--w:12"></i></span>
+            </li>
+            <li class="track track-v2 reveal">
+                <span class="track-id">V2</span>
+                <div class="track-body">
+                    <h3>Efekty</h3>
+                    <p>Zoomy, przejścia, slow motion, stabilizacja. Tylko tam, gdzie pomagają historii.</p>
+                </div>
+                <span class="track-lane" aria-hidden="true"><i style="--l:14;--w:6"></i><i style="--l:44;--w:10"></i><i style="--l:70;--w:8"></i></span>
+            </li>
+            <li class="track track-t1 reveal">
+                <span class="track-id">T1</span>
+                <div class="track-body">
+                    <h3>Napisy</h3>
+                    <p>Dynamiczne napisy słowo po słowie, tytuły i hasła. Większość ludzi ogląda rolki bez dźwięku, więc tekst niesie przekaz.</p>
+                </div>
+                <span class="track-lane" aria-hidden="true"><i style="--l:2;--w:10"></i><i style="--l:13;--w:8"></i><i style="--l:23;--w:12"></i><i style="--l:38;--w:9"></i><i style="--l:50;--w:11"></i><i style="--l:64;--w:7"></i><i style="--l:74;--w:14"></i></span>
+            </li>
+            <li class="track track-a1 reveal">
+                <span class="track-id">A1</span>
+                <div class="track-body">
+                    <h3>Dźwięk</h3>
+                    <p>Muzyka dobrana do klimatu, oczyszczony głos i głośność wyrównana pod Instagrama i TikToka.</p>
+                </div>
+                <span class="track-lane track-wave" aria-hidden="true"></span>
+            </li>
+            <li class="track track-c reveal">
+                <span class="track-id">C</span>
+                <div class="track-body">
+                    <h3>Kolor</h3>
+                    <p>Korekcja i spójny wygląd ujęć, nawet jeśli nagrywały je trzy różne telefony.</p>
+                </div>
+                <span class="track-lane track-grade" aria-hidden="true"></span>
+            </li>
+        </ol>
+    </section>
+
+    <!-- DLA KOGO -->
+    <section class="block" id="dla-kogo" data-clip="Dla kogo" data-track="a1">
+        <div class="block-head reveal">
+            <h2 class="h2">Dla kogo montuję</h2>
+        </div>
+        <div class="who">
+            <article class="who-item reveal">
+                <h3>Lokalne firmy</h3>
+                <p>Produkt, usługa, kulisy pracy. Rolki co tydzień albo co miesiąc, w jednym stylu, żeby profil wyglądał spójnie.</p>
+            </article>
+            <article class="who-item reveal">
+                <h3>Wesela i imprezy</h3>
+                <p>30–60 sekund najlepszych momentów: pierwszy taniec, tort, parkiet. Gotowe do wrzucenia, póki goście jeszcze o tym mówią.</p>
+            </article>
+            <article class="who-item reveal">
+                <h3>Nieruchomości</h3>
+                <p>Przejście przez mieszkanie lub dom w pionie, z metrażem i ceną na ekranie. Wcześniej fotografowałem nieruchomości, więc wiem, co kupujący chce zobaczyć.</p>
+            </article>
+            <article class="who-item reveal">
+                <h3>Eventy i koncerty</h3>
+                <p>Energia z sali zamknięta w pół minuty. Zapowiedź przed wydarzeniem albo podsumowanie po nim.</p>
+            </article>
         </div>
     </section>
 
-    </main>
-
-    <footer role="contentinfo">
-        <div class="footer-content">
-            <p>&copy; 2026 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
-            <div class="footer-socials">
-                <a href="https://www.facebook.com/profile.php?id=61587671346611" target="_blank" rel="noopener noreferrer" aria-label="Odwiedź profil na Facebooku"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                <a href="https://www.instagram.com/redix.45/" target="_blank" rel="noopener noreferrer" aria-label="Odwiedź profil na Instagramie"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-            </div>
+    <!-- PROCES: prawdziwa kolejność kroków -->
+    <section class="block" id="proces" data-clip="Proces" data-track="t1">
+        <div class="block-head reveal">
+            <h2 class="h2">Jak pracuję</h2>
+            <p class="block-sub">Od wysłania materiału do gotowego pliku.</p>
         </div>
-    </footer>
+        <ol class="steps">
+            <li class="step reveal">
+                <span class="step-tc">00:00</span>
+                <h3>Wysyłasz materiał</h3>
+                <p>Link do Google Drive, WeTransfer albo prosto z telefonu. Dopisz, gdzie rolka ma się ukazać i jaki ma mieć klimat.</p>
+            </li>
+            <li class="step reveal">
+                <span class="step-tc">00:05</span>
+                <h3>Dostajesz wycenę</h3>
+                <p>Oglądam materiał i odpisuję z ceną i terminem. Zaczynam dopiero, gdy się zgodzisz.</p>
+            </li>
+            <li class="step reveal">
+                <span class="step-tc">00:15</span>
+                <h3>Montuję</h3>
+                <p>Pierwszą wersję dostajesz zwykle w 2–4 dni robocze, jako link do podglądu na telefonie.</p>
+            </li>
+            <li class="step reveal">
+                <span class="step-tc">00:40</span>
+                <h3>Poprawki i gotowy plik</h3>
+                <p>Nanoszę Twoje uwagi i wysyłam finalny MP4 oraz wersję bez muzyki.</p>
+            </li>
+        </ol>
+    </section>
 
-    <script src="/preload-images.js" is:inline></script>
-    <script src="/preload-measure.js" is:inline></script>
+    <!-- FAQ -->
+    <section class="block" id="faq" data-clip="FAQ" data-track="v2">
+        <div class="block-head reveal">
+            <h2 class="h2">Pytania</h2>
+        </div>
+        <div class="faq">
+            {faq.map(({ q, a }) => (
+                <details class="faq-item reveal">
+                    <summary>{q}</summary>
+                    <p>{a}</p>
+                </details>
+            ))}
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="end" data-clip="Kontakt" data-track="v1">
+        <p class="eyebrow"><span class="tc-chip">00:00:45:00</span> koniec sekwencji</p>
+        <h2 class="display display-end">Masz materiał w telefonie?</h2>
+        <p class="lead">Wyślij go, odpiszę z wyceną.</p>
+        <a href="/kontakt/" class="btn btn-primary">Wyślij materiał</a>
+    </section>
+
     <script is:inline>
-        document.addEventListener('astro:page-load', () => {
-            // Intro animation sequence
-            const overlay = document.getElementById('intro-overlay');
-            const heroCenter = document.querySelector('.hero-center');
-            if (overlay && !overlay.dataset.played) {
-                overlay.dataset.played = '1';
-                document.body.style.overflow = 'hidden';
-                // Hide hero content during intro
-                if (heroCenter) heroCenter.style.visibility = 'hidden';
-                const lines = overlay.querySelectorAll('.intro-line');
-                const sub = overlay.querySelector('.intro-sub');
+    (() => {
+      // Podgląd w hero: cięcie co 2 beaty, napis co beat (120 BPM = 500 ms)
+      const screen = document.querySelector('.screen');
+      if (!screen) return;
+      const shots = [...screen.querySelectorAll('.shot')];
+      const label = screen.querySelector('.shot-label');
+      const cap = screen.querySelector('.caption span');
+      const beats = [...screen.querySelectorAll('.beat i')];
+      const monTc = document.querySelector('.monitor-tc');
+      const words = ['STOP', 'SCROLLA', 'TO', 'TWOJA', 'ROLKA', 'POD', 'BEAT', 'Z', 'NAPISAMI', 'DO', 'KOŃCA'];
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-                setTimeout(() => { if (lines[0]) lines[0].classList.add('show'); }, 200);
-                setTimeout(() => { if (lines[1]) lines[1].classList.add('show'); }, 350);
-                setTimeout(() => { if (sub) sub.classList.add('show'); }, 550);
-                setTimeout(() => {
-                    overlay.classList.add('done');
-                    // Trigger hero animations only after overlay starts fading
-                    const hero = document.querySelector('.hero');
-                    if (hero) hero.classList.add('intro-done');
-                    if (heroCenter) heroCenter.style.visibility = '';
-                }, 1200);
-                setTimeout(() => {
-                    overlay.style.display = 'none';
-                    document.body.style.overflow = '';
-                }, 2100);
-            }
+      let beat = 0, shot = 0;
+      shots[0].classList.add('on');
+      const tick = () => {
+        beats.forEach((b, i) => b.classList.toggle('on', i === beat % 4));
+        if (beat % 2 === 0) {
+          shots[shot].classList.remove('on');
+          shot = (shot + 1) % shots.length;
+          shots[shot].classList.add('on');
+          label.textContent = shots[shot].dataset.name;
+          screen.classList.remove('punch'); void screen.offsetWidth; screen.classList.add('punch');
+        }
+        cap.textContent = words[beat % words.length];
+        cap.classList.remove('pop'); void cap.offsetWidth; cap.classList.add('pop');
+        beat++;
+      };
+      if (reduce) { cap.textContent = 'TWOJA ROLKA'; return; }
+      setInterval(tick, 500);
+      const t0 = performance.now();
+      const frame = () => {
+        monTc.textContent = window.__tc(Math.floor((performance.now() - t0) / 1000 * 30) % (45 * 30));
+        requestAnimationFrame(frame);
+      };
+      requestAnimationFrame(frame);
+    })();
 
-            // Smooth scroll
-            const scrollBtn = document.querySelector('.scroll-down');
-            if (scrollBtn) {
-                scrollBtn.addEventListener('click', function() {
-                    document.getElementById('work').scrollIntoView({ behavior: 'smooth' });
-                });
-            }
-
-            // Hero cursor glow
-            const glow = document.getElementById('heroGlow');
-            const hero = document.querySelector('.hero');
-            if (glow && hero) {
-                hero.addEventListener('mousemove', (e) => {
-                    glow.style.left = e.clientX + 'px';
-                    glow.style.top = e.clientY + 'px';
-                    glow.style.opacity = '1';
-                });
-                hero.addEventListener('mouseleave', () => {
-                    glow.style.opacity = '0';
-                });
-            }
-
-            // Hero parallax on scroll
-            const scrollDown = document.querySelector('.scroll-down');
-            if (heroCenter) {
-                window.addEventListener('scroll', () => {
-                    const y = window.scrollY;
-                    if (y < window.innerHeight) {
-                        heroCenter.style.transform = `translateY(${y * 0.3}px)`;
-                        heroCenter.style.opacity = 1 - (y / (window.innerHeight * 0.8));
-                    }
-                    if (scrollDown) {
-                        scrollDown.style.opacity = Math.max(0, 0.7 - (y / 300));
-                    }
-                }, { passive: true });
-            }
-
-            // 3D tilt on category tiles
-            document.querySelectorAll('.category-tile').forEach(tile => {
-                tile.addEventListener('mousemove', (e) => {
-                    const rect = tile.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotateX = (y - centerY) / centerY * -4;
-                    const rotateY = (x - centerX) / centerX * 4;
-                    tile.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-                });
-                tile.addEventListener('mouseleave', () => {
-                    tile.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
-                });
-            });
-
-            // Typewriter effect on subtitle
-            const subtitleEl = document.getElementById('subtitle-typewriter');
-            if (subtitleEl && !subtitleEl.dataset.typed) {
-                subtitleEl.dataset.typed = '1';
-                const text = 'Portfolio Fotograficzne';
-                subtitleEl.textContent = '';
-                let i = 0;
-                const cursor = document.createElement('span');
-                cursor.className = 'typewriter-cursor';
-                subtitleEl.appendChild(cursor);
-                function typeChar() {
-                    if (i < text.length) {
-                        subtitleEl.insertBefore(document.createTextNode(text[i]), cursor);
-                        i++;
-                        setTimeout(typeChar, 70 + Math.random() * 40);
-                    } else {
-                        setTimeout(() => { cursor.style.display = 'none'; }, 2000);
-                    }
-                }
-                setTimeout(typeChar, 1800);
-            }
-
-            // Floating particles
-            const canvas = document.getElementById('hero-particles');
-            if (canvas && !canvas.dataset.init) {
-                canvas.dataset.init = '1';
-                const ctx = canvas.getContext('2d');
-                let particles = [];
-                let animId;
-
-                function resize() {
-                    canvas.width = canvas.offsetWidth;
-                    canvas.height = canvas.offsetHeight;
-                }
-                resize();
-                window.addEventListener('resize', resize);
-
-                for (let i = 0; i < 40; i++) {
-                    particles.push({
-                        x: Math.random() * canvas.width,
-                        y: Math.random() * canvas.height,
-                        r: Math.random() * 1.5 + 0.5,
-                        dx: (Math.random() - 0.5) * 0.3,
-                        dy: (Math.random() - 0.5) * 0.3 - 0.15,
-                        opacity: Math.random() * 0.4 + 0.1
-                    });
-                }
-
-                function animate() {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                    particles.forEach(p => {
-                        p.x += p.dx;
-                        p.y += p.dy;
-                        if (p.x < 0) p.x = canvas.width;
-                        if (p.x > canvas.width) p.x = 0;
-                        if (p.y < 0) p.y = canvas.height;
-                        if (p.y > canvas.height) p.y = 0;
-                        ctx.beginPath();
-                        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
-                        ctx.fill();
-                    });
-                    animId = requestAnimationFrame(animate);
-                }
-                animate();
-            }
-        });
+    // Realizacje: odtwarzanie po najechaniu / kliknięciu
+    document.querySelectorAll('.reel video').forEach(v => {
+      const fig = v.closest('.reel');
+      fig.addEventListener('mouseenter', () => v.play().catch(() => {}));
+      fig.addEventListener('mouseleave', () => v.pause());
+      fig.addEventListener('click', () => { v.muted = !v.muted; v.play().catch(() => {}); });
+    });
     </script>
-
-</BaseLayout>
+</ReelLayout>

@@ -1,83 +1,84 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import ReelLayout from '../layouts/ReelLayout.astro';
 
 const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "ContactPage",
-  "name": "Kontakt",
-  "description": "Skontaktuj się z Janem Kobusem - profesjonalnym fotografem",
-  "url": "https://jankobus.com/kontakt/",
-  "mainEntity": {
-    "@type": "Person",
-    "name": "Jan Kobus",
-    "jobTitle": "Fotograf",
-    "url": "https://jankobus.com"
-  }
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Kontakt – montaż rolek',
+  url: 'https://jankobus.com/kontakt/',
+  mainEntity: { '@type': 'Person', name: 'Jan Kobus', jobTitle: 'Montażysta wideo', url: 'https://jankobus.com' }
 };
 ---
 
-<BaseLayout
-    title="Kontakt - Fotograf Lubliniec | Jan Kobus - Fotografia Nieruchomości Lubliniec"
-    description="Kontakt - Fotograf Lubliniec Jan Kobus. Umów fotografię nieruchomości Lubliniec, sesję eventową. Obsługa Lubliniec i województwo śląskie. ☎️ Zadzwoń lub napisz!"
-    keywords="kontakt fotograf lubliniec, jan kobus kontakt, umów sesję lubliniec, fotografia nieruchomości lubliniec kontakt, wycena zdjęć lubliniec, rezerwacja fotografa lubliniec"
+<ReelLayout
+    title="Kontakt | Jan Kobus – montaż rolek, Lubliniec"
+    description="Wyślij materiał do montażu rolki na Instagram Reels, TikToka lub YouTube Shorts. Odpiszę z wyceną i terminem."
     canonical="https://jankobus.com/kontakt/"
-    ogType="website"
-    ogImage="https://jankobus.com/favicon.jpg"
-    twitterCard="summary"
     structuredData={structuredData}
-    geoRegion="PL-SL"
-    geoPlacename="Lubliniec"
+    active="kontakt"
 >
+    <section class="page-head" data-clip="Kontakt" data-track="t1">
+        <p class="eyebrow"><span class="tc-chip">00:00:00:00</span> Kontakt</p>
+        <h1 class="display">Wyślij materiał.</h1>
+        <p class="lead">Opisz krótko, czego potrzebujesz. Odpiszę z wyceną i terminem, zanim zacznę pracę.</p>
+    </section>
 
-    <nav>
-        <div class="nav-left">
-            <a href="/#work">Prace</a>
-            <a href="/o-mnie">O mnie</a>
-            <a href="/kontakt" class="active-link">Kontakt</a>
-        </div>
-        <div class="nav-center">
-            <a href="/">Jan Kobus</a>
-        </div>
-        <div class="nav-right">
-            <a href="https://www.facebook.com/profile.php?id=61587671346611" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
-        </div>
-            <button class="nav-hamburger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
-    </nav>
-
-    <div class="contact-wrapper fade-in-section">
-        <h1 class="contact-title">Kontakt</h1>
-
-        <form class="contact-form" action="https://formspree.io/f/mbdrgppo" method="POST">
-
-    <div class="form-group">
-        <label for="name">Imię i Nazwisko *</label>
-        <input type="text" id="name" name="name" placeholder="Twoje imię..." required>
-    </div>
-
-    <div class="form-group">
-        <label for="email">Adres Email *</label>
-        <input type="email" id="email" name="email" placeholder="Twój email..." required>
-    </div>
-
-    <div class="form-group">
-        <label for="message">Wiadomość *</label>
-        <textarea id="message" name="message" rows="6" placeholder="Twoja wiadomość..." required></textarea>
-    </div>
-
-    <button type="submit" class="submit-btn">Wyślij</button>
-</form>
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2026 Jan Kobus. Wszelkie prawa zastrzeżone.</p>
-            <div class="footer-socials">
-                <a href="https://www.facebook.com/profile.php?id=61587671346611" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/redix.45/" target="_blank"><i class="fab fa-instagram"></i></a>
+    <section class="contact" data-clip="Formularz" data-track="v1">
+        <form class="form" action="https://formspree.io/f/mbdrgppo" method="POST">
+            <input type="hidden" name="_subject" value="Nowe zapytanie: montaż rolki">
+            <div class="field-row">
+                <div class="field">
+                    <label for="name">Imię</label>
+                    <input type="text" id="name" name="name" autocomplete="name" required>
+                </div>
+                <div class="field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
+                </div>
             </div>
-        </div>
-    </footer>
+            <div class="field-row">
+                <div class="field">
+                    <label for="type">Rodzaj rolki</label>
+                    <select id="type" name="rodzaj">
+                        <option>Firma / produkt</option>
+                        <option>Wesele / impreza</option>
+                        <option>Nieruchomość</option>
+                        <option>Event / koncert</option>
+                        <option>Inne</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="count">Ile rolek</label>
+                    <select id="count" name="ilosc">
+                        <option>Jedna</option>
+                        <option>2–4</option>
+                        <option>Stała współpraca (co miesiąc)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="field">
+                <label for="link">Link do materiału <small>(opcjonalnie: Google Drive, WeTransfer)</small></label>
+                <input type="url" id="link" name="link" placeholder="https://">
+            </div>
+            <div class="field">
+                <label for="message">Opis</label>
+                <textarea id="message" name="message" placeholder="Gdzie rolka ma się ukazać, jaki klimat, na kiedy jest potrzebna." required></textarea>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Wyślij zapytanie</button>
+            </div>
+            <p class="form-note">Odpowiadam mailem. Twoje dane służą tylko do odpowiedzi na to zapytanie.</p>
+        </form>
 
-
-</BaseLayout>
+        <aside class="aside">
+            <h2>Zanim wyślesz</h2>
+            <ul>
+                <li>Nagrywaj w pionie, jeśli to możliwe.</li>
+                <li>Łap kilka sekund przed i po ważnym momencie.</li>
+                <li>Wyślij oryginalne pliki, nie przez Messengera ani WhatsAppa, bo kompresują jakość.</li>
+                <li>Masz ulubioną rolkę, która Ci się podoba? Wklej link w opisie.</li>
+            </ul>
+            <p>Wolisz pisać na Instagramie? <a href="https://www.instagram.com/redix.45/" target="_blank" rel="noopener noreferrer">@redix.45</a></p>
+        </aside>
+    </section>
+</ReelLayout>
