@@ -456,14 +456,19 @@ h3 { font: 600 1.15rem/1.3 var(--f-body); }
 .seq-area { position: relative; height: 22px; cursor: pointer; touch-action: none; }
 .seq-lane { position: absolute; inset: 0; background: var(--panel); border-radius: 3px; }
 .seq-clip {
+  --track: var(--v1);
   position: absolute; top: 3px; bottom: 3px;
   padding: 0 6px; display: flex; align-items: center;
-  border-radius: 2px; background: var(--panel-2);
-  box-shadow: inset -1px 0 0 #0f1013;
-  color: #6c6f79; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--track) 12%, var(--panel-2));
+  box-shadow: inset 0 2px 0 var(--track), inset -1px 0 0 #0f1013;
+  color: #8a8d97; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   transition: background-color .2s, color .2s;
 }
-.seq-clip.active { background: color-mix(in srgb, var(--v1) 35%, var(--panel-2)); color: var(--text); }
+.seq-clip.track-v2 { --track: var(--v2); }
+.seq-clip.track-a1 { --track: var(--a1); }
+.seq-clip.track-t1 { --track: var(--t1); }
+.seq-clip.active { background: color-mix(in srgb, var(--track) 55%, var(--panel-2)); color: #0f1013; font-weight: 500; }
 .seq-playhead {
   position: absolute; top: -5px; bottom: -5px; left: calc(var(--p, 0) * 100%);
   width: 2px; margin-left: -1px; background: var(--playhead); pointer-events: none;

@@ -1,5 +1,7 @@
 ---
 // Wspólny layout strony: nagłówek, stopka i oś czasu na dole ekranu.
+// CSS importowany tutaj dostaje od Astro nazwę z hashem, więc przeglądarki nie trzymają starej wersji.
+import '../styles/rolki.css';
 interface Props {
   title: string;
   description?: string;
@@ -58,7 +60,6 @@ const year = new Date().getFullYear();
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,500..900&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/rolki.css">
 </head>
 <body>
     <a class="skip-link" href="#tresc">Przejdź do treści</a>
@@ -160,7 +161,7 @@ const year = new Date().getFullYear();
         clips = sections.map(sec => {
           const start = sec.offsetTop / total, len = sec.offsetHeight / total;
           const clip = document.createElement('div');
-          clip.className = 'seq-clip';
+          clip.className = 'seq-clip track-' + (sec.dataset.track || 'v1');
           clip.style.left = (start * 100) + '%';
           clip.style.width = (len * 100) + '%';
           clip.textContent = sec.dataset.clip;
