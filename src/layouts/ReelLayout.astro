@@ -101,24 +101,11 @@ const year = new Date().getFullYear();
 
     <!-- Oś czasu: cała strona to sekwencja 45 s, playhead = pozycja scrolla -->
     <div class="seq" aria-hidden="true">
-        <div class="seq-heads">
-            <span class="seq-head-ruler">SEQ</span>
-            <span class="seq-head seq-head-v">V1</span>
-            <span class="seq-head seq-head-a">A1</span>
-        </div>
         <div class="seq-area">
-            <div class="seq-ruler"></div>
-            <div class="seq-lane seq-v"></div>
-            <div class="seq-lane seq-a">
-                <canvas class="wave wave-dim"></canvas>
-                <canvas class="wave wave-lit"></canvas>
-            </div>
-            <div class="seq-playhead"><span class="seq-grip"></span></div>
+            <div class="seq-lane"></div>
+            <div class="seq-playhead"></div>
         </div>
-        <div class="seq-readout">
-            <span class="seq-tc">00:00:00:00</span>
-            <span class="seq-now">Hook</span>
-        </div>
+        <span class="seq-tc">00:00:00:00</span>
     </div>
 
     <script is:inline>
@@ -144,21 +131,18 @@ const year = new Date().getFullYear();
         toggle?.setAttribute('aria-expanded', 'false');
       }));
 
-      // Sekwencja: cała strona = 45 s. Klipy na V1 = sekcje z data-clip,
-      // A1 = waveform. Playhead można chwycić i przewijać nim stronę.
+      // Sekwencja: cała strona = 45 s, klipy = sekcje z data-clip.
+      // Klik albo przeciągnięcie na osi przewija stronę.
       const seq = document.querySelector('.seq');
       const area = seq.querySelector('.seq-area');
-      const ruler = seq.querySelector('.seq-ruler');
-      const laneV = seq.querySelector('.seq-v');
+      const lane = seq.querySelector('.seq-lane');
       const tcEl = seq.querySelector('.seq-tc');
-      const nowEl = seq.querySelector('.seq-now');
-      const [waveDim, waveLit] = seq.querySelectorAll('.wave');
       const sections = [...document.querySelectorAll('[data-clip]')];
       const doc = document.documentElement;
       let clips = [];
 
-      // Pozycja "czytania": 0 na górze strony, 1 na samym dole.
-      // Gdy sekcja dochodzi do góry ekranu, playhead stoi na początku jej klipu.
+      // 0 na górze strony, 1 na dole; gdy sekcja dochodzi do góry ekranu,
+      // playhead stoi na początku jej klipu.
       const progress = () => {
         const max = doc.scrollHeight - innerHeight;
         if (max <= 0) return 0;
@@ -167,72 +151,21 @@ const year = new Date().getFullYear();
       };
       const scrollToProgress = p => {
         const max = doc.scrollHeight - innerHeight;
-        const y = p * doc.scrollHeight / (1 + innerHeight / max);
-        scrollTo({ top: y, behavior: 'instant' });
-      };
-
-      const secLabel = s => `${String(Math.floor(s)).padStart(2, '0')}s`;
-
-      const layoutRuler = () => {
-        ruler.replaceChildren();
-        for (let s = 0; s <= SEQ_SECONDS; s += 5) {
-          const l = document.createElement('span');
-          l.className = 'seq-mark';
-          l.style.left = (s / SEQ_SECONDS * 100) + '%';
-          l.textContent = s === 0 ? '00:00' : `00:${String(s).padStart(2, '0')}`;
-          ruler.appendChild(l);
-        }
+        scrollTo({ top: p * doc.scrollHeight / (1 + innerHeight / max), behavior: 'instant' });
       };
 
       const layoutClips = () => {
         const total = doc.scrollHeight;
-        laneV.replaceChildren();
-        ruler.querySelectorAll('.seq-marker').forEach(m => m.remove());
+        lane.replaceChildren();
         clips = sections.map(sec => {
           const start = sec.offsetTop / total, len = sec.offsetHeight / total;
-          const track = sec.dataset.track || 'v1';
           const clip = document.createElement('div');
-          clip.className = 'seq-clip track-' + track;
+          clip.className = 'seq-clip';
           clip.style.left = (start * 100) + '%';
           clip.style.width = (len * 100) + '%';
-          const name = document.createElement('span');
-          name.className = 'seq-clip-name';
-          name.textContent = sec.dataset.clip;
-          const dur = document.createElement('span');
-          dur.className = 'seq-clip-dur';
-          dur.textContent = secLabel(len * SEQ_SECONDS);
-          clip.append(name, dur);
-          laneV.appendChild(clip);
-
-          const marker = document.createElement('i');
-          marker.className = 'seq-marker track-' + track;
-          marker.style.left = (start * 100) + '%';
-          ruler.appendChild(marker);
-          return { el: clip, start, end: start + len, name: sec.dataset.clip };
-        });
-      };
-
-      // Waveform: deterministyczny "utwór" z akcentami co beat
-      const drawWave = () => {
-        const w = waveDim.clientWidth, h = waveDim.clientHeight, dpr = devicePixelRatio || 1;
-        if (!w || !h) return;
-        const styles = getComputedStyle(seq);
-        [[waveDim, styles.getPropertyValue('--wave-dim')], [waveLit, styles.getPropertyValue('--wave-lit')]].forEach(([cv, color]) => {
-          cv.width = w * dpr; cv.height = h * dpr;
-          const ctx = cv.getContext('2d');
-          ctx.scale(dpr, dpr);
-          ctx.fillStyle = color.trim();
-          let seed = 7;
-          const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-          const bar = 2, gap = 1, n = Math.floor(w / (bar + gap));
-          for (let i = 0; i < n; i++) {
-            const t = i / n;
-            const beat = Math.pow(Math.abs(Math.cos(t * SEQ_SECONDS * 2 * Math.PI)), 6); // 120 BPM
-            const env = 0.35 + 0.65 * Math.min(1, t * 8) * (t > 0.92 ? (1 - t) / 0.08 : 1);
-            const a = Math.min(1, env * (0.25 + 0.45 * rnd() + 0.45 * beat));
-            const bh = Math.max(1, a * h);
-            ctx.fillRect(i * (bar + gap), (h - bh) / 2, bar, bh);
-          }
+          clip.textContent = sec.dataset.clip;
+          lane.appendChild(clip);
+          return { el: clip, start, end: start + len };
         });
       };
 
@@ -240,32 +173,20 @@ const year = new Date().getFullYear();
         const p = progress();
         seq.style.setProperty('--p', p);
         tcEl.textContent = tc(Math.round(p * SEQ_SECONDS * FPS));
-        let current = clips[0];
-        clips.forEach(c => {
-          const on = p >= c.start && p < c.end;
-          c.el.classList.toggle('active', on);
-          if (on) current = c;
-        });
-        if (current && nowEl.textContent !== current.name) nowEl.textContent = current.name;
+        clips.forEach(c => c.el.classList.toggle('active', p >= c.start && p < c.end));
       };
 
-      // Scrubbing: klik albo przeciągnięcie na osi
       let dragging = false;
       const scrubAt = x => {
         const r = area.getBoundingClientRect();
         scrollToProgress(Math.min(1, Math.max(0, (x - r.left) / r.width)));
       };
-      area.addEventListener('pointerdown', e => {
-        dragging = true; seq.classList.add('scrubbing');
-        area.setPointerCapture(e.pointerId); scrubAt(e.clientX);
-      });
+      area.addEventListener('pointerdown', e => { dragging = true; area.setPointerCapture(e.pointerId); scrubAt(e.clientX); });
       area.addEventListener('pointermove', e => { if (dragging) scrubAt(e.clientX); });
-      const stop = () => { dragging = false; seq.classList.remove('scrubbing'); };
-      area.addEventListener('pointerup', stop);
-      area.addEventListener('pointercancel', stop);
+      area.addEventListener('pointerup', () => { dragging = false; });
+      area.addEventListener('pointercancel', () => { dragging = false; });
 
-      const relayout = () => { layoutClips(); drawWave(); update(); };
-      layoutRuler();
+      const relayout = () => { layoutClips(); update(); };
       relayout();
       addEventListener('resize', relayout);
       addEventListener('load', relayout);
