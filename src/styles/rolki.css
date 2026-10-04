@@ -252,8 +252,39 @@ h3 { font: 600 1.15rem/1.3 var(--f-body); }
   border-radius: 10px; background: var(--panel); text-decoration: none;
 }
 .reel video { width: 100%; height: 100%; object-fit: cover; }
-figure.reel { cursor: pointer; }
-.reel-sound { color: var(--text); }
+.reel-open {
+  position: absolute; inset: 0; z-index: 2;
+  display: flex; align-items: flex-start; justify-content: flex-end; padding: 12px;
+  background: none; border: 0; cursor: zoom-in; color: #fff;
+}
+.reel-open svg {
+  padding: 7px; box-sizing: content-box; border-radius: 6px;
+  background: rgba(0,0,0,.45); opacity: .75; transition: opacity .2s, transform .2s;
+}
+.reel-open:hover svg, .reel-open:focus-visible svg { opacity: 1; transform: scale(1.08); }
+.reel-open:focus-visible { outline: 2px solid var(--t1); outline-offset: -2px; border-radius: 10px; }
+
+/* powiększenie rolki */
+.viewer {
+  padding: 0; border: 0; background: transparent; color: var(--text);
+  max-width: none; max-height: none; width: 100vw; height: 100dvh;
+  display: none; place-items: center; align-content: center; gap: 12px;
+}
+.viewer[open] { display: grid; }
+.viewer::backdrop { background: rgba(8,9,11,.92); backdrop-filter: blur(6px); }
+.viewer-video {
+  height: min(86dvh, calc((100vw - 32px) * 16 / 9)); aspect-ratio: 9 / 16; width: auto;
+  border-radius: 12px; background: #000;
+  box-shadow: 0 30px 90px -20px rgba(0,0,0,.9);
+}
+.viewer-title { font: 400 .8rem/1 var(--f-mono); color: var(--muted); text-align: center; }
+.viewer-close {
+  position: fixed; top: 16px; right: 16px;
+  width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--line); background: var(--panel); color: var(--text);
+  font-size: 1.1rem; cursor: pointer;
+}
+.viewer-close:hover { background: var(--panel-2); }
 .reel figcaption {
   position: absolute; inset: auto 0 0 0; padding: 14px;
   display: grid; gap: 4px;

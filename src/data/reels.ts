@@ -11,6 +11,7 @@
 //   category: 'Wesele',
 //   track: 'v1',            // kolor etykiety: v1 | v2 | a1 | t1
 //   src: '/reels/wesele.mp4',
+//   srcHd: '/reels/wesele-hd.mp4',   // opcjonalnie, do powiększenia
 //   poster: '/reels/wesele.jpg',
 //   duration: '0:45',
 // },
@@ -20,6 +21,7 @@ export interface Reel {
   category: string;
   track: 'v1' | 'v2' | 'a1' | 't1';
   src: string;
+  srcHd?: string;          // wersja 1080x1920 do powiększenia (opcjonalnie)
   poster: string;
   duration: string;
 }
@@ -30,6 +32,7 @@ export const reels: Reel[] = [
     category: 'Reklama aplikacji',
     track: 'a1',
     src: '/reels/ogarnijegzamin.mp4',
+    srcHd: '/reels/ogarnijegzamin-hd.mp4',
     poster: '/reels/ogarnijegzamin.jpg',
     duration: '0:15',
   },
