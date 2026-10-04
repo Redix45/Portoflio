@@ -28,6 +28,15 @@ export interface Reel {
 
 export const reels: Reel[] = [
   {
+    title: 'Kajaki Krupski Młyn',
+    category: 'Reklama lokalnej firmy',
+    track: 'v1',
+    src: '/reels/kajaki.mp4',
+    srcHd: '/reels/kajaki-hd.mp4',
+    poster: '/reels/kajaki.jpg',
+    duration: '0:44',
+  },
+  {
     title: 'Promo aplikacji Ogarnij Egzamin',
     category: 'Reklama aplikacji',
     track: 'a1',
