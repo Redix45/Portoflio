@@ -37,7 +37,7 @@ const structuredData = [
     name: 'Jan Kobus – montaż rolek',
     description: 'Montaż krótkich pionowych filmów: Instagram Reels, TikTok, YouTube Shorts. Cięcie pod muzykę, napisy, dźwięk i kolor. Lubliniec i zdalnie w całej Polsce.',
     url: 'https://jankobus.com/',
-    logo: 'https://jankobus.com/favicon.jpg',
+    logo: 'https://jankobus.com/apple-touch-icon.png',
     priceRange: '$$',
     address: { '@type': 'PostalAddress', addressLocality: 'Lubliniec', addressRegion: 'Śląskie', postalCode: '42-700', addressCountry: 'PL' },
     areaServed: [
@@ -106,7 +106,7 @@ const emptySlots = Math.max(0, REEL_SLOTS - reels.length);
             <h2 class="h2">Realizacje</h2>
             <p class="block-sub">
                 {reels.length
-                  ? 'Rolki zmontowane dla klientów. Kliknij, żeby odtworzyć z dźwiękiem.'
+                  ? 'Kliknij rolkę, żeby włączyć dźwięk. Wolne sloty czekają na kolejne realizacje.'
                   : 'Tu trafią gotowe rolki. Na razie sloty są wolne. Jeden może być Twój.'}
             </p>
         </div>
@@ -117,7 +117,7 @@ const emptySlots = Math.max(0, REEL_SLOTS - reels.length);
                     <figcaption>
                         <span class="reel-tag">{r.category}</span>
                         <span class="reel-title">{r.title}</span>
-                        <span class="reel-dur">{r.duration}</span>
+                        <span class="reel-dur">{r.duration} · <span class="reel-sound">kliknij, aby włączyć dźwięk</span></span>
                     </figcaption>
                 </figure>
             ))}
@@ -296,12 +296,27 @@ const emptySlots = Math.max(0, REEL_SLOTS - reels.length);
       requestAnimationFrame(frame);
     })();
 
-    // Realizacje: odtwarzanie po najechaniu / kliknięciu
-    document.querySelectorAll('.reel video').forEach(v => {
-      const fig = v.closest('.reel');
-      fig.addEventListener('mouseenter', () => v.play().catch(() => {}));
-      fig.addEventListener('mouseleave', () => v.pause());
-      fig.addEventListener('click', () => { v.muted = !v.muted; v.play().catch(() => {}); });
-    });
+    // Realizacje: rolka gra bez dźwięku, gdy jest na ekranie; klik włącza/wyłącza dźwięk
+    (() => {
+      const videos = [...document.querySelectorAll('.reel video')];
+      if (!videos.length) return;
+      const io = new IntersectionObserver(entries => entries.forEach(e => {
+        const v = e.target;
+        if (e.isIntersecting) v.play().catch(() => {});
+        else { v.pause(); }
+      }), { threshold: 0.5 });
+      videos.forEach(v => {
+        io.observe(v);
+        const fig = v.closest('.reel');
+        const label = fig.querySelector('.reel-sound');
+        fig.addEventListener('click', () => {
+          const unmute = v.muted;
+          videos.forEach(o => { o.muted = true; o.closest('.reel').querySelector('.reel-sound').textContent = 'kliknij, aby włączyć dźwięk'; });
+          v.muted = !unmute;
+          if (unmute) { v.currentTime = 0; label.textContent = 'dźwięk włączony'; }
+          v.play().catch(() => {});
+        });
+      });
+    })();
     </script>
 </ReelLayout>

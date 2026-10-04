@@ -24,7 +24,16 @@ export interface Reel {
   duration: string;
 }
 
-export const reels: Reel[] = [];
+export const reels: Reel[] = [
+  {
+    title: 'Promo aplikacji Ogarnij Egzamin',
+    category: 'Reklama aplikacji',
+    track: 'a1',
+    src: '/reels/ogarnijegzamin.mp4',
+    poster: '/reels/ogarnijegzamin.jpg',
+    duration: '0:15',
+  },
+];
 
 // Ile slotów pokazać łącznie (realizacje + puste sloty).
 export const REEL_SLOTS = 4;
