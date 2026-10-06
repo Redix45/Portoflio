@@ -1,22 +1,7 @@
 ---
 import ReelLayout from '../layouts/ReelLayout.astro';
-
-const sites = [
-  {
-    name: 'ogarnijegzamin.pl',
-    url: 'https://ogarnijegzamin.pl/',
-    img: '/web/ogarnijegzamin',
-    tag: 'Projekt własny · aplikacja webowa',
-    text: 'Platforma do nauki do egzaminów zawodowych: baza pytań z omówieniami, arkusze CKE i symulatory egzaminu praktycznego. Projekt, wykonanie i SEO.'
-  },
-  {
-    name: 'jankobus.com',
-    url: 'https://jankobus.com/',
-    img: '/web/jankobus',
-    tag: 'Strona-wizytówka',
-    text: 'Strona, na której jesteś. Szybka strona statyczna, hosting na Cloudflare, dane strukturalne dla Google i podgląd linku pod Facebooka i Messengera.'
-  }
-];
+import SiteCard from '../components/SiteCard.astro';
+import { sites } from '../data/sites';
 
 const faq = [
   {
@@ -89,22 +74,7 @@ const structuredData = [
             <p class="block-sub">Kliknij, żeby otworzyć stronę w nowej karcie.</p>
         </div>
         <div class="sites">
-            {sites.map(s => (
-                <a class="site reveal" href={s.url} target="_blank" rel="noopener">
-                    <div class="site-frame">
-                        <div class="site-bar" aria-hidden="true"><i></i><i></i><i></i><span>{s.name}</span></div>
-                        <picture>
-                            <source srcset={`${s.img}.webp`} type="image/webp">
-                            <img src={`${s.img}.jpg`} alt={`Strona ${s.name}`} width="1200" height="750" loading="lazy" decoding="async">
-                        </picture>
-                    </div>
-                    <div class="site-info">
-                        <span class="reel-tag">{s.tag}</span>
-                        <h3>{s.name} <span aria-hidden="true">↗</span></h3>
-                        <p>{s.text}</p>
-                    </div>
-                </a>
-            ))}
+            {sites.map(site => <SiteCard site={site} />)}
         </div>
     </section>
 

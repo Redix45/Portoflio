@@ -1,6 +1,8 @@
 ---
 import ReelLayout from '../layouts/ReelLayout.astro';
 import { reels, REEL_SLOTS } from '../data/reels';
+import { sites } from '../data/sites';
+import SiteCard from '../components/SiteCard.astro';
 
 const faq = [
   {
@@ -20,12 +22,12 @@ const faq = [
     a: 'Dobieram utwór pod klimat rolki i tniemy pod jego rytm. Na Instagramie i TikToku najbezpieczniej dodać popularny dźwięk już w aplikacji, dlatego zawsze dostajesz też wersję bez muzyki.'
   },
   {
-    q: 'W jakim formacie dostanę rolkę?',
-    a: 'MP4 1080×1920, gotowy do wrzucenia na Reels, TikToka i YouTube Shorts. Na życzenie dorzucam wersję bez napisów albo w formacie 1:1 lub 16:9.'
+    q: 'Ile kosztuje strona internetowa?',
+    a: 'Zależy od liczby podstron i funkcji. Po krótkiej rozmowie podaję cenę z góry, bez dopłat w trakcie.'
   },
   {
-    q: 'Jak długa powinna być rolka?',
-    a: 'Najlepiej sprawdzają się rolki 15–45 sekund. Krótsza rolka częściej jest oglądana do końca, a to właśnie liczą algorytmy.'
+    q: 'Czy gwarantujesz pierwsze miejsce w Google?',
+    a: 'Nie, i nikt uczciwy tego nie zagwarantuje. Gwarantuję, że strona będzie technicznie przygotowana pod Google, a Ty dostaniesz dostęp do Search Console, żeby widzieć, jak rośnie widoczność.'
   }
 ];
 
@@ -34,8 +36,8 @@ const structuredData = [
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
     '@id': 'https://jankobus.com',
-    name: 'Jan Kobus – montaż rolek',
-    description: 'Montaż krótkich pionowych filmów: Instagram Reels, TikTok, YouTube Shorts. Cięcie pod muzykę, napisy, dźwięk i kolor. Lubliniec i zdalnie w całej Polsce.',
+    name: 'Jan Kobus – rolki, strony internetowe, SEO',
+    description: 'Montaż rolek na Instagram Reels, TikToka i YouTube Shorts oraz szybkie strony internetowe z SEO. Lubliniec i zdalnie w całej Polsce.',
     url: 'https://jankobus.com/',
     logo: 'https://jankobus.com/apple-touch-icon.png',
     priceRange: '$$',
@@ -47,7 +49,7 @@ const structuredData = [
     ],
     knowsAbout: ['Montaż wideo', 'Instagram Reels', 'TikTok', 'YouTube Shorts', 'Napisy do filmów', 'Korekcja kolorów', 'Tworzenie stron internetowych', 'SEO', 'Lokalne SEO'],
     sameAs: ['https://www.facebook.com/profile.php?id=61587671346611', 'https://www.instagram.com/redix.45/'],
-    founder: { '@type': 'Person', name: 'Jan Kobus', jobTitle: 'Montażysta wideo', url: 'https://jankobus.com/o-mnie/' }
+    founder: { '@type': 'Person', name: 'Jan Kobus', jobTitle: 'Montażysta wideo i twórca stron internetowych', url: 'https://jankobus.com/o-mnie/' }
   },
   {
     '@context': 'https://schema.org',
@@ -60,8 +62,8 @@ const emptySlots = Math.max(0, REEL_SLOTS - reels.length);
 ---
 
 <ReelLayout
-    title="Montaż rolek Lubliniec | Jan Kobus – Reels, TikTok, Shorts"
-    description="Montaż krótkich pionowych filmów na Instagram Reels, TikToka i YouTube Shorts. Cięcie pod muzykę, napisy, dźwięk i kolor. Lubliniec i zdalnie w całej Polsce."
+    title="Montaż rolek i strony internetowe Lubliniec | Jan Kobus"
+    description="Montuję rolki na Instagram Reels, TikToka i YouTube Shorts oraz robię szybkie strony internetowe z SEO, żeby klienci znajdowali Cię w Google. Lubliniec i zdalnie w całej Polsce."
     canonical="https://jankobus.com/"
     structuredData={structuredData}
 >
@@ -69,18 +71,29 @@ const emptySlots = Math.max(0, REEL_SLOTS - reels.length);
     <!-- HOOK -->
     <section class="hero" data-clip="Hook" data-track="t1">
         <div class="hero-copy">
-            <p class="eyebrow">Reels · TikTok · YouTube Shorts</p>
-            <h1 class="display">Montuję rolki, które ogląda się <span class="cut">do&nbsp;końca.</span></h1>
+            <p class="eyebrow">Rolki · Strony internetowe · SEO</p>
+            <h1 class="display display-hero">
+                Rolki, które się <span class="cut">ogląda.</span><br>
+                Strony, które się <span class="cut cut-alt">znajduje.</span>
+            </h1>
             <p class="lead">
-                Wysyłasz surowy materiał z telefonu. Odsyłam gotową pionową rolkę:
-                z mocnym początkiem, cięciami pod muzykę i napisami, które da się przeczytać bez dźwięku.
+                Montuję pionowe rolki na Reels, TikToka i Shorts z Twojego materiału.
+                Robię też szybkie strony internetowe i dbam o to, żeby klienci znajdowali je w Google.
             </p>
             <div class="actions">
-                <a href="/kontakt/" class="btn btn-primary">Wyślij materiał</a>
-                <a href="#proces" class="btn btn-ghost">Jak to działa</a>
+                <a href="/kontakt/?temat=rolka-firma" class="btn btn-primary">Zamów rolkę</a>
+                <a href="/kontakt/?temat=strona" class="btn btn-ghost">Zamów stronę</a>
             </div>
         </div>
 
+        <div class="hero-visual">
+        <div class="hero-browser site-frame" aria-hidden="true">
+            <div class="site-bar"><i></i><i></i><i></i><span>ogarnijegzamin.pl</span></div>
+            <picture>
+                <source srcset="/web/ogarnijegzamin.webp" type="image/webp">
+                <img src="/web/ogarnijegzamin.jpg" alt="" width="1200" height="750" decoding="async">
+            </picture>
+        </div>
         <figure class="monitor" aria-label="Podgląd: przykładowa rolka cięta pod rytm">
             <div class="monitor-bar">
                 <span>Program</span>
@@ -98,6 +111,7 @@ const emptySlots = Math.max(0, REEL_SLOTS - reels.length);
             </div>
             <figcaption class="monitor-meta">1080×1920 · 30 fps · 120 BPM</figcaption>
         </figure>
+        </div>
     </section>
 
     <!-- REALIZACJE -->
@@ -106,10 +120,11 @@ const emptySlots = Math.max(0, REEL_SLOTS - reels.length);
             <h2 class="h2">Realizacje</h2>
             <p class="block-sub">
                 {reels.length
-                  ? 'Kliknij rolkę, żeby obejrzeć ją w powiększeniu z dźwiękiem.'
+                  ? 'Rolki i strony, które zrobiłem. Kliknij rolkę, żeby obejrzeć ją w powiększeniu z dźwiękiem.'
                   : 'Tu trafią gotowe rolki. Na razie sloty są wolne. Jeden może być Twój.'}
             </p>
         </div>
+        <h3 class="sub-h reveal"><span class="track-dot track-v1"></span>Rolki</h3>
         <div class="reel-grid">
             {reels.map(r => (
                 <figure class={`reel track-${r.track} reveal`}>
@@ -132,6 +147,10 @@ const emptySlots = Math.max(0, REEL_SLOTS - reels.length);
                 </a>
             ))}
         </div>
+        <h3 class="sub-h sub-h-gap reveal"><span class="track-dot track-a1"></span>Strony internetowe</h3>
+        <div class="sites">
+            {sites.map(site => <SiteCard site={site} />)}
+        </div>
         <dialog class="viewer" aria-label="Podgląd rolki">
             <button class="viewer-close" type="button" aria-label="Zamknij">✕</button>
             <video class="viewer-video" controls playsinline loop></video>
@@ -142,7 +161,7 @@ const emptySlots = Math.max(0, REEL_SLOTS - reels.length);
     <!-- USŁUGI jako ścieżki na osi czasu -->
     <section class="block" id="uslugi" data-clip="Usługi" data-track="v2">
         <div class="block-head reveal">
-            <h2 class="h2">Co robię z Twoim materiałem</h2>
+            <h2 class="h2">Montaż rolek</h2>
             <p class="block-sub">Każda rolka przechodzi przez te same ścieżki, jak na osi czasu w programie do montażu.</p>
         </div>
         <ol class="tracks">
@@ -189,52 +208,41 @@ const emptySlots = Math.max(0, REEL_SLOTS - reels.length);
         </ol>
     </section>
 
-    <!-- NIE TYLKO ROLKI: strony i SEO -->
+    <!-- STRONY I SEO -->
     <section class="block" id="strony" data-clip="Strony i SEO" data-track="a1">
         <div class="block-head reveal">
-            <h2 class="h2">Nie tylko rolki</h2>
-            <p class="block-sub">Robię też strony internetowe i dbam o to, żeby Twoją firmę dało się znaleźć w Google.</p>
+            <h2 class="h2">Strony i SEO</h2>
+            <p class="block-sub">Dobra rolka przyciąga uwagę, ale klient, który szuka usługi w Google, musi trafić na Twoją stronę.</p>
         </div>
-        <div class="also">
-            <ul class="also-list reveal">
-                <li>
-                    <h3>Strony internetowe</h3>
-                    <p>Szybkie strony-wizytówki i landingi dla firm, dobrze wyglądające na telefonie.</p>
-                </li>
-                <li>
-                    <h3>SEO i Google</h3>
-                    <p>SEO techniczne, wizytówka w Mapach Google i Search Console, żeby klienci trafiali do Ciebie z wyszukiwarki.</p>
-                </li>
-                <li>
-                    <h3>Wszystko w jednym miejscu</h3>
-                    <p>Rolki, które montuję, mogą od razu trafić na Twoją stronę, a całość wygląda spójnie.</p>
-                </li>
-            </ul>
-            <div class="also-side reveal">
-                <div class="site-frame">
-                    <div class="site-bar" aria-hidden="true"><i></i><i></i><i></i><span>ogarnijegzamin.pl</span></div>
-                    <picture>
-                        <source srcset="/web/ogarnijegzamin.webp" type="image/webp">
-                        <img src="/web/ogarnijegzamin.jpg" alt="Strona ogarnijegzamin.pl" width="1200" height="750" loading="lazy" decoding="async">
-                    </picture>
-                </div>
-                <div class="actions">
-                    <a href="/strony-internetowe/" class="btn btn-primary">Strony i SEO →</a>
-                    <a href="/kontakt/?temat=strona" class="btn btn-ghost">Zapytaj o stronę</a>
-                </div>
-            </div>
+        <ul class="also-list also-cols reveal">
+            <li>
+                <h3>Strony internetowe</h3>
+                <p>Szybkie strony-wizytówki i landingi dla firm, pisane od zera i dobrze wyglądające na telefonie.</p>
+            </li>
+            <li>
+                <h3>SEO i Google</h3>
+                <p>SEO techniczne, wizytówka w Mapach Google i Search Console, żeby klienci trafiali do Ciebie z wyszukiwarki.</p>
+            </li>
+            <li>
+                <h3>Wszystko w jednym miejscu</h3>
+                <p>Rolki, które montuję, mogą od razu trafić na Twoją stronę, a całość wygląda spójnie.</p>
+            </li>
+        </ul>
+        <div class="actions also-actions reveal">
+            <a href="/strony-internetowe/" class="btn btn-primary">Więcej o stronach i SEO →</a>
+            <a href="/kontakt/?temat=strona" class="btn btn-ghost">Zapytaj o stronę</a>
         </div>
     </section>
 
     <!-- DLA KOGO -->
     <section class="block" id="dla-kogo" data-clip="Dla kogo" data-track="a1">
         <div class="block-head reveal">
-            <h2 class="h2">Dla kogo montuję</h2>
+            <h2 class="h2">Dla kogo pracuję</h2>
         </div>
         <div class="who">
             <article class="who-item reveal">
                 <h3>Lokalne firmy</h3>
-                <p>Produkt, usługa, kulisy pracy. Rolki co tydzień albo co miesiąc, w jednym stylu, żeby profil wyglądał spójnie.</p>
+                <p>Rolki co tydzień albo co miesiąc w jednym stylu i strona, na którą trafiają klienci z Google.</p>
             </article>
             <article class="who-item reveal">
                 <h3>Wesela i imprezy</h3>
@@ -255,28 +263,28 @@ const emptySlots = Math.max(0, REEL_SLOTS - reels.length);
     <section class="block" id="proces" data-clip="Proces" data-track="t1">
         <div class="block-head reveal">
             <h2 class="h2">Jak pracuję</h2>
-            <p class="block-sub">Od wysłania materiału do gotowego pliku.</p>
+            <p class="block-sub">Od pierwszej wiadomości do gotowej rolki albo strony.</p>
         </div>
         <ol class="steps">
             <li class="step reveal">
                 <span class="step-tc">00:00</span>
-                <h3>Wysyłasz materiał</h3>
-                <p>Link do Google Drive, WeTransfer albo prosto z telefonu. Dopisz, gdzie rolka ma się ukazać i jaki ma mieć klimat.</p>
+                <h3>Piszesz, czego potrzebujesz</h3>
+                <p>Rolka: wyślij materiał przez Google Drive albo WeTransfer. Strona: napisz, czym się zajmujesz i dla kogo.</p>
             </li>
             <li class="step reveal">
                 <span class="step-tc">00:05</span>
                 <h3>Dostajesz wycenę</h3>
-                <p>Oglądam materiał i odpisuję z ceną i terminem. Zaczynam dopiero, gdy się zgodzisz.</p>
+                <p>Odpisuję z ceną i terminem. Zaczynam dopiero, gdy się zgodzisz.</p>
             </li>
             <li class="step reveal">
                 <span class="step-tc">00:15</span>
-                <h3>Montuję</h3>
-                <p>Pierwszą wersję dostajesz zwykle w 2–4 dni robocze, jako link do podglądu na telefonie.</p>
+                <h3>Robię</h3>
+                <p>Pierwszą wersję rolki dostajesz zwykle w 2–4 dni robocze. Stronę widzisz na żywym podglądzie w trakcie pracy.</p>
             </li>
             <li class="step reveal">
                 <span class="step-tc">00:40</span>
-                <h3>Poprawki i gotowy plik</h3>
-                <p>Nanoszę Twoje uwagi i wysyłam finalny MP4 oraz wersję bez muzyki.</p>
+                <h3>Poprawki i oddanie</h3>
+                <p>Nanoszę Twoje uwagi. Rolka: finalny MP4 i wersja bez muzyki. Strona: publikacja, domena i Search Console.</p>
             </li>
         </ol>
     </section>
@@ -298,9 +306,12 @@ const emptySlots = Math.max(0, REEL_SLOTS - reels.length);
 
     <!-- CTA -->
     <section class="end" data-clip="Kontakt" data-track="v1">
-        <h2 class="display display-end">Masz materiał w telefonie?</h2>
-        <p class="lead">Wyślij go, odpiszę z wyceną.</p>
-        <a href="/kontakt/" class="btn btn-primary">Wyślij materiał</a>
+        <h2 class="display display-end">Rolka czy strona?</h2>
+        <p class="lead">Napisz, czego potrzebujesz. Odpiszę z wyceną.</p>
+        <div class="actions">
+            <a href="/kontakt/?temat=rolka-firma" class="btn btn-primary">Zamów rolkę</a>
+            <a href="/kontakt/?temat=strona" class="btn btn-ghost">Zamów stronę</a>
+        </div>
     </section>
 
     <script is:inline>
