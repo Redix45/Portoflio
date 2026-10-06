@@ -1,0 +1,208 @@
+---
+import ReelLayout from '../layouts/ReelLayout.astro';
+
+const sites = [
+  {
+    name: 'ogarnijegzamin.pl',
+    url: 'https://ogarnijegzamin.pl/',
+    img: '/web/ogarnijegzamin',
+    tag: 'Projekt własny · aplikacja webowa',
+    text: 'Platforma do nauki do egzaminów zawodowych: baza pytań z omówieniami, arkusze CKE i symulatory egzaminu praktycznego. Projekt, wykonanie i SEO.'
+  },
+  {
+    name: 'jankobus.com',
+    url: 'https://jankobus.com/',
+    img: '/web/jankobus',
+    tag: 'Strona-wizytówka',
+    text: 'Strona, na której jesteś. Szybka strona statyczna, hosting na Cloudflare, dane strukturalne dla Google i podgląd linku pod Facebooka i Messengera.'
+  }
+];
+
+const faq = [
+  {
+    q: 'Ile kosztuje strona internetowa?',
+    a: 'Zależy od liczby podstron i funkcji. Po krótkiej rozmowie podaję cenę z góry, bez dopłat w trakcie.'
+  },
+  {
+    q: 'Ile trwa zrobienie strony?',
+    a: 'Prosta strona-wizytówka to zwykle 1–2 tygodnie od momentu, gdy mam treści i zdjęcia. Większe projekty ustalamy indywidualnie.'
+  },
+  {
+    q: 'Czy gwarantujesz pierwsze miejsce w Google?',
+    a: 'Nie, i nikt uczciwy tego nie zagwarantuje. Gwarantuję, że strona będzie technicznie przygotowana pod Google, a Ty dostaniesz dostęp do Google Search Console, żeby widzieć, jak rośnie widoczność.'
+  },
+  {
+    q: 'Czy będę mógł sam zmieniać treści?',
+    a: 'Drobne zmiany robię szybko na prośbę. Jeśli chcesz edytować stronę samodzielnie, dobierzemy rozwiązanie z prostym panelem.'
+  },
+  {
+    q: 'Możesz poprawić SEO mojej obecnej strony?',
+    a: 'Tak. Sprawdzam stronę pod kątem technicznym i treści, wypisuję, co blokuje widoczność, i wprowadzam poprawki, o ile mam dostęp do strony.'
+  },
+  {
+    q: 'Czy mogę zamówić stronę razem z rolkami?',
+    a: 'Tak. Rolki, które dla Ciebie montuję, mogą od razu trafić na stronę, a całość będzie wyglądać spójnie.'
+  }
+];
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'Strony internetowe i SEO',
+    serviceType: ['Tworzenie stron internetowych', 'Pozycjonowanie stron (SEO)', 'Lokalne SEO'],
+    provider: { '@type': 'Person', name: 'Jan Kobus', url: 'https://jankobus.com/' },
+    areaServed: [{ '@type': 'City', name: 'Lubliniec' }, { '@type': 'Country', name: 'Polska' }],
+    url: 'https://jankobus.com/strony-internetowe/'
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }))
+  }
+];
+---
+
+<ReelLayout
+    title="Strony internetowe i SEO Lubliniec | Jan Kobus"
+    description="Szybkie strony internetowe dla firm i widoczność w Google: SEO techniczne, lokalne SEO, wizytówka Google, Search Console. Lubliniec i zdalnie w całej Polsce."
+    canonical="https://jankobus.com/strony-internetowe/"
+    structuredData={structuredData}
+    active="strony"
+>
+    <section class="page-head" data-clip="Strony" data-track="t1">
+        <p class="eyebrow">Strony internetowe · SEO</p>
+        <h1 class="display">Strony, które Google <span class="cut">pokazuje.</span></h1>
+        <p class="lead">
+            Robię szybkie, nowoczesne strony dla firm i dbam o to, żeby dało się je znaleźć w Google.
+            Od projektu, przez wdrożenie, po pierwsze wyniki w wyszukiwarce.
+        </p>
+        <div class="actions">
+            <a href="/kontakt/?temat=strona" class="btn btn-primary">Zapytaj o stronę</a>
+            <a href="#realizacje-www" class="btn btn-ghost">Zobacz realizacje</a>
+        </div>
+    </section>
+
+    <section class="block" id="realizacje-www" data-clip="Realizacje" data-track="v1">
+        <div class="block-head reveal">
+            <h2 class="h2">Realizacje</h2>
+            <p class="block-sub">Kliknij, żeby otworzyć stronę w nowej karcie.</p>
+        </div>
+        <div class="sites">
+            {sites.map(s => (
+                <a class="site reveal" href={s.url} target="_blank" rel="noopener">
+                    <div class="site-frame">
+                        <div class="site-bar" aria-hidden="true"><i></i><i></i><i></i><span>{s.name}</span></div>
+                        <picture>
+                            <source srcset={`${s.img}.webp`} type="image/webp">
+                            <img src={`${s.img}.jpg`} alt={`Strona ${s.name}`} width="1200" height="750" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                    <div class="site-info">
+                        <span class="reel-tag">{s.tag}</span>
+                        <h3>{s.name} <span aria-hidden="true">↗</span></h3>
+                        <p>{s.text}</p>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </section>
+
+    <section class="block" id="zakres" data-clip="Zakres" data-track="v2">
+        <div class="block-head reveal">
+            <h2 class="h2">Co robię</h2>
+            <p class="block-sub">Strona i jej widoczność w Google to jedna robota, nie dwie osobne.</p>
+        </div>
+        <ol class="tracks">
+            <li class="track track-v1 reveal">
+                <span class="track-id">WWW</span>
+                <div class="track-body">
+                    <h3>Projekt i wykonanie</h3>
+                    <p>Strona-wizytówka, landing pod kampanię albo kilka podstron. Pisana od zera, bez ciężkich szablonów, dobrze wygląda na telefonie.</p>
+                </div>
+                <span class="track-lane" aria-hidden="true"><i style="--l:0;--w:30"></i><i style="--l:32;--w:22"></i><i style="--l:56;--w:40"></i></span>
+            </li>
+            <li class="track track-v2 reveal">
+                <span class="track-id">SEO</span>
+                <div class="track-body">
+                    <h3>SEO techniczne</h3>
+                    <p>Tytuły i opisy, nagłówki, mapa strony, dane strukturalne, szybkość ładowania i poprawne przekierowania.</p>
+                </div>
+                <span class="track-lane" aria-hidden="true"><i style="--l:4;--w:8"></i><i style="--l:16;--w:12"></i><i style="--l:32;--w:8"></i><i style="--l:46;--w:14"></i><i style="--l:66;--w:10"></i><i style="--l:82;--w:12"></i></span>
+            </li>
+            <li class="track track-t1 reveal">
+                <span class="track-id">LOK</span>
+                <div class="track-body">
+                    <h3>Lokalne SEO</h3>
+                    <p>Profil firmy w Google (wizytówka w Mapach), spójne dane firmy w sieci i podstrony pod miasto i usługę.</p>
+                </div>
+                <span class="track-lane" aria-hidden="true"><i style="--l:10;--w:20"></i><i style="--l:40;--w:16"></i><i style="--l:70;--w:20"></i></span>
+            </li>
+            <li class="track track-a1 reveal">
+                <span class="track-id">GSC</span>
+                <div class="track-body">
+                    <h3>Pomiar</h3>
+                    <p>Google Search Console i statystyki odwiedzin, żeby było widać, po jakich hasłach ludzie Cię znajdują.</p>
+                </div>
+                <span class="track-lane track-wave" aria-hidden="true"></span>
+            </li>
+            <li class="track track-c reveal">
+                <span class="track-id">DNS</span>
+                <div class="track-body">
+                    <h3>Domena i hosting</h3>
+                    <p>Pomagam kupić i podpiąć domenę. Strony stawiam na Cloudflare: szybko, z certyfikatem SSL i bez opłat za sam hosting przy małych stronach.</p>
+                </div>
+                <span class="track-lane track-grade" aria-hidden="true"></span>
+            </li>
+        </ol>
+    </section>
+
+    <section class="block" id="proces-www" data-clip="Proces" data-track="t1">
+        <div class="block-head reveal">
+            <h2 class="h2">Jak pracuję</h2>
+            <p class="block-sub">Od pierwszej wiadomości do strony w Google.</p>
+        </div>
+        <ol class="steps">
+            <li class="step reveal">
+                <span class="step-tc">00:00</span>
+                <h3>Rozmowa</h3>
+                <p>Ustalamy, dla kogo jest strona, co ma robić i po jakich hasłach ludzie mają Cię znajdować.</p>
+            </li>
+            <li class="step reveal">
+                <span class="step-tc">00:05</span>
+                <h3>Plan i wycena</h3>
+                <p>Lista podstron, termin i cena z góry. Zaczynam, gdy się zgodzisz.</p>
+            </li>
+            <li class="step reveal">
+                <span class="step-tc">00:15</span>
+                <h3>Projekt i wykonanie</h3>
+                <p>Dostajesz link do podglądu na żywo i zgłaszasz poprawki w trakcie, a nie dopiero na końcu.</p>
+            </li>
+            <li class="step reveal">
+                <span class="step-tc">00:40</span>
+                <h3>Start i Google</h3>
+                <p>Publikacja, podpięcie domeny, mapa strony w Search Console i wizytówka w Mapach Google.</p>
+            </li>
+        </ol>
+    </section>
+
+    <section class="block" id="faq-www" data-clip="FAQ" data-track="v2">
+        <div class="block-head reveal">
+            <h2 class="h2">Pytania</h2>
+        </div>
+        <div class="faq">
+            {faq.map(({ q, a }) => (
+                <details class="faq-item reveal">
+                    <summary>{q}</summary>
+                    <p>{a}</p>
+                </details>
+            ))}
+        </div>
+    </section>
+
+    <section class="end" data-clip="Kontakt" data-track="v1">
+        <h2 class="display display-end">Potrzebujesz strony?</h2>
+        <p class="lead">Napisz, czym się zajmujesz. Odpiszę z planem i wyceną.</p>
+        <a href="/kontakt/?temat=strona" class="btn btn-primary">Zapytaj o stronę</a>
+    </section>
+</ReelLayout>

@@ -11,21 +11,21 @@ const structuredData = {
 ---
 
 <ReelLayout
-    title="Kontakt | Jan Kobus – montaż rolek, Lubliniec"
-    description="Wyślij materiał do montażu rolki na Instagram Reels, TikToka lub YouTube Shorts. Odpiszę z wyceną i terminem."
+    title="Kontakt | Jan Kobus – rolki, strony internetowe, SEO"
+    description="Napisz w sprawie montażu rolek, strony internetowej albo SEO. Odpiszę z wyceną i terminem."
     canonical="https://jankobus.com/kontakt/"
     structuredData={structuredData}
     active="kontakt"
 >
     <section class="page-head" data-clip="Kontakt" data-track="t1">
         <p class="eyebrow">Kontakt</p>
-        <h1 class="display">Wyślij materiał.</h1>
-        <p class="lead">Opisz krótko, czego potrzebujesz. Odpiszę z wyceną i terminem, zanim zacznę pracę.</p>
+        <h1 class="display">Napisz do mnie.</h1>
+        <p class="lead">Rolka, strona czy SEO? Opisz krótko, czego potrzebujesz. Odpiszę z wyceną i terminem, zanim zacznę pracę.</p>
     </section>
 
     <section class="contact" data-clip="Formularz" data-track="v1">
         <form class="form" action="https://formspree.io/f/mbdrgppo" method="POST">
-            <input type="hidden" name="_subject" value="Nowe zapytanie: montaż rolki">
+            <input type="hidden" name="_subject" value="Nowe zapytanie z jankobus.com">
             <div class="field-row">
                 <div class="field">
                     <label for="name">Imię</label>
@@ -38,16 +38,23 @@ const structuredData = {
             </div>
             <div class="field-row">
                 <div class="field">
-                    <label for="type">Rodzaj rolki</label>
-                    <select id="type" name="rodzaj">
-                        <option>Firma / produkt</option>
-                        <option>Wesele / impreza</option>
-                        <option>Nieruchomość</option>
-                        <option>Event / koncert</option>
-                        <option>Inne</option>
+                    <label for="type">Czego potrzebujesz</label>
+                    <select id="type" name="temat">
+                        <optgroup label="Montaż rolek">
+                            <option value="rolka-firma">Rolka: firma / produkt</option>
+                            <option value="rolka-wesele">Rolka: wesele / impreza</option>
+                            <option value="rolka-nieruchomosc">Rolka: nieruchomość</option>
+                            <option value="rolka-event">Rolka: event / koncert</option>
+                        </optgroup>
+                        <optgroup label="Strony i Google">
+                            <option value="strona">Strona internetowa</option>
+                            <option value="seo">SEO / widoczność w Google</option>
+                            <option value="strona-seo">Strona + SEO</option>
+                        </optgroup>
+                        <option value="inne">Inne</option>
                     </select>
                 </div>
-                <div class="field">
+                <div class="field" data-only="rolka">
                     <label for="count">Ile rolek</label>
                     <select id="count" name="ilosc">
                         <option>Jedna</option>
@@ -57,7 +64,7 @@ const structuredData = {
                 </div>
             </div>
             <div class="field">
-                <label for="link">Link do materiału <small>(opcjonalnie: Google Drive, WeTransfer)</small></label>
+                <label for="link"><span data-only="rolka">Link do materiału <small>(opcjonalnie: Google Drive, WeTransfer)</small></span><span data-only="web" hidden>Adres obecnej strony <small>(jeśli masz)</small></span></label>
                 <input type="url" id="link" name="link" placeholder="https://">
             </div>
             <div class="field">
@@ -72,7 +79,13 @@ const structuredData = {
 
         <aside class="aside">
             <h2>Zanim wyślesz</h2>
-            <ul>
+            <ul data-only="web" hidden>
+                <li>Napisz, czym zajmuje się Twoja firma i gdzie działa.</li>
+                <li>Wklej linki do 2–3 stron, które Ci się podobają.</li>
+                <li>Jeśli masz już domenę albo stronę, podaj jej adres.</li>
+                <li>Napisz, po jakich hasłach klienci mają Cię znajdować w Google.</li>
+            </ul>
+            <ul data-only="rolka">
                 <li>Nagrywaj w pionie, jeśli to możliwe.</li>
                 <li>Łap kilka sekund przed i po ważnym momencie.</li>
                 <li>Wyślij oryginalne pliki, nie przez Messengera ani WhatsAppa, bo kompresują jakość.</li>
@@ -81,4 +94,28 @@ const structuredData = {
             <p>Wolisz pisać na Instagramie? <a href="https://www.instagram.com/redix.45/" target="_blank" rel="noopener noreferrer">@redix.45</a></p>
         </aside>
     </section>
+
+    <script is:inline>
+    (() => {
+      // Pola i podpowiedzi zależne od tematu: rolki vs strona/SEO
+      const sel = document.getElementById('type');
+      const msg = document.getElementById('message');
+      const subject = document.querySelector('input[name="_subject"]');
+      const placeholders = {
+        rolka: 'Gdzie rolka ma się ukazać, jaki klimat, na kiedy jest potrzebna.',
+        web: 'Czym zajmuje się firma, czego oczekujesz od strony, na kiedy jest potrzebna.'
+      };
+      const apply = () => {
+        const v = sel.value;
+        const mode = v.startsWith('rolka') ? 'rolka' : (v === 'inne' ? 'rolka' : 'web');
+        document.querySelectorAll('[data-only]').forEach(el => { el.hidden = el.dataset.only !== mode; });
+        msg.placeholder = placeholders[mode];
+        subject.value = 'Nowe zapytanie z jankobus.com: ' + sel.options[sel.selectedIndex].text;
+      };
+      const temat = new URLSearchParams(location.search).get('temat');
+      if (temat && [...sel.options].some(o => o.value === temat)) sel.value = temat;
+      sel.addEventListener('change', apply);
+      apply();
+    })();
+    </script>
 </ReelLayout>

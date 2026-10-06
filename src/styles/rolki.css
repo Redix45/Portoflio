@@ -30,6 +30,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 body {
   margin: 0;
@@ -517,3 +518,35 @@ h3 { font: 600 1.15rem/1.3 var(--f-body); }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ---------- strony internetowe ---------- */
+.page-head .actions { margin-top: 6px; }
+.sites { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 32px); }
+@media (max-width: 860px) { .sites { grid-template-columns: 1fr; } }
+.site { display: grid; gap: 16px; text-decoration: none; color: inherit; }
+.site-frame {
+  border-radius: 10px; overflow: hidden; background: var(--panel);
+  border: 1px solid var(--line); transition: border-color .2s, transform .2s;
+}
+.site:hover .site-frame, .site:focus-visible .site-frame { border-color: var(--v1); transform: translateY(-2px); }
+.site-bar {
+  display: flex; align-items: center; gap: 6px; padding: 9px 12px;
+  background: var(--panel-2); border-bottom: 1px solid var(--line);
+  font: 400 .72rem/1 var(--f-mono); color: var(--muted);
+}
+.site-bar i { width: 9px; height: 9px; border-radius: 50%; background: #3a3d47; }
+.site-bar span { margin-left: 10px; padding: 4px 10px; border-radius: 4px; background: var(--bg); flex: 1; max-width: 260px; }
+.site-frame img { width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+.site-info { display: grid; gap: 6px; }
+.site-info h3 { font: 800 1.5rem/1 var(--f-display); font-stretch: 80%; }
+.site-info p { color: #c3c1ba; }
+
+/* sekcja "Nie tylko rolki" na stronie głównej */
+.also { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 40px); align-items: center; }
+@media (max-width: 860px) { .also { grid-template-columns: 1fr; } }
+.also-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.also-list li { background: var(--bg); padding: 20px 22px; display: grid; gap: 6px; }
+.also-list h3 { font: 800 1.35rem/1 var(--f-display); font-stretch: 78%; text-transform: uppercase; }
+.also-list p { color: #c3c1ba; }
+.also-side { display: grid; gap: 18px; }
+.also-side .site-frame { pointer-events: none; }

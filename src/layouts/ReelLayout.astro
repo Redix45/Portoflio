@@ -9,7 +9,7 @@ interface Props {
   ogType?: string;
   ogImage?: string;
   structuredData?: any;
-  active?: 'home' | 'o-mnie' | 'kontakt';
+  active?: 'home' | 'o-mnie' | 'kontakt' | 'strony';
 }
 
 const {
@@ -47,7 +47,7 @@ const year = new Date().getFullYear();
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Jan Kobus – montaż rolek na Reels, TikToka i YouTube Shorts">
     <meta property="og:locale" content="pl_PL">
-    <meta property="og:site_name" content="Jan Kobus – montaż rolek">
+    <meta property="og:site_name" content="Jan Kobus – rolki, strony, SEO">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content={ogImage}>
     <meta name="twitter:title" content={title}>
@@ -71,14 +71,15 @@ const year = new Date().getFullYear();
     <header class="topbar">
         <a href="/" class="brand" aria-label="Jan Kobus – strona główna">
             <span class="brand-name">Jan Kobus</span>
-            <span class="brand-role">montaż rolek</span>
+            <span class="brand-role">rolki · strony · SEO</span>
         </a>
         <nav class="menu" aria-label="Główna nawigacja">
             <a href="/#realizacje">Realizacje</a>
             <a href="/#uslugi">Usługi</a>
             <a href="/#proces">Jak pracuję</a>
+            <a href="/strony-internetowe/" aria-current={active === 'strony' ? 'page' : undefined}>Strony WWW</a>
             <a href="/o-mnie/" aria-current={active === 'o-mnie' ? 'page' : undefined}>O mnie</a>
-            <a href="/kontakt/" class="menu-cta" aria-current={active === 'kontakt' ? 'page' : undefined}>Wyślij materiał</a>
+            <a href="/kontakt/" class="menu-cta" aria-current={active === 'kontakt' ? 'page' : undefined}>Kontakt</a>
         </nav>
         <button class="menu-toggle" aria-label="Otwórz menu" aria-expanded="false">
             <span></span><span></span>
@@ -93,7 +94,7 @@ const year = new Date().getFullYear();
         <div class="footer-row">
             <div>
                 <p class="footer-name">Jan Kobus</p>
-                <p class="footer-meta">Montaż rolek · zdalnie w całej Polsce</p>
+                <p class="footer-meta">Montaż rolek · strony internetowe · SEO · zdalnie w całej Polsce</p>
             </div>
             <div class="footer-links">
                 <a href="https://www.instagram.com/redix.45/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -178,7 +179,10 @@ const year = new Date().getFullYear();
         const p = progress();
         seq.style.setProperty('--p', p);
         tcEl.textContent = tc(Math.round(p * SEQ_SECONDS * FPS));
-        clips.forEach(c => c.el.classList.toggle('active', p >= c.start && p < c.end));
+        let any = false;
+        clips.forEach(c => { const on = p >= c.start && p < c.end; c.el.classList.toggle('active', on); any = any || on; });
+        // przed pierwszą sekcją (pod nagłówkiem) podświetl pierwszy klip
+        if (!any && clips.length && p < clips[0].start) clips[0].el.classList.add('active');
       };
 
       let dragging = false;
