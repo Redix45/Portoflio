@@ -41,9 +41,19 @@ const structuredData = [
     url: 'https://jankobus.com/',
     logo: 'https://jankobus.com/apple-touch-icon.png',
     priceRange: '$$',
+    telephone: '+48732800250',
+    geo: { '@type': 'GeoCoordinates', latitude: 50.6715, longitude: 18.6965 },
     address: { '@type': 'PostalAddress', addressLocality: 'Lubliniec', addressRegion: 'Śląskie', postalCode: '42-700', addressCountry: 'PL' },
     areaServed: [
       { '@type': 'City', name: 'Lubliniec' },
+      { '@type': 'City', name: 'Częstochowa' },
+      { '@type': 'City', name: 'Tarnowskie Góry' },
+      { '@type': 'City', name: 'Koszęcin' },
+      { '@type': 'City', name: 'Woźniki' },
+      { '@type': 'City', name: 'Kalety' },
+      { '@type': 'City', name: 'Herby' },
+      { '@type': 'City', name: 'Ciasna' },
+      { '@type': 'City', name: 'Dobrodzień' },
       { '@type': 'State', name: 'Województwo Śląskie' },
       { '@type': 'Country', name: 'Polska' }
     ],
@@ -307,7 +317,7 @@ const emptySlots = Math.max(0, REEL_SLOTS - reels.length);
     <!-- CTA -->
     <section class="end" data-clip="Kontakt" data-track="v1">
         <h2 class="display display-end">Rolka czy strona?</h2>
-        <p class="lead">Napisz, czego potrzebujesz. Odpiszę z wyceną.</p>
+        <p class="lead">Napisz, czego potrzebujesz, albo zadzwoń: <a class="phone" href="tel:+48732800250">732 800 250</a></p>
         <div class="actions">
             <a href="/kontakt/?temat=rolka-firma" class="btn btn-primary">Zamów rolkę</a>
             <a href="/kontakt/?temat=strona" class="btn btn-ghost">Zamów stronę</a>

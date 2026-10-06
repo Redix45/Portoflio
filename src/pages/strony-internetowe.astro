@@ -5,6 +5,10 @@ import { sites } from '../data/sites';
 
 const faq = [
   {
+    q: 'Robisz strony tylko w Lublińcu?',
+    a: 'Nie. Jestem z Lublińca i najczęściej pracuję z firmami z Lublińca, Częstochowy, Tarnowskich Gór i okolic, ale stronę zrobię dla firmy z każdego miejsca w Polsce. Wszystko da się ustalić zdalnie.'
+  },
+  {
     q: 'Ile kosztuje strona internetowa?',
     a: 'Zależy od liczby podstron i funkcji. Po krótkiej rozmowie podaję cenę z góry, bez dopłat w trakcie.'
   },
@@ -35,9 +39,27 @@ const structuredData = [
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: 'Strony internetowe i SEO',
-    serviceType: ['Tworzenie stron internetowych', 'Pozycjonowanie stron (SEO)', 'Lokalne SEO'],
-    provider: { '@type': 'Person', name: 'Jan Kobus', url: 'https://jankobus.com/' },
-    areaServed: [{ '@type': 'City', name: 'Lubliniec' }, { '@type': 'Country', name: 'Polska' }],
+    serviceType: ['Tworzenie stron internetowych', 'Strony internetowe Lubliniec', 'Pozycjonowanie stron (SEO)', 'Lokalne SEO', 'Wizytówka Google'],
+    provider: {
+      '@type': 'ProfessionalService',
+      name: 'Jan Kobus – rolki, strony internetowe, SEO',
+      url: 'https://jankobus.com/',
+      telephone: '+48732800250',
+      address: { '@type': 'PostalAddress', addressLocality: 'Lubliniec', addressRegion: 'Śląskie', postalCode: '42-700', addressCountry: 'PL' },
+      geo: { '@type': 'GeoCoordinates', latitude: 50.6715, longitude: 18.6965 }
+    },
+    areaServed: [
+      { '@type': 'City', name: 'Lubliniec' },
+      { '@type': 'City', name: 'Częstochowa' },
+      { '@type': 'City', name: 'Tarnowskie Góry' },
+      { '@type': 'City', name: 'Koszęcin' },
+      { '@type': 'City', name: 'Woźniki' },
+      { '@type': 'City', name: 'Kalety' },
+      { '@type': 'City', name: 'Herby' },
+      { '@type': 'City', name: 'Ciasna' },
+      { '@type': 'City', name: 'Dobrodzień' },
+      { '@type': 'Country', name: 'Polska' }
+    ],
     url: 'https://jankobus.com/strony-internetowe/'
   },
   {
@@ -49,18 +71,18 @@ const structuredData = [
 ---
 
 <ReelLayout
-    title="Strony internetowe i SEO Lubliniec | Jan Kobus"
-    description="Szybkie strony internetowe dla firm i widoczność w Google: SEO techniczne, lokalne SEO, wizytówka Google, Search Console. Lubliniec i zdalnie w całej Polsce."
+    title="Strony internetowe Lubliniec – tworzenie stron i SEO | Jan Kobus"
+    description="Tworzenie stron internetowych w Lublińcu: szybkie strony-wizytówki dla firm, SEO i pozycjonowanie lokalne, wizytówka Google. Lubliniec, Częstochowa, Tarnowskie Góry i cała Polska. Tel. 732 800 250."
     canonical="https://jankobus.com/strony-internetowe/"
     structuredData={structuredData}
     active="strony"
 >
     <section class="page-head" data-clip="Strony" data-track="t1">
-        <p class="eyebrow">Strony internetowe · SEO</p>
-        <h1 class="display">Strony, które Google <span class="cut">pokazuje.</span></h1>
+        <p class="eyebrow">Lubliniec · Częstochowa · Tarnowskie Góry · cała Polska</p>
+        <h1 class="display">Strony internetowe, które Google <span class="cut">pokazuje.</span></h1>
         <p class="lead">
-            Robię szybkie, nowoczesne strony dla firm i dbam o to, żeby dało się je znaleźć w Google.
-            Od projektu, przez wdrożenie, po pierwsze wyniki w wyszukiwarce.
+            Robię szybkie, nowoczesne strony internetowe dla firm z Lublińca i okolic i dbam o to,
+            żeby dało się je znaleźć w Google. Od projektu, przez wdrożenie, po pierwsze wyniki w wyszukiwarce.
         </p>
         <div class="actions">
             <a href="/kontakt/?temat=strona" class="btn btn-primary">Zapytaj o stronę</a>
@@ -156,6 +178,26 @@ const structuredData = [
         </ol>
     </section>
 
+    <section class="block" id="lokalnie" data-clip="Lubliniec" data-track="a1">
+        <div class="block-head reveal">
+            <h2 class="h2">Strony internetowe w Lublińcu i okolicach</h2>
+            <p class="block-sub">Lokalna firma potrzebuje lokalnych klientów. Strona i wizytówka w Google muszą pracować razem.</p>
+        </div>
+        <div class="local reveal">
+            <p>
+                Jestem z Lublińca, więc dobrze znam lokalny rynek. Robię strony internetowe dla firm z Lublińca,
+                Koszęcina, Woźnik, Kalet, Herb, Ciasnej i Dobrodzienia, a także z Częstochowy i Tarnowskich Gór.
+                Dbam o pozycjonowanie lokalne: frazy typu „usługa + miasto”, poprawne dane firmy,
+                wizytówkę w Mapach Google i szybkość strony na telefonie, bo tak najczęściej szukają klienci.
+            </p>
+            <p>
+                Pracuję też zdalnie, więc stronę zrobię dla firmy z każdego miejsca w Polsce.
+                Wszystko ustalamy przez telefon, maila albo Messengera.
+            </p>
+            <p class="local-phone">Zadzwoń: <a class="phone" href="tel:+48732800250">732 800 250</a></p>
+        </div>
+    </section>
+
     <section class="block" id="faq-www" data-clip="FAQ" data-track="v2">
         <div class="block-head reveal">
             <h2 class="h2">Pytania</h2>
@@ -172,7 +214,7 @@ const structuredData = [
 
     <section class="end" data-clip="Kontakt" data-track="v1">
         <h2 class="display display-end">Potrzebujesz strony?</h2>
-        <p class="lead">Napisz, czym się zajmujesz. Odpiszę z planem i wyceną.</p>
+        <p class="lead">Napisz, czym się zajmujesz, albo zadzwoń: <a class="phone" href="tel:+48732800250">732 800 250</a></p>
         <a href="/kontakt/?temat=strona" class="btn btn-primary">Zapytaj o stronę</a>
     </section>
 </ReelLayout>
