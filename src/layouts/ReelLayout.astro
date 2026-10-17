@@ -9,7 +9,7 @@ interface Props {
   ogType?: string;
   ogImage?: string;
   structuredData?: any;
-  active?: 'home' | 'o-mnie' | 'kontakt' | 'strony';
+  active?: 'home' | 'o-mnie' | 'kontakt' | 'strony' | 'widocznosc';
 }
 
 const {
@@ -81,6 +81,7 @@ const year = new Date().getFullYear();
             <a href="/#uslugi">Usługi</a>
             <a href="/#proces">Jak pracuję</a>
             <a href="/strony-internetowe/" aria-current={active === 'strony' ? 'page' : undefined}>Strony WWW</a>
+            <a href="/widocznosc-google/" aria-current={active === 'widocznosc' ? 'page' : undefined}>Google i AI</a>
             <a href="/o-mnie/" aria-current={active === 'o-mnie' ? 'page' : undefined}>O mnie</a>
             <a href="/kontakt/" class="menu-cta" aria-current={active === 'kontakt' ? 'page' : undefined}>Kontakt</a>
         </nav>

@@ -117,15 +117,17 @@ h3 { font: 600 1.15rem/1.3 var(--f-body); }
 .menu { display: flex; align-items: center; gap: 4px; }
 .menu a {
   text-decoration: none; font-size: .95rem; color: #cfcdc6;
-  padding: 8px 12px; border-radius: var(--radius);
+  padding: 8px 12px; border-radius: var(--radius); white-space: nowrap;
 }
 .menu a:hover, .menu a[aria-current="page"] { color: var(--text); background: var(--panel-2); }
 .menu a.menu-cta { background: var(--text); color: var(--bg); font-weight: 600; margin-left: 8px; }
 .menu a.menu-cta:hover { background: #fff; }
 .menu-toggle { display: none; }
 
-@media (max-width: 860px) {
-  .brand-role { display: none; }
+/* 7 pozycji w menu: najpierw chowamy podpis przy nazwisku, potem przechodzimy na menu mobilne */
+@media (max-width: 1180px) { .brand-role { display: none; } }
+
+@media (max-width: 960px) {
   .menu-toggle {
     display: grid; place-content: center; gap: 6px;
     width: 44px; height: 44px; background: none; border: 1px solid var(--line);
@@ -607,3 +609,29 @@ h3 { font: 600 1.15rem/1.3 var(--f-body); }
 .local { display: grid; gap: 16px; max-width: 760px; }
 .local p { color: #c3c1ba; }
 .local-phone { font-size: 1.2rem; color: var(--text) !important; }
+
+/* ---------- widoczność w Google i AI ---------- */
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 20px); }
+@media (max-width: 900px) { .plans { grid-template-columns: 1fr; } }
+.plan {
+  --tc: var(--v1);
+  display: grid; grid-template-rows: auto auto auto 1fr auto; gap: 14px;
+  padding: 24px; background: var(--panel);
+  border: 1px solid var(--line); border-top: 3px solid var(--tc); border-radius: 10px;
+}
+.plan-id { font: 500 .8rem/1 var(--f-mono); color: var(--tc); }
+.plan h3 { font: 800 1.8rem/1 var(--f-display); font-stretch: 78%; text-transform: uppercase; }
+.plan-price { font: 800 2.4rem/1 var(--f-display); font-stretch: 80%; color: var(--text); }
+.plan-price span { display: block; margin-top: 6px; font: 400 .8rem/1 var(--f-mono); color: var(--muted); }
+.plan ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; align-content: start; color: #c3c1ba; font-size: .97rem; }
+.plan .btn { width: 100%; }
+.plans-note { margin-top: 24px; max-width: 46em; color: #c3c1ba; }
+.plans-note strong { color: var(--text); }
+
+.contact-inline { padding: 0; max-width: none; }
+.check { display: flex; gap: 12px; align-items: flex-start; font-size: .92rem; color: #c3c1ba; cursor: pointer; }
+.check input { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--t1); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.form-status { padding: 14px 16px; border-radius: var(--radius); border: 1px solid var(--c); color: var(--text); background: color-mix(in srgb, var(--c) 12%, transparent); }
+.form-status.ok { border-color: var(--a1); background: color-mix(in srgb, var(--a1) 12%, transparent); }
+.btn:disabled { opacity: .6; cursor: wait; }
