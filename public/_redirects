@@ -1,5 +1,9 @@
 # Cloudflare Pages redirects
 
+# Krótki link z ulotek, audytów i bio: darmowy audyt widoczności
+/audyt /widocznosc-google/#audyt 301
+/audyt/ /widocznosc-google/#audyt 301
+
 # Stare adresy .html
 /o-mnie.html /o-mnie/ 301
 /kontakt.html /kontakt/ 301
