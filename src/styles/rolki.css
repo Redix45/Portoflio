@@ -629,6 +629,21 @@ h3 { font: 600 1.15rem/1.3 var(--f-body); }
 .plans-note strong { color: var(--text); }
 
 .contact-inline { padding: 0; max-width: none; }
+
+/* case study: ogarnijegzamin.pl */
+.case { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
+@media (max-width: 860px) { .case { grid-template-columns: 1fr; } }
+.case-side { display: grid; gap: 12px; }
+.case-body { display: grid; gap: 20px; }
+.case-body h3 { font: 800 1.6rem/1 var(--f-display); font-stretch: 78%; text-transform: uppercase; }
+.case-list { margin: 0; padding-left: 20px; display: grid; gap: 12px; color: #c3c1ba; }
+.case-list strong { color: var(--text); }
+.case-bridge { color: #cfcdc6; border-left: 3px solid var(--a1); padding-left: 16px; }
+.serp { margin: 0; padding: 18px 20px; border-radius: 10px; background: #fff; color: #202124; font-family: Arial, sans-serif; display: grid; gap: 4px; }
+.serp figcaption { font: 500 .7rem/1 var(--f-mono); color: #70757a; text-transform: uppercase; letter-spacing: .04em; margin-bottom: 8px; }
+.serp-url { font-size: .82rem; color: #4d5156; overflow-wrap: anywhere; }
+.serp-title { font-size: 1.15rem; line-height: 1.3; color: #1a0dab; }
+.serp-desc { font-size: .88rem; line-height: 1.5; color: #4d5156; }
 .check { display: flex; gap: 12px; align-items: flex-start; font-size: .92rem; color: #c3c1ba; cursor: pointer; }
 .check input { flex: none; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--t1); }
 .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }

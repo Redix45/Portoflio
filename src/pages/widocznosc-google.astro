@@ -38,7 +38,7 @@ const plans = [
     price: 'od 150 zł',
     unit: 'miesięcznie',
     items: [
-      'Posty i świeże zdjęcia w wizytówce co tydzień',
+      'Post w wizytówce co tydzień, ze zdjęć, które mi przesyłasz',
       'Odpowiedzi na opinie klientów',
       'Godziny świąteczne i bieżące zmiany',
       'Co miesiąc raport: wyświetlenia, telefony, test w ChatGPT',
@@ -49,6 +49,10 @@ const plans = [
 ];
 
 const faq = [
+  {
+    q: 'Ile kosztuje pozycjonowanie wizytówki Google?',
+    a: 'Audyt jest darmowy. Jednorazowe wdrożenie kosztuje od 300 zł, a stała opieka od 150 zł miesięcznie. Dokładną cenę podaję po audycie, bo zależy od branży i stanu profilu.'
+  },
   {
     q: 'Czy audyt jest naprawdę darmowy?',
     a: 'Tak. Sprawdzam Twoją wizytówkę i to, co o firmie mówią Google i ChatGPT, a potem wysyłam listę poprawek. Możesz wdrożyć je sam albo zlecić mnie. Nic nie musisz kupować.'
@@ -72,7 +76,17 @@ const faq = [
   {
     q: 'Kiedy zobaczę efekty?',
     a: 'Poprawki w profilu widać od razu. Wyższa pozycja w Mapach i obecność w odpowiedziach AI to zwykle kwestia kilku tygodni do kilku miesięcy, zależnie od branży i konkurencji.'
+  },
+  {
+    q: 'Pracujesz tylko z firmami z Lublińca?',
+    a: 'Najczęściej z firmami z Lublińca, Częstochowy, Tarnowskich Gór i okolicznych gmin, bo mogę wpaść na miejsce i zrobić zdjęcia. Wizytówkę poprawię zdalnie dla firmy z każdego miejsca w Polsce.'
   }
+];
+
+const caseStats = [
+  { value: '125 tys.+', label: 'podstron w mapie strony' },
+  { value: '~3,8 tys.', label: 'odwiedzających dziennie' },
+  { value: '196', label: 'kwalifikacji z własnymi stronami' }
 ];
 
 const structuredData = [
@@ -84,6 +98,7 @@ const structuredData = [
     description: 'Darmowy audyt i poprawa widoczności lokalnych firm w Mapach Google oraz w odpowiedziach ChatGPT, Gemini i Perplexity.',
     provider: {
       '@type': 'ProfessionalService',
+      '@id': 'https://jankobus.com',
       name: 'Jan Kobus – rolki, strony internetowe, SEO',
       url: 'https://jankobus.com/',
       telephone: '+48732800250',
@@ -114,23 +129,31 @@ const structuredData = [
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: faq.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } }))
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Jan Kobus', item: 'https://jankobus.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Wizytówka Google i widoczność w AI', item: 'https://jankobus.com/widocznosc-google/' }
+    ]
   }
 ];
 ---
 
 <ReelLayout
-    title="Wizytówka Google i widoczność w ChatGPT – Lubliniec | Jan Kobus"
-    description="Darmowy audyt widoczności firmy w Mapach Google i ChatGPT. Poprawiam wizytówki Google i dbam, żeby klienci z Lublińca i okolic znajdowali Twoją firmę. Tel. 732 800 250."
+    title="Wizytówka Google i pozycjonowanie lokalne Lubliniec | Jan Kobus"
+    description="Pozycjonowanie wizytówki Google w Lublińcu i okolicach: darmowy audyt, poprawa profilu w Mapach Google i widoczność w ChatGPT. Lubliniec, Częstochowa, Tarnowskie Góry. Tel. 732 800 250."
     canonical="https://jankobus.com/widocznosc-google/"
     structuredData={structuredData}
     active="widocznosc"
 >
     <section class="page-head" data-clip="Widoczność" data-track="t1">
-        <p class="eyebrow">Google Maps · ChatGPT · Lubliniec i okolice</p>
-        <h1 class="display">Niech Google i ChatGPT <span class="cut">polecają Ciebie.</span></h1>
+        <p class="eyebrow">Pozycjonowanie lokalne · Google Maps · ChatGPT · Lubliniec i okolice</p>
+        <h1 class="display">Wizytówka Google, którą <span class="cut">klienci znajdują.</span></h1>
         <p class="lead">
             Klienci coraz częściej nie przeglądają stron, tylko pytają: „dobry mechanik w Lublińcu?”.
-            Odpowiedź dają Mapy Google i asystenci AI, a oni wskazują tylko kilka firm.
+            Odpowiedź dają Mapy Google i asystenci AI, tacy jak ChatGPT, a oni wskazują tylko kilka firm.
             Sprawdzę za darmo, czy jesteś wśród nich, i pokażę, co poprawić.
         </p>
         <div class="actions">
@@ -188,6 +211,54 @@ const structuredData = [
         </ol>
     </section>
 
+    <section class="block" id="wyniki" data-clip="Wyniki" data-track="a1">
+        <div class="block-head reveal">
+            <h2 class="h2">Wyniki z Google: ogarnijegzamin.pl</h2>
+            <p class="block-sub">Mój własny projekt, zbudowany od zera tak, żeby Google rozumiał każdą z ponad 125 tysięcy podstron.</p>
+        </div>
+        <div class="case reveal">
+            <div class="case-side">
+                <a class="site-link" href="https://ogarnijegzamin.pl/" target="_blank" rel="noopener">
+                    <div class="site-frame">
+                        <div class="site-bar" aria-hidden="true"><i></i><i></i><i></i><span>ogarnijegzamin.pl</span></div>
+                        <picture>
+                            <source srcset="/web/ogarnijegzamin.webp" type="image/webp">
+                            <img src="/web/ogarnijegzamin.jpg" alt="Strona ogarnijegzamin.pl" width="1200" height="750" loading="lazy" decoding="async">
+                        </picture>
+                    </div>
+                </a>
+                <dl class="site-stats">
+                    {caseStats.map(s => (
+                        <div>
+                            <dt>{s.label}</dt>
+                            <dd>{s.value}</dd>
+                        </div>
+                    ))}
+                </dl>
+                <p class="site-note">Odwiedzający: Cloudflare Analytics, czerwiec 2026. Podstrony: mapa strony ogarnijegzamin.pl, październik 2026.</p>
+            </div>
+            <div class="case-body">
+                <h3>Co zrobiłem</h3>
+                <ol class="case-list">
+                    <li><strong>Osobna strona na każde wyszukiwanie.</strong> 196 kwalifikacji ma własne strony, a każde z ok. 124 tys. pytań egzaminacyjnych ma swoją podstronę z odpowiedzią. Kto wpisze treść pytania w Google, może trafić prosto na odpowiedź.</li>
+                    <li><strong>Unikalny tytuł i opis każdej podstrony</strong>, generowane automatycznie z treści pytania, kodu kwalifikacji i numeru.</li>
+                    <li><strong>Dane strukturalne</strong> (QAPage, Course, BreadcrumbList), dzięki którym Google wie, że to pytanie z odpowiedzią albo kurs, a nie zwykły tekst.</li>
+                    <li><strong>Porządek techniczny:</strong> adresy kanoniczne, mapa strony podzielona na 4 pliki, szybkie ładowanie na telefonie.</li>
+                </ol>
+                <figure class="serp" aria-label="Przykład: jak podstrona wygląda w wynikach wyszukiwania">
+                    <figcaption>Tak podstrona pytania wygląda w wynikach wyszukiwania</figcaption>
+                    <p class="serp-url">ogarnijegzamin.pl › pytania › aud-01 › 100</p>
+                    <p class="serp-title">W okresie postprodukcji należy | AUD.01 pyt. 100 | ogarnijegzamin.pl</p>
+                    <p class="serp-desc">W okresie postprodukcji należy — pytanie egzaminacyjne AUD.01 (AUD01) z odpowiedzią i wyjaśnieniem. Egzamin zawodowy CKE, darmowy dostęp.</p>
+                </figure>
+                <p class="case-bridge">
+                    Lokalna firma potrzebuje tej samej zasady w mniejszej skali: kompletny profil w Mapach Google,
+                    spójne dane w sieci i treści, które odpowiadają na pytania klientów. Wtedy Google i ChatGPT wiedzą, kogo polecić.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <section class="block" id="pakiety" data-clip="Pakiety" data-track="a1">
         <div class="block-head reveal">
             <h2 class="h2">Pakiety</h2>
@@ -207,7 +278,7 @@ const structuredData = [
             ))}
         </div>
         <p class="plans-note reveal">
-            <strong>Wizytówka + rolki:</strong> do stałej opieki mogę dołożyć krótkie rolki. Te same filmy trafiają do wizytówki w Google i na Instagrama.
+            <strong>Wizytówka + rolki:</strong> do stałej opieki mogę dołożyć własne zdjęcia na miejscu i krótkie rolki. Te same filmy trafiają do wizytówki w Google i na Instagrama.
             Ceny zależą od branży i stanu profilu, dokładną kwotę podaję po audycie.
         </p>
     </section>
@@ -314,6 +385,26 @@ const structuredData = [
                 <p>Bez zobowiązań. Możesz wdrożyć poprawki sam.</p>
                 <p>Wolisz zadzwonić? <a class="phone" href="tel:+48732800250">732 800 250</a></p>
             </aside>
+        </div>
+    </section>
+
+    <section class="block" id="lokalnie" data-clip="Lubliniec" data-track="a1">
+        <div class="block-head reveal">
+            <h2 class="h2">Pozycjonowanie lokalne w Lublińcu i okolicach</h2>
+            <p class="block-sub">Klient z Lublińca szuka usługi w Lublińcu. Twoja wizytówka ma się pokazać właśnie jemu.</p>
+        </div>
+        <div class="local reveal">
+            <p>
+                Jestem z Lublińca i poprawiam wizytówki Google firm z Lublińca, Koszęcina, Woźnik, Kalet, Herb,
+                Ciasnej i Dobrodzienia, a także z Częstochowy i Tarnowskich Gór. Najczęściej pracuję z warsztatami
+                samochodowymi, wulkanizacjami, salonami fryzjerskimi i kosmetycznymi, gabinetami, restauracjami
+                i firmami usługowymi, które żyją z klientów z okolicy.
+            </p>
+            <p>
+                Mogę przyjechać na miejsce, zrobić zdjęcia i krótkie filmy do wizytówki, a resztę ustalamy przez telefon albo maila.
+                Firmy spoza regionu obsługuję zdalnie.
+            </p>
+            <p class="local-phone">Zadzwoń: <a class="phone" href="tel:+48732800250">732 800 250</a></p>
         </div>
     </section>
 
