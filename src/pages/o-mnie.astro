@@ -1,65 +1,66 @@
 ---
-import ReelLayout from '../layouts/ReelLayout.astro';
+import Layout from '../layouts/Layout.astro';
 
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Person',
   name: 'Jan Kobus',
-  jobTitle: 'Montażysta wideo',
-  description: 'Montaż krótkich pionowych filmów: Reels, TikTok, YouTube Shorts.',
+  jobTitle: 'Specjalista od wizytówek Google i pozycjonowania lokalnego',
+  description: 'Pomagam firmom z Lublińca i okolic być widocznymi w Mapach Google i w odpowiedziach ChatGPT.',
   url: 'https://jankobus.com/o-mnie/',
+  worksFor: { '@id': 'https://jankobus.com' },
+  address: { '@type': 'PostalAddress', addressLocality: 'Lubliniec', addressCountry: 'PL' },
   sameAs: ['https://www.facebook.com/profile.php?id=61587671346611', 'https://www.instagram.com/redix.45/']
 };
 ---
 
-<ReelLayout
-    title="O mnie | Jan Kobus – rolki, strony internetowe, SEO"
-    description="Jan Kobus z Lublińca. Montuję rolki na Instagram Reels, TikToka i YouTube Shorts, robię strony internetowe i dbam o ich widoczność w Google."
+<Layout
+    title="O mnie | Jan Kobus – wizytówki Google, Lubliniec"
+    description="Jan Kobus z Lublińca. Zbudowałem ogarnijegzamin.pl (171 tys. wyświetleń w Google w 3 miesiące), a teraz pomagam lokalnym firmom być widocznymi w Mapach Google i ChatGPT."
     canonical="https://jankobus.com/o-mnie/"
     ogType="profile"
     structuredData={structuredData}
     active="o-mnie"
 >
-    <section class="page-head" data-clip="O mnie" data-track="t1">
+    <section class="page-head">
         <p class="eyebrow">O mnie</p>
         <h1 class="display">Cześć, jestem Janek.</h1>
     </section>
 
-    <section class="about" data-clip="Historia" data-track="v1">
+    <section class="about">
         <div class="about-text reveal">
             <p class="lead">
-                Jestem z Lublińca i montuję krótkie pionowe filmy: rolki na Instagrama,
-                TikToka i YouTube Shorts.
+                Jestem z Lublińca i pomagam lokalnym firmom być widocznymi tam, gdzie dziś szukają klienci:
+                w Mapach Google i w odpowiedziach asystentów AI, takich jak ChatGPT.
             </p>
             <p>
-                Nie nagrywam, tylko montuję. Ty kręcisz telefonem, wysyłasz mi pliki,
-                a ja robię z nich rolkę, którą ktoś obejrzy do końca.
-                Dzięki temu możemy pracować razem bez względu na to, skąd jesteś.
+                Zaczynałem od własnego projektu. Zbudowałem od zera <a href="https://ogarnijegzamin.pl/" target="_blank" rel="noopener">ogarnijegzamin.pl</a>,
+                platformę do nauki do egzaminów zawodowych, i zadbałem o to, żeby Google rozumiał każdą z ponad 125 tysięcy podstron.
+                W ostatnich 3 miesiącach Google pokazał ją w wynikach 171 tysięcy razy.
             </p>
             <p>
-                W montażu najważniejszy jest dla mnie rytm. Tnę pod muzykę i pilnuję, żeby pierwsza sekunda
-                zatrzymała kciuk, a napis był czytelny na małym ekranie. Każdą rolkę oglądam na telefonie,
-                zanim ją wyślę, bo tam będzie oglądana.
+                Te same zasady działają w małej skali, dla warsztatu czy salonu w Lublińcu: kompletna wizytówka,
+                spójne dane w sieci, świeże zdjęcia i prawdziwe opinie. W październiku 2026 sprawdziłem 113 firm z Lublińca:
+                w każdej z 9 branż ChatGPT polecił tylko 3 firmy. Chcę, żeby wśród nich była Twoja.
             </p>
             <p>
-                Robię też strony internetowe i SEO. Dobra rolka przyciąga uwagę, ale klient, który szuka
-                usługi w Google, musi trafić na Twoją stronę. Dlatego mogę zająć się jednym i drugim.
-                <a href="/strony-internetowe/">Zobacz strony i SEO →</a>
+                Pracuję uczciwie: nie kupuję opinii, nie obiecuję „pierwszego miejsca” i nie biorę haseł.
+                Zaczynam od darmowego audytu, a potem co miesiąc pokazuję w raporcie, co się zmieniło.
             </p>
 
             <h2>W skrócie</h2>
             <ul class="kit">
-                <li><span>Rolki</span><span>Instagram Reels, TikTok, YouTube Shorts</span></li>
-                <li><span>Strony</span><span>strony-wizytówki, landingi, SEO, wizytówka Google</span></li>
-                <li><span>Formaty</span><span>9:16, na życzenie 1:1 i 16:9</span></li>
-                <li><span>Współpraca</span><span>zdalnie, z całej Polski</span></li>
-                <li><span>Kontakt</span><span><a href="/kontakt/">formularz</a> lub <a href="https://www.instagram.com/redix.45/" target="_blank" rel="noopener noreferrer">Instagram</a></span></li>
+                <li><span>Usługa</span><span>wizytówki Google, pozycjonowanie lokalne, widoczność w ChatGPT</span></li>
+                <li><span>Start</span><span>darmowy audyt w 2 dni robocze</span></li>
+                <li><span>Ceny</span><span>wdrożenie od 300 zł, opieka od 150 zł/mies.</span></li>
+                <li><span>Obszar</span><span>Lubliniec, Częstochowa, Tarnowskie Góry i okolice; zdalnie cała Polska</span></li>
+                <li><span>Kontakt</span><span><a href="tel:+48732800250">732 800 250</a> · <a href="/kontakt/">formularz</a></span></li>
             </ul>
         </div>
     </section>
 
-    <section class="end" data-clip="Kontakt" data-track="v2">
-        <h2 class="display display-end">Zróbmy pierwszą rolkę.</h2>
-        <a href="/kontakt/" class="btn btn-primary">Wyślij materiał</a>
+    <section class="end">
+        <h2 class="display display-end">Sprawdzę Twoją firmę za darmo.</h2>
+        <a href="/#audyt" class="btn btn-primary">Zamów darmowy audyt</a>
     </section>
-</ReelLayout>
+</Layout>

@@ -1,32 +1,33 @@
 ---
-import ReelLayout from '../layouts/ReelLayout.astro';
+import Layout from '../layouts/Layout.astro';
 
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
-  name: 'Kontakt – montaż rolek',
+  name: 'Kontakt – wizytówki Google, Jan Kobus',
   url: 'https://jankobus.com/kontakt/',
-  mainEntity: { '@type': 'Person', name: 'Jan Kobus', jobTitle: 'Montażysta wideo i twórca stron internetowych', url: 'https://jankobus.com', telephone: '+48732800250' }
+  mainEntity: { '@id': 'https://jankobus.com' }
 };
 ---
 
-<ReelLayout
-    title="Kontakt | Jan Kobus – rolki, strony internetowe, SEO"
-    description="Napisz albo zadzwoń (732 800 250) w sprawie montażu rolek, strony internetowej albo SEO. Lubliniec i zdalnie w całej Polsce."
+<Layout
+    title="Kontakt | Jan Kobus – wizytówki Google, Lubliniec"
+    description="Zadzwoń (732 800 250) albo napisz w sprawie wizytówki Google, pozycjonowania lokalnego lub darmowego audytu widoczności. Lubliniec i okolice."
     canonical="https://jankobus.com/kontakt/"
     structuredData={structuredData}
     active="kontakt"
 >
-    <section class="page-head" data-clip="Kontakt" data-track="t1">
+    <section class="page-head">
         <p class="eyebrow">Kontakt</p>
         <h1 class="display">Napisz do mnie.</h1>
-        <p class="lead">Rolka, strona czy SEO? Opisz krótko, czego potrzebujesz. Odpiszę z wyceną i terminem, zanim zacznę pracę.</p>
+        <p class="lead">Pytanie o wizytówkę Google, wycenę albo współpracę? Odpiszę w ciągu 2 dni roboczych.</p>
         <p class="contact-phone">Wolisz zadzwonić? <a class="phone" href="tel:+48732800250">732 800 250</a></p>
     </section>
 
-    <section class="contact" data-clip="Formularz" data-track="v1">
+    <section class="contact">
         <form class="form" action="https://formspree.io/f/mbdrgppo" method="POST">
             <input type="hidden" name="_subject" value="Nowe zapytanie z jankobus.com">
+            <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="field-row">
                 <div class="field">
                     <label for="name">Imię</label>
@@ -39,85 +40,50 @@ const structuredData = {
             </div>
             <div class="field-row">
                 <div class="field">
-                    <label for="type">Czego potrzebujesz</label>
+                    <label for="type">Temat</label>
                     <select id="type" name="temat">
-                        <optgroup label="Montaż rolek">
-                            <option value="rolka-firma">Rolka: firma / produkt</option>
-                            <option value="rolka-wesele">Rolka: wesele / impreza</option>
-                            <option value="rolka-nieruchomosc">Rolka: nieruchomość</option>
-                            <option value="rolka-event">Rolka: event / koncert</option>
-                        </optgroup>
-                        <optgroup label="Strony i Google">
-                            <option value="strona">Strona internetowa</option>
-                            <option value="seo">SEO / widoczność w Google</option>
-                            <option value="strona-seo">Strona + SEO</option>
-                        </optgroup>
+                        <option value="audyt">Darmowy audyt widoczności</option>
+                        <option value="wdrozenie">Wdrożenie wizytówki Google</option>
+                        <option value="opieka">Stała opieka nad wizytówką</option>
                         <option value="inne">Inne</option>
                     </select>
                 </div>
-                <div class="field" data-only="rolka">
-                    <label for="count">Ile rolek</label>
-                    <select id="count" name="ilosc">
-                        <option>Jedna</option>
-                        <option>2–4</option>
-                        <option>Stała współpraca (co miesiąc)</option>
-                    </select>
+                <div class="field">
+                    <label for="company">Nazwa firmy <small>(opcjonalnie)</small></label>
+                    <input type="text" id="company" name="firma" autocomplete="organization">
                 </div>
             </div>
             <div class="field">
-                <label for="link"><span data-only="rolka">Link do materiału <small>(opcjonalnie: Google Drive, WeTransfer)</small></span><span data-only="web" hidden>Adres obecnej strony <small>(jeśli masz)</small></span></label>
-                <input type="url" id="link" name="link" placeholder="https://">
+                <label for="message">Wiadomość</label>
+                <textarea id="message" name="message" placeholder="Czym zajmuje się firma, gdzie działa i co chcesz poprawić." required></textarea>
             </div>
-            <div class="field">
-                <label for="message">Opis</label>
-                <textarea id="message" name="message" placeholder="Gdzie rolka ma się ukazać, jaki klimat, na kiedy jest potrzebna." required></textarea>
-            </div>
+            <label class="check">
+                <input type="checkbox" name="zgoda" value="tak" required>
+                <span>Zgadzam się na kontakt mailowy lub telefoniczny w sprawie mojego zapytania i oferty usług Jana Kobusa.</span>
+            </label>
             <div>
-                <button type="submit" class="btn btn-primary">Wyślij zapytanie</button>
+                <button type="submit" class="btn btn-primary">Wyślij</button>
             </div>
-            <p class="form-note">Odpowiadam mailem. Twoje dane służą tylko do odpowiedzi na to zapytanie.</p>
+            <p class="form-note">Administratorem danych jest Jan Kobus, Lubliniec. Dane służą tylko do odpowiedzi na to zapytanie. Formularz obsługuje Formspree.</p>
         </form>
 
         <aside class="aside">
-            <h2>Zanim wyślesz</h2>
-            <ul data-only="web" hidden>
-                <li>Napisz, czym zajmuje się Twoja firma i gdzie działa.</li>
-                <li>Wklej linki do 2–3 stron, które Ci się podobają.</li>
-                <li>Jeśli masz już domenę albo stronę, podaj jej adres.</li>
-                <li>Napisz, po jakich hasłach klienci mają Cię znajdować w Google.</li>
-            </ul>
-            <ul data-only="rolka">
-                <li>Nagrywaj w pionie, jeśli to możliwe.</li>
-                <li>Łap kilka sekund przed i po ważnym momencie.</li>
-                <li>Wyślij oryginalne pliki, nie przez Messengera ani WhatsAppa, bo kompresują jakość.</li>
-                <li>Masz ulubioną rolkę, która Ci się podoba? Wklej link w opisie.</li>
-            </ul>
+            <h2>Szybciej przez audyt</h2>
+            <p>Chcesz wiedzieć, jak Twoja firma wypada w Mapach Google i ChatGPT? Wypełnij krótki formularz audytu, wystarczy nazwa firmy i miasto.</p>
+            <p><a href="/#audyt" class="btn btn-ghost">Darmowy audyt</a></p>
             <p>Telefon: <a href="tel:+48732800250">732 800 250</a></p>
-            <p>Wolisz pisać na Instagramie? <a href="https://www.instagram.com/redix.45/" target="_blank" rel="noopener noreferrer">@redix.45</a></p>
         </aside>
     </section>
 
     <script is:inline>
     (() => {
-      // Pola i podpowiedzi zależne od tematu: rolki vs strona/SEO
       const sel = document.getElementById('type');
-      const msg = document.getElementById('message');
       const subject = document.querySelector('input[name="_subject"]');
-      const placeholders = {
-        rolka: 'Gdzie rolka ma się ukazać, jaki klimat, na kiedy jest potrzebna.',
-        web: 'Czym zajmuje się firma, czego oczekujesz od strony, na kiedy jest potrzebna.'
-      };
-      const apply = () => {
-        const v = sel.value;
-        const mode = v.startsWith('rolka') ? 'rolka' : (v === 'inne' ? 'rolka' : 'web');
-        document.querySelectorAll('[data-only]').forEach(el => { el.hidden = el.dataset.only !== mode; });
-        msg.placeholder = placeholders[mode];
-        subject.value = 'Nowe zapytanie z jankobus.com: ' + sel.options[sel.selectedIndex].text;
-      };
       const temat = new URLSearchParams(location.search).get('temat');
       if (temat && [...sel.options].some(o => o.value === temat)) sel.value = temat;
+      const apply = () => { subject.value = 'Nowe zapytanie z jankobus.com: ' + sel.options[sel.selectedIndex].text; };
       sel.addEventListener('change', apply);
       apply();
     })();
     </script>
-</ReelLayout>
+</Layout>
